@@ -31,10 +31,36 @@
     - **Middleware**  Elementos que se ejecutan en cualquier punto de la petición. Interceptores
         - Los middlewares se registran en x:\xampp\htdocs\prj_laravelapi\app\Http\Kernel.php
 ```php
-protected $middleware = [\App\Http\Middleware\CheckForMaintenanceMode::class,
+//estos se van a ejecutar siempre
+protected $middleware = [\App\Http\Middleware\CheckForMaintenanceMode::class, 
+//estos se ejecutaran para WEB y para APIS
+protected $middlewareGroups = [
+
+protected $routeMiddleware = [
 ```
 
--
+- para distinguir si se está ejecutando la app desde la Web o una Api se usan las rutas: `x:\xampp\htdocs\prj_laravelapi\routes`
+- el apartado de API esta en texto porque es un alias de `$routeMiddleware`
+- x:\xampp\htdocs\prj_laravelapi\app**\Providers**
+- Que es un provider? Es una lógica que se ejecuta antes de hacer cualquier tipo de acción de la petición recibida.
+    - Registrar rutas, acciones que se van a ejecutar, registrar algo que se desea compartir en todo el proyecto.
+    - Es como una caja de sastre
+- x:\xampp\htdocs\prj_laravelapi\app\Providers\ **RouteServiceProvider.php** se quita el prefijo
+- comando: `php artisan route:list` 
+- x:\xampp\htdocs\prj_laravelapi\config\app.php Se cargan los valores de .env en un array
+- x:\xampp\htdocs\prj_laravelapi\database\factories\UserFactory.php generador de objetos
+- x:\xampp\htdocs\prj_laravelapi\database\migrations\2014_10_12_000000_create_users_table.php
+- x:\xampp\htdocs\prj_laravelapi\database\seeds\DatabaseSeeder.php Desde este se llamara a los factories para rellenar la bd con información
+- x:\xampp\htdocs\prj_laravelapi\resources\
+    - **assets** Recursos de frontend compilados
+    - **lang**  Mensajes de validación
+    - **views**  No se usaran mucho
+- x:\xampp\htdocs\prj_laravelapi\routes\channels.php Para transmitir eventos a lo largo de toda la app. No se utilizará.
+- x:\xampp\htdocs\prj_laravelapi\routes\console.php comandos personalizados que se puede tener en php artisan
+- x:\xampp\htdocs\prj_laravelapi\storage donde se almacenan los logs
+- x:\xampp\htdocs\prj_laravelapi\vendor codigo de terceros gestionado por composer. No se debe tocar
+- Hay que evitar tener rutas iguales para Api y para Web, siempre prevalecerá las de web.
+- En middlewaregroups se cargan unas librerias de web como sesiones y crf que no secargan para api lo que la hace más ligera
 5. []()
 -
 -
