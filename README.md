@@ -4,7 +4,7 @@
 
 ### [Contenido curso - Escueal.it](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel#content)
 
-### Leccones
+### Lecciones:
 
 1. [Crear un proyecto en laravel](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/crear-un-proyecto-en-laravel)
 - composer create-project laravel/laravel prj_laravelapi 5.6.* (tarda como 15 min en instalar)
@@ -16,7 +16,12 @@
 - archivo `.env` archivo de configuracion
 - error al ejecutar `php artisan migrate`: 
     `Illuminate\Database\QueryException:SQLSTATE[HY000]:General error:26 file is encrypted or is not a database (SQL:..`
-
+    solución: 
+    - He tenido que instalar [sqlite-tools-win32-x86-*](https://www.sqlite.org/2018/sqlite-tools-win32-x86-3240000.zip)
+    - Con esta herramienta en E:/programas/sqlite3-console la he configurado como variable de entorno
+    - He creado la bd con el comando `sqlite3 database.sqlite`
+    - Seguidamente he ejecutado: `php artisan migrate` y ha ido bien. Parece que no le gusta cuando se crea un archivo sqlite cone el notepad++
+    - `Migration table created successfully.`
 3. []()
 -
 -
