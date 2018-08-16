@@ -61,7 +61,9 @@ protected $routeMiddleware = [
 - x:\xampp\htdocs\prj_laravelapi\vendor codigo de terceros gestionado por composer. No se debe tocar
 - Hay que evitar tener rutas iguales para Api y para Web, siempre prevalecerá las de web.
 - En middlewaregroups se cargan unas librerias de web como sesiones y crf que no secargan para api lo que la hace más ligera
-5. []()
+- el ORM que se usará **ELOQUENT**
+
+5. [Creación de nuestro primer modelo y archivos asociados](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/creacion-de-nuestro-primer-modelo-y-archivos-asociados)
 -
 -
 -
