@@ -19,9 +19,10 @@
     solución: 
     - He tenido que instalar [sqlite-tools-win32-x86-*](https://www.sqlite.org/2018/sqlite-tools-win32-x86-3240000.zip)
     - Con esta herramienta en E:/programas/sqlite3-console la he configurado como variable de entorno
-    - He creado la bd con el comando `sqlite3 database.sqlite`
+    - He creado la bd con el comando `sqlite3 database.sqlite` y despues `.databases` este último es el que escribe la bd en blanco
     - Seguidamente he ejecutado: `php artisan migrate` y ha ido bien. Parece que no le gusta cuando se crea un archivo sqlite cone el notepad++
     - `Migration table created successfully.`
+    - **NO** hacia falta habilitar `extension=php_sqlite3.dll - ;sqlite3.extension_dir ` en **php.ini**
 3. []()
 -
 -
