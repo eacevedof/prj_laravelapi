@@ -7,7 +7,7 @@
 ### Lecciones:
 
 1. [Crear un proyecto en laravel](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/crear-un-proyecto-en-laravel)
-- composer create-project laravel/laravel prj_laravelapi 5.6.* (tarda como 15 min en instalar)
+- **composer**: `composer create-project laravel/laravel prj_laravelapi 5.6.*` (tarda como 15 min en instalar)
 - version instalada: `php artisan --version` `Laravel Framework 5.6.33`
 - con `php artisan serve` despliega laravel en su servidor integrado: 127.0.0.1:8000
 
@@ -23,10 +23,8 @@
     - Seguidamente he ejecutado: `php artisan migrate` y ha ido bien. Parece que no le gusta cuando se crea un archivo sqlite cone el notepad++
     - `Migration table created successfully.`
     - **NO** hacia falta habilitar `extension=php_sqlite3.dll - ;sqlite3.extension_dir ` en **php.ini**
-3. []()
--
--
--
+3. [Otras alternativas instalación](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/otras-alternativas-para-disponer-de-laravel-en-local-para-desarrollo)
+- explicación comando `composer create-project` 
 4. []()
 -
 -
