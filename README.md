@@ -4,7 +4,7 @@
 
 ### [Contenido curso - Escueal.it](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel#content)
 
-### Pasos
+### Leccones
 
 1. [Crear un proyecto en laravel](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/crear-un-proyecto-en-laravel)
 - composer create-project laravel/laravel prj_laravelapi 5.6.* (tarda como 15 min en instalar)
