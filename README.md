@@ -14,9 +14,9 @@
 2. [Configurar la base de datos](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/configurar-la-base-de-datos)
 - `php artisan migrate` intenta migrar una bd
 - archivo `.env` archivo de configuracion
-- error al ejecutar `php artisan migrate`: 
+- **error** al ejecutar `php artisan migrate`: 
     `Illuminate\Database\QueryException:SQLSTATE[HY000]:General error:26 file is encrypted or is not a database (SQL:..`
-    solución: 
+    **solución:**
     - He tenido que instalar [sqlite-tools-win32-x86-*](https://www.sqlite.org/2018/sqlite-tools-win32-x86-3240000.zip)
     - Con esta herramienta en E:/programas/sqlite3-console la he configurado como variable de entorno
     - He creado la bd con el comando `sqlite3 database.sqlite` y despues `.databases` este último es el que escribe la bd en blanco
