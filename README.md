@@ -26,7 +26,7 @@
 3. [Otras alternativas instalación](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/otras-alternativas-para-disponer-de-laravel-en-local-para-desarrollo)
 - explicación comando `composer create-project` 
 4. [Estructura de laravel](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/repaso-a-la-estructura-de-aplicacion-laravel-55)
-- x:\xampp\htdocs\prj_laravelapi\app**\Exceptions\**Handler.php archivo de excepciones, en esta carpeta se puede crear distintos archivos de excepciones
+- x:\xampp\htdocs\prj_laravelapi\app**\Exceptions**\Handler.php archivo de excepciones, en esta carpeta se puede crear distintos archivos de excepciones
 - x:\xampp\htdocs\prj_laravelapi\app\Http
     - Controllers Todas las acciones de la API. Un controlador por determinadas acciones (no más de 5 metodos)
     - Middleware  Elementos que se ejecutan en cualquier punto de la petición. Interceptores
@@ -35,6 +35,7 @@
     protected $middleware = [
         \App\Http\Middleware\CheckForMaintenanceMode::class,
         ```
+
 -
 5. []()
 -
