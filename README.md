@@ -10,7 +10,6 @@
 - **composer**: `composer create-project laravel/laravel prj_laravelapi 5.6.*` (tarda como 15 min en instalar)
 - version instalada: `php artisan --version` `Laravel Framework 5.6.33`
 - con `php artisan serve` despliega laravel en su servidor integrado: 127.0.0.1:8000
-
 2. [Configurar la base de datos](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/configurar-la-base-de-datos)
 - `php artisan migrate` intenta migrar una bd
 - archivo `.env` archivo de configuracion
@@ -31,11 +30,9 @@
     - **Controllers** Todas las acciones de la API. Un controlador por determinadas acciones (no más de 5 metodos)
     - **Middleware**  Elementos que se ejecutan en cualquier punto de la petición. Interceptores
         - Los middlewares se registran en x:\xampp\htdocs\prj_laravelapi\app\Http\Kernel.php
-
-        ```php
-    protected $middleware = [
-        \App\Http\Middleware\CheckForMaintenanceMode::class,
-        ```
+```php
+protected $middleware = [\App\Http\Middleware\CheckForMaintenanceMode::class,
+```
 
 -
 5. []()
