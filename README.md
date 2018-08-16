@@ -11,10 +11,12 @@
 - version instalada: `php artisan --version` `Laravel Framework 5.6.33`
 - con `php artisan serve` despliega laravel en su servidor integrado: 127.0.0.1:8000
 
-2. []()
--
--
-- 
+2. [Configurar la base de datos](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/configurar-la-base-de-datos)
+- `php artisan migrate` intenta migrar una bd
+- archivo `.env` archivo de configuracion
+- error al ejecutar `php artisan migrate`: 
+    `Illuminate\Database\QueryException:SQLSTATE[HY000]:General error:26 file is encrypted or is not a database (SQL:..`
+
 3. []()
 -
 -
