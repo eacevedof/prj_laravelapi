@@ -69,3 +69,24 @@ protected $routeMiddleware = [
     - flag **-a, --all** Genera el modelo, factory que nos permitira insertar datos falsos o de prueba y resource controller es un controlador de recursos, cada modelo es un recurso.
 - **comando:** `php artisan make:model Product --all`
 - Ruta de los modelos: x:\xampp\htdocs\prj_laravelapi\ **app**
+- Crear ruta de api:  x:\xampp\htdocs\prj_laravelapi\routes\api.php
+- En el metodo show si no se recibe una instancia laravel lanzará una excepcion de **ModelNotFoundException** que se controlara en **x:\..api\app\Exceptions\Handler.php**
+- Ruta en **api.php** `Route::resource("products","ProductController");`
+- **comando:** `php artisan route:list` Muestra las rutas generadas por la linea escrita en api.php
+```shell
+$ php artisan route:list
++--------+-----------+-------------------------+------------------+------------------------------------------------+------------+
+| Domain | Method    | URI                     | Name             | Action                                         | Middleware |
++--------+-----------+-------------------------+------------------+------------------------------------------------+------------+
+|        | GET|HEAD  | /                       |                  | Closure                                        | web        |
+|        | GET|HEAD  | products                | products.index   | App\Http\Controllers\ProductController@index   | api        |
+|        | POST      | products                | products.store   | App\Http\Controllers\ProductController@store   | api        |
+|        | GET|HEAD  | products/create         | products.create  | App\Http\Controllers\ProductController@create  | api        |
+|        | GET|HEAD  | products/{product}      | products.show    | App\Http\Controllers\ProductController@show    | api        |
+|        | PUT|PATCH | products/{product}      | products.update  | App\Http\Controllers\ProductController@update  | api        |
+|        | DELETE    | products/{product}      | products.destroy | App\Http\Controllers\ProductController@destroy | api        |
+|        | GET|HEAD  | products/{product}/edit | products.edit    | App\Http\Controllers\ProductController@edit    | api        |
++--------+-----------+-------------------------+------------------+------------------------------------------------+------------+
+```
+
+-
