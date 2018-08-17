@@ -65,5 +65,6 @@ protected $routeMiddleware = [
 
 5. [Creación de nuestro primer modelo y archivos asociados](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/creacion-de-nuestro-primer-modelo-y-archivos-asociados)
 - Diagrama ![diagrama de clases](https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/6a3a5051307f57b023a2cd7de15dd2ca/image.png)
--
--
+- **comando:** `php artisan make:model --help`
+    - flag **-a, --all** Genera el modelo, factory que nos permitira insertar datos falsos o de prueba y resource controller es un controlador de recursos, cada modelo es un recurso.
+- **comando:** `php artisan make:model Product --all`
