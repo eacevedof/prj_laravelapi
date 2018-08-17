@@ -68,3 +68,4 @@ protected $routeMiddleware = [
 - **comando:** `php artisan make:model --help`
     - flag **-a, --all** Genera el modelo, factory que nos permitira insertar datos falsos o de prueba y resource controller es un controlador de recursos, cada modelo es un recurso.
 - **comando:** `php artisan make:model Product --all`
+- Ruta de los modelos: x:\xampp\htdocs\prj_laravelapi\ **app**
