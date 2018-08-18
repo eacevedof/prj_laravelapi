@@ -143,4 +143,22 @@ Model created successfully.
 Factory created successfully.
 Created Migration: 2018_08_18_130213_create_transactions_table
 ```
-
+- Despues de agregar ruta en **routes/api.php**: **Route::apiResource("transaction","TransactionController");**
+```bash
+$ php artisan route:list
++--------+-----------+---------------------------+---------------------+----------------------------------------------------+------------+
+| Domain | Method    | URI                       | Name                | Action                                             | Middleware |
++--------+-----------+---------------------------+---------------------+----------------------------------------------------+------------+
+|        | GET|HEAD  | /                         |                     | Closure                                            | web        |
+|        | GET|HEAD  | products                  | products.index      | App\Http\Controllers\ProductController@index       | api        |
+|        | POST      | products                  | products.store      | App\Http\Controllers\ProductController@store       | api        |
+|        | GET|HEAD  | products/{product}        | products.show       | App\Http\Controllers\ProductController@show        | api        |
+|        | PUT|PATCH | products/{product}        | products.update     | App\Http\Controllers\ProductController@update      | api        |
+|        | DELETE    | products/{product}        | products.destroy    | App\Http\Controllers\ProductController@destroy     | api        |
+|        | GET|HEAD  | transaction               | transaction.index   | App\Http\Controllers\TransactionController@index   | api        |
+|        | POST      | transaction               | transaction.store   | App\Http\Controllers\TransactionController@store   | api        |
+|        | GET|HEAD  | transaction/{transaction} | transaction.show    | App\Http\Controllers\TransactionController@show    | api        |
+|        | PUT|PATCH | transaction/{transaction} | transaction.update  | App\Http\Controllers\TransactionController@update  | api        |
+|        | DELETE    | transaction/{transaction} | transaction.destroy | App\Http\Controllers\TransactionController@destroy | api        |
++--------+-----------+---------------------------+---------------------+----------------------------------------------------+------------+
+```
