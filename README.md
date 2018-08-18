@@ -29,7 +29,11 @@
 - x:\xampp\htdocs\prj_laravelapi\app\Http
     - **Controllers** Todas las acciones de la API. Un controlador por determinadas acciones (no más de 5 metodos)
     - **Middleware**  Elementos que se ejecutan en cualquier punto de la petición. Interceptores
+        - [Explicación stackoverflow](https://stackoverflow.com/questions/2904854/what-is-middleware-exactly)
         - Los middlewares se registran en x:\xampp\htdocs\prj_laravelapi\app\Http\Kernel.php
+        - Los **middlewares (software glue)** orignalmente son interfaces de tipo pasarela entre dos sistemas agnosticos. 
+Permiten la integración entre dos plataformas: `[Plat A] in/out <- middleware -> in/out [Plat B]`. 
+El middlware lleva acabo esta tarea usando servicios.
 ```php
 //estos se van a ejecutar siempre
 protected $middleware = [\App\Http\Middleware\CheckForMaintenanceMode::class, 
