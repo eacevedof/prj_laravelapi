@@ -254,3 +254,4 @@ class CreateUsersTable extends Migration
     public function down(){Schema::dropIfExists('users');}
 }//CreateUsersTable extends Migration
 ```
+9. [Preguntas finales y resumen del contenido del curso](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/preguntas-finales-y-resumen-del-contenido-del-curso)
