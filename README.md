@@ -136,3 +136,4 @@ $ php artisan route:list
     - Tener presente la **tabla pivote** es una representación fisica de una relación n:m. En el ejemplo **Product<->Category** con lo cual
 obtendriamos una tabla **Category_Product** (Union de nombres en singular en orden alfabético **Norma 5**)
 - **comando:** `php artisan make:model Transaction --all`
+
