@@ -52,7 +52,7 @@ protected $routeMiddleware = [
     - Es una clase **abstracta** que tiene un metodo register que sirve para mapear **Interface -> Clase instanciable** de modo que cuando se desee hacer una
 inyección de dependencia usando una interfaz, esta se lleve acabo (normalmente usando **ReflectionClass**) consultando al ServiceProvider.
 - x:\xampp\htdocs\prj_laravelapi\app\Providers\ **RouteServiceProvider.php** se quita el prefijo
-- comando: `php artisan route:list` 
+- **comando:** `php artisan route:list` 
 - x:\xampp\htdocs\prj_laravelapi\config\app.php Se cargan los valores de .env en un array
 - x:\xampp\htdocs\prj_laravelapi\database\factories\UserFactory.php generador de objetos
 - x:\xampp\htdocs\prj_laravelapi\database\migrations\2014_10_12_000000_create_users_table.php
@@ -93,6 +93,20 @@ $ php artisan route:list
 |        | DELETE    | products/{product}      | products.destroy | App\Http\Controllers\ProductController@destroy | api        |
 |        | GET|HEAD  | products/{product}/edit | products.edit    | App\Http\Controllers\ProductController@edit    | api        |
 +--------+-----------+-------------------------+------------------+------------------------------------------------+------------+
+
+# despues de cambiar `Route::resource("products","ProductController");` a `Route::apiResource("products","ProductController");`
+$ php artisan route:list
++--------+-----------+--------------------+------------------+------------------------------------------------+------------+
+| Domain | Method    | URI                | Name             | Action                                         | Middleware |
++--------+-----------+--------------------+------------------+------------------------------------------------+------------+
+|        | GET|HEAD  | /                  |                  | Closure                                        | web        |
+|        | GET|HEAD  | products           | products.index   | App\Http\Controllers\ProductController@index   | api        |
+|        | POST      | products           | products.store   | App\Http\Controllers\ProductController@store   | api        |
+|        | GET|HEAD  | products/{product} | products.show    | App\Http\Controllers\ProductController@show    | api        |
+|        | PUT|PATCH | products/{product} | products.update  | App\Http\Controllers\ProductController@update  | api        |
+|        | DELETE    | products/{product} | products.destroy | App\Http\Controllers\ProductController@destroy | api        |
++--------+-----------+--------------------+------------------+------------------------------------------------+------------+
+
 ```
 - No nos interesa usar los metodos: create y edit
-- **comando:** ``
+- **comando:** `php artisan make:model Product --all`
