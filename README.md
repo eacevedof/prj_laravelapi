@@ -75,10 +75,12 @@ inyección de dependencia usando una interfaz, esta se lleve acabo (normalmente 
     - flag **-a, --all** Genera el modelo, factory que nos permitira insertar datos falsos o de prueba y resource controller es un controlador de recursos, cada modelo es un recurso.
 - **comando:** `php artisan make:model Product --all`
 - Ruta de los modelos: x:\xampp\htdocs\prj_laravelapi\ **app**
-- Crear ruta de api:  x:\xampp\htdocs\prj_laravelapi\routes\api.php
+- Crear ruta de api:  x:\xampp\htdocs\prj_laravelapi\routes\ **api.php**
 - En el metodo show si no se recibe una instancia laravel lanzará una excepcion de **ModelNotFoundException** que se controlara en **x:\..api\app\Exceptions\Handler.php**
-- Ruta en **api.php** `Route::resource("products","ProductController");`
-- **comando:** `php artisan route:list` Muestra las rutas generadas por la linea escrita en api.php
+- Ruta en **api.php** `Route::resource("products","ProductController");` esta es una ruta para **web** pero como estamos usando
+una ruta de **api** se tiene que usar **Route::apiResource()**
+    - Otra forma de forzar un metodo en las ruta es: `Route::get("recurso-X","ProductController@create")`
+- **comando:** `php artisan route:list` Muestra las rutas generadas por la linea escrita en **api.php**
 ```shell
 $ php artisan route:list
 +--------+-----------+-------------------------+------------------+------------------------------------------------+------------+
