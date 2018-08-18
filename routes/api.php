@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
-|
+
+comando: php artisan route:list
 */
 
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -18,4 +19,4 @@ use Illuminate\Http\Request;
 });
  * 
  */
-Route::resource("products","ProductController");
+Route::apiResource("products","ProductController");
