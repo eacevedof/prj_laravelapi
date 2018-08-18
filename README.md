@@ -186,3 +186,12 @@ Model already exists!
     - `Route::binding("profesor",function(){ Profesor});` **min: 17:34** 
 - Las palabras se separan por mayusculas. CamelCase
 - **Duda: ¿Qué pasa si ya tengo una Bd y los nombres de las tablas no cumplen con el estandard de laravel para los modelos?**
+
+7. [Creación de la tabla pivote](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/creacion-de-la-tabla-pivote)
+- **comando:** `php artisan make:migration`
+    - **--create[=CREATE]**
+    - **table[=TABLE]**
+```bash
+$ php artisan make:migration create_category_product_table
+Created Migration: 2018_08_18_140049_create_category_product_table
+```
