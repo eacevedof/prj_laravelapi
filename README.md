@@ -71,7 +71,7 @@ inyección de dependencia usando una interfaz, esta se lleve acabo (normalmente 
 
 5. [Creación de nuestro primer modelo y archivos asociados](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/creacion-de-nuestro-primer-modelo-y-archivos-asociados)
 - Diagrama 
-    <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/6a3a5051307f57b023a2cd7de15dd2ca/image.png" height="200" width="400">
+    - <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/6a3a5051307f57b023a2cd7de15dd2ca/image.png" height="200" width="400">
 - **comando:** `php artisan make:model --help`
     - flag **-a, --all** Genera el modelo, factory que nos permitira insertar datos falsos o de prueba y resource controller es un controlador de recursos, cada modelo es un recurso.
 - **comando:** `php artisan make:model Product --all`
@@ -219,7 +219,7 @@ Migrating: 2018_08_18_140049_create_category_product_table
 Migrated:  2018_08_18_140049_create_category_product_table
 ```
 - **Resultado**
-    <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b782b6ee487ec2c9552dbbd/70b774790c4630fd0e1257e38a6c6ff3/image.png" height="200" width="100">
+    - <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b782b6ee487ec2c9552dbbd/70b774790c4630fd0e1257e38a6c6ff3/image.png" height="200" width="100">
 - Con esto ya tendriamos todas las tablas creadas
 - Ahora queda configurar los campos de las mismas en las clases de las migraciones
     - **Ejemplo class CreateUsersTable extends Migration**
