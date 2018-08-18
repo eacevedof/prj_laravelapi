@@ -20,5 +20,6 @@ comando: php artisan route:list
  * 
  */
 Route::apiResource("products","ProductController");
-Route::apiResource("transaction","TransactionController");
+Route::apiResource("transactions","TransactionController");
+Route::apiResource("categories","CategoryController");
 //Route::get("slug-de-ruta","ProductController@methodX");

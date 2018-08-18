@@ -143,7 +143,8 @@ Model created successfully.
 Factory created successfully.
 Created Migration: 2018_08_18_130213_create_transactions_table
 ```
-- Despues de agregar ruta en **routes/api.php**: **Route::apiResource("transaction","TransactionController");**
+- Despues de agregar ruta en **routes/api.php**: **Route::apiResource("transactions","TransactionController");**
+    - Cuidado!! el **slug** de la ruta debe estar siempre en **ingles plural**
 ```bash
 $ php artisan route:list
 +--------+-----------+---------------------------+---------------------+----------------------------------------------------+------------+
@@ -162,3 +163,4 @@ $ php artisan route:list
 |        | DELETE    | transaction/{transaction} | transaction.destroy | App\Http\Controllers\TransactionController@destroy | api        |
 +--------+-----------+---------------------------+---------------------+----------------------------------------------------+------------+
 ```
+- Creado modelo **Category** con make:model --all
