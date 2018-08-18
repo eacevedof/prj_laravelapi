@@ -195,3 +195,61 @@ Model already exists!
 $ php artisan make:migration create_category_product_table
 Created Migration: 2018_08_18_140049_create_category_product_table
 ```
+8. [Ejecutar migraciones](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/ejecutar-migraciones)
+- **comando:** `php artisan migrate`
+- Es común que ocurran errores en la migracion
+- **comando:** `php artisan migrate:fresh`
+- Recrea las tablas desde cero.
+```bash
+$ php artisan migrate:fresh
+Dropped all tables successfully.
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+Migrating: 2018_08_17_212821_create_products_table
+Migrated:  2018_08_17_212821_create_products_table
+Migrating: 2018_08_18_130213_create_transactions_table
+Migrated:  2018_08_18_130213_create_transactions_table
+Migrating: 2018_08_18_131136_create_categories_table
+Migrated:  2018_08_18_131136_create_categories_table
+Migrating: 2018_08_18_140049_create_category_product_table
+Migrated:  2018_08_18_140049_create_category_product_table
+```
+- **Resultado**
+    - <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b782b6ee487ec2c9552dbbd/70b774790c4630fd0e1257e38a6c6ff3/image.png" height="100" width="100">
+- Con esto ya tendriamos todas las tablas creadas
+- Ahora queda configurar los campos de las mismas en las clases de las migraciones
+    - **Ejemplo class CreateUsersTable extends Migration**
+```php
+<?php
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateUsersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     * @return void
+     */
+    public function down(){Schema::dropIfExists('users');}
+}//CreateUsersTable extends Migration
+```
