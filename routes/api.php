@@ -20,4 +20,4 @@ comando: php artisan route:list
  * 
  */
 Route::apiResource("products","ProductController");
-Route::get("slug-de-ruta","ProductController@methodX");
+//Route::get("slug-de-ruta","ProductController@methodX");
