@@ -164,3 +164,18 @@ $ php artisan route:list
 +--------+-----------+---------------------------+---------------------+----------------------------------------------------+------------+
 ```
 - Creado modelo **Category** con make:model --all
+- Creando el recurso **users**
+```bash
+$ php artisan make:model User --all
+Model already exists!
+```
+- Laravel ya viene con el **modelo User** ya creado. No es bueno borrarlo y volverlo a crear
+- Como para este modelo ya tenemos: 
+    - **database/migrations/+++_create_users_table.php**
+    - **database/factories/UserFactory.php**
+    - **app/User.php** (modelo)
+    - Falta el Controlador!
+        - **comando:** - `php artisan make:controller `
+        - con flag **-m** crea recurso para el modelo dado
+        - flag **-r** crea un recurso básico de tal forma que los métodos no llevan la inyección de dependencias
+        
