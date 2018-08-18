@@ -254,6 +254,7 @@ class CreateUsersTable extends Migration
     public function down(){Schema::dropIfExists('users');}
 }//CreateUsersTable extends Migration
 ```
+
 9. [Preguntas finales y resumen del contenido del curso](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/preguntas-finales-y-resumen-del-contenido-del-curso)
 - Seguridad con **Laravel Passport** que implementa **OAuth2**
 - **OAuth2** Es un protocolo de autorización
@@ -272,3 +273,8 @@ class CreateUsersTable extends Migration
     - `GET https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address)?format=json`
 
 - **JWT (json web token):**  Es una validación por token que no permite identificar al cliente
+
+10. [Creación de modelos heredando de otro modelo](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/creacion-de-modelos-heredando-de-otro-modelo)
+- Aplicar atributos a los modelos
+- Cada atributo muy probablemente estara en la bd
+- Atributos computados
