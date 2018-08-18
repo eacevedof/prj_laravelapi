@@ -42,9 +42,11 @@ protected $routeMiddleware = [
 - para distinguir si se está ejecutando la app desde la Web o una Api se usan las rutas: `x:\xampp\htdocs\prj_laravelapi\routes`
 - el apartado de API esta en texto porque es un alias de `$routeMiddleware`
 - x:\xampp\htdocs\prj_laravelapi\app**\Providers**
-- Que es un provider? Es una lógica que se ejecuta antes de hacer cualquier tipo de acción de la petición recibida.
-    - Registrar rutas, acciones que se van a ejecutar, registrar algo que se desea compartir en todo el proyecto.
-    - Es como una caja de sastre
+- Que es un **provider**? 
+    - [Explicación stackoverflow](https://stackoverflow.com/questions/37104764/confused-about-laravel-providers-and-contracts)
+    - [Reflection Class php.net](http://php.net/manual/en/class.reflectionclass.php)
+    - Es una clase **abstracta** que tiene un metodo register que sirve para mapear **Interface -> Clase instanciable** de modo que cuando se desee hacer una
+inyección de dependencia usando una interfaz, esta se lleve acabo (normalmente usando **ReflectionClass**) consultando al ServiceProvider.
 - x:\xampp\htdocs\prj_laravelapi\app\Providers\ **RouteServiceProvider.php** se quita el prefijo
 - comando: `php artisan route:list` 
 - x:\xampp\htdocs\prj_laravelapi\config\app.php Se cargan los valores de .env en un array
@@ -88,5 +90,5 @@ $ php artisan route:list
 |        | GET|HEAD  | products/{product}/edit | products.edit    | App\Http\Controllers\ProductController@edit    | api        |
 +--------+-----------+-------------------------+------------------+------------------------------------------------+------------+
 ```
-
--
+- No nos interesa usar los metodos: create y edit
+- **comando:** ``
