@@ -19,6 +19,7 @@ comando: php artisan route:list
 });
  * 
  */
+Route::apiResource("users","UserController");
 Route::apiResource("products","ProductController");
 Route::apiResource("transactions","TransactionController");
 Route::apiResource("categories","CategoryController");

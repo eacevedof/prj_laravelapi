@@ -175,7 +175,7 @@ Model already exists!
     - **database/factories/UserFactory.php**
     - **app/User.php** (modelo)
     - Falta el Controlador!
-        - **comando:** - `php artisan make:controller `
+        - **comando:** - `php artisan make:controller UserController -m User`
         - con flag **-m** crea recurso para el modelo dado
         - flag **-r** crea un recurso básico de tal forma que los métodos no llevan la inyección de dependencias
         
