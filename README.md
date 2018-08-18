@@ -184,3 +184,5 @@ Model already exists!
 - Haciendo que laravel interprete rutas en español **min: 15:12**. Buscar: [`Localizing Resource URIs laravel.com`](https://laravel.com/docs/5.6/controllers#restful-localizing-resource-uris)
 - Habria que tocar el **app/providers/RouteServiceProvider.php - booot() despues de parent::boot()**
     - `Route::binding("profesor",function(){ Profesor});` **min: 17:34** 
+- Las palabras se separan por mayusculas. CamelCase
+- **Duda: ¿Qué pasa si ya tengo una Bd y los nombres de las tablas no cumplen con el estandard de laravel para los modelos?**
