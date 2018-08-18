@@ -79,7 +79,7 @@ inyección de dependencia usando una interfaz, esta se lleve acabo (normalmente 
 - En el metodo show si no se recibe una instancia laravel lanzará una excepcion de **ModelNotFoundException** que se controlara en **x:\..api\app\Exceptions\Handler.php**
 - Ruta en **api.php** `Route::resource("products","ProductController");` esta es una ruta para **web** pero como estamos usando
 una ruta de **api** se tiene que usar **Route::apiResource()**
-    - Otra forma de forzar un metodo en las ruta es: `Route::get("recurso-X","ProductController@create")`
+    - Otra forma de forzar un metodo en las ruta es: `Route::get("slug-de-ruta","ProductController@create")`
 - **comando:** `php artisan route:list` Muestra las rutas generadas por la linea escrita en **api.php**
 ```shell
 $ php artisan route:list
@@ -109,6 +109,20 @@ $ php artisan route:list
 |        | DELETE    | products/{product} | products.destroy | App\Http\Controllers\ProductController@destroy | api        |
 +--------+-----------+--------------------+------------------+------------------------------------------------+------------+
 
+# despues de agregar a routes\api.php Route::get("slug-de-ruta","ProductController@methodX");
+$ php artisan route:list
++--------+-----------+--------------------+------------------+------------------------------------------------+------------+
+| Domain | Method    | URI                | Name             | Action                                         | Middleware |
++--------+-----------+--------------------+------------------+------------------------------------------------+------------+
+|        | GET|HEAD  | /                  |                  | Closure                                        | web        |
+|        | GET|HEAD  | products           | products.index   | App\Http\Controllers\ProductController@index   | api        |
+|        | POST      | products           | products.store   | App\Http\Controllers\ProductController@store   | api        |
+|        | GET|HEAD  | products/{product} | products.show    | App\Http\Controllers\ProductController@show    | api        |
+|        | PUT|PATCH | products/{product} | products.update  | App\Http\Controllers\ProductController@update  | api        |
+|        | DELETE    | products/{product} | products.destroy | App\Http\Controllers\ProductController@destroy | api        |
+|        | GET|HEAD  | slug-de-ruta       |                  | App\Http\Controllers\ProductController@methodX | api        |
++--------+-----------+--------------------+------------------+------------------------------------------------+------------+
 ```
+
 - No nos interesa usar los metodos: create y edit
 - **comando:** `php artisan make:model Product --all`
