@@ -178,4 +178,9 @@ Model already exists!
         - **comando:** - `php artisan make:controller UserController -m User`
         - con flag **-m** crea recurso para el modelo dado
         - flag **-r** crea un recurso básico de tal forma que los métodos no llevan la inyección de dependencias
-        
+- Cuidado con los nombres y las rutas de ser posible siempre usar palabras en ingles
+- Es preferible evitar crear rutas personalizadas. Si se hace esto probablemente se haya incurrido en un error.
+- Los modelos de las tablas pivote se pueden crear en cualquier orden
+- Haciendo que laravel interprete rutas en español **min: 15:12**. Buscar: [`Localizing Resource URIs laravel.com`](https://laravel.com/docs/5.6/controllers#restful-localizing-resource-uris)
+- Habria que tocar el **app/providers/RouteServiceProvider.php - booot() despues de parent::boot()**
+    - `Route::binding("profesor",function(){ Profesor});` **min: 17:34** 
