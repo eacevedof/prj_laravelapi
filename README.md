@@ -95,7 +95,10 @@ $ php artisan route:list
 |        | DELETE    | products/{product}      | products.destroy | App\Http\Controllers\ProductController@destroy | api        |
 |        | GET|HEAD  | products/{product}/edit | products.edit    | App\Http\Controllers\ProductController@edit    | api        |
 +--------+-----------+-------------------------+------------------+------------------------------------------------+------------+
+```
 
+- No nos interesa usar los metodos: create y edit
+```shell
 # despues de cambiar `Route::resource("products","ProductController");` a `Route::apiResource("products","ProductController");`
 $ php artisan route:list
 +--------+-----------+--------------------+------------------+------------------------------------------------+------------+
@@ -124,5 +127,4 @@ $ php artisan route:list
 +--------+-----------+--------------------+------------------+------------------------------------------------+------------+
 ```
 
-- No nos interesa usar los metodos: create y edit
-- **comando:** `php artisan make:model Product --all`
+- **comando:** 
