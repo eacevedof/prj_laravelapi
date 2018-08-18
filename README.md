@@ -255,3 +255,20 @@ class CreateUsersTable extends Migration
 }//CreateUsersTable extends Migration
 ```
 9. [Preguntas finales y resumen del contenido del curso](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/preguntas-finales-y-resumen-del-contenido-del-curso)
+- Seguridad con **Laravel Passport** que implementa **OAuth2**
+- **OAuth2** Es un protocolo de autorización
+    - Entidades involucradas:
+    - **Propietario de recursos:** Parte que puede autorizar el acceso a los recursos. Generalmente una persona.
+    - **Cliente:** Sitio web o app que accedera a los recursos
+    - **Proveedor:**
+        - Servidor de autorización: Valida usuario y credenciaes y genera tokes de acceso.
+        - Servidor de recursos: Recibe peticiones de acceso a los recursos protegidos autorizando el acceso dependiendo del token.
+- **Ejemplo linkedin**
+    - Solicitar código de autorización:
+    - `GET https://www.linkedin.com/oauth/v2/authorization`
+    - Intercambiar código de autenticación por Access Token
+    - `POST https://www.linkedin.com/oauth/v2/accessToken`
+    - Realizar una petición de autenticación
+    - `GET https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address)?format=json`
+
+- **JWT (json web token):**  Es una validación por token que no permite identificar al cliente
