@@ -137,3 +137,10 @@ $ php artisan route:list
 obtendriamos una tabla **Category_Product** (Union de nombres en singular en orden alfabético **Norma 5**)
 - **comando:** `php artisan make:model Transaction --all`
 
+```bash
+$ php artisan make:model Transaction --all
+Model created successfully.
+Factory created successfully.
+Created Migration: 2018_08_18_130213_create_transactions_table
+```
+
