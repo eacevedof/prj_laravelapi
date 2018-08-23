@@ -364,8 +364,26 @@ por ejemplo `person_id`
 - El comando `:fresh` solo está disponible a partir de **laravel 5.5**
 
 13. [Implementación de factories para los recursos](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/implementacion-de-factories-para-los-recursos)
-- 
-
+- Metiendo datos en las tablas. 
+- Tenemos un **factory** para cada uno de los modelos 
+- Se reutiliza una variable global (objeto) **$factory** que usa el metodo **define** con **callback**
+- Para este fin se usan los **Factories** `x:\xampp\htdocs\prj_laravelapi\database\factories`
+- Ejemplo archivo: **UserFactory.php** 
+```php
+<?php
+use Faker\Generator as Faker;
+$factory->define(App\User::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+//antes para password se usaba la funcion bcrypt("secret")
+        'remember_token' => str_random(10),
+    ];
+});
+```
+- Se usa libreria [**faker**](https://github.com/fzaninotto/Faker)
+- Los factories solo son para el entorno de desarrollo (pruebas)
 
 14. []()
 
