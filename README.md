@@ -363,7 +363,9 @@ por ejemplo `person_id`
 - Si da algún error `artisan migrate` es mejor ejecutar un `:fresh` para crear nuevamente toda la bd (tablas y campos)
 - El comando `:fresh` solo está disponible a partir de **laravel 5.5**
 
-13. []()
+13. [Implementación de factories para los recursos](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/implementacion-de-factories-para-los-recursos)
+- 
+
 
 14. []()
 
