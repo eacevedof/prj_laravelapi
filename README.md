@@ -360,7 +360,8 @@ por ejemplo `person_id`
 ```
 - **comando:** `php artisan migrate` como ya estan creados los modelos entiende que no hay nada que migrar
 - **comando:** `php artisan migrate:fresh` borra la bd entera y crea la bd entera
-
+- Si da algún error `artisan migrate` es mejor ejecutar un `:fresh` para crear nuevamente toda la bd (tablas y campos)
+- El comando `:fresh` solo está disponible a partir de **laravel 5.5**
 
 13. []()
 
