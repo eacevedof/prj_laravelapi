@@ -478,6 +478,7 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
 
 15. [Invocar las factory desde DatabaseSeeder](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/invocar-las-factory-desde-databaseseeder)
 - DatabaseSeeder esta clase sirve como empaquetador para la generacion de datos
+- Uso de **Illuminate\Support\Facades**
 - **comando:** `php artisan db:seed` 
 - Ejemplo **DatabaseSeeder**
 ```php
@@ -529,8 +530,7 @@ class DatabaseSeeder extends Seeder
         
         Schema::enableForeignKeyConstraints();
     }//run
-    
-}
+}//DatabaseSeeder
 ```
 
 16. []()
