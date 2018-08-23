@@ -1,7 +1,11 @@
 <?php
-use Faker\Generator as Faker;
 
-$factory->define(App\Transaction::class, function (Faker $faker) {
+use Faker\Generator as Faker;
+use App\Seller;
+use App\Transaction;
+use App\User;
+
+$factory->define(Transaction::class, function (Faker $faker) {
     //No uso User pq no tiene relación directa con Transactions
     //Como laravel sabe que Seller tiene Products?. 
     //Esto se hace despues, al configurar las fks en los modelos
