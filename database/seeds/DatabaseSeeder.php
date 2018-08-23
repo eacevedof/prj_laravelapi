@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         
         $cantUser = 1000;
         $cantCategories = 30;
-        $cantProducts = 2000;
+        $cantProducts = 500;
         $cantTransactions = 1000;
         
         factory(User::class,$cantUser)->create();
@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
         factory(Product::class,$cantProducts)->create()
                 ->each(function($product) use ($categories)
         {
-            $categories->random(mt_rand(1,5))->pluck("id");
-            $product->categories()->attach($categories);
+            $rndCategories = $categories->random(mt_rand(1,5))->pluck("id");
+            $product->categories()->attach($rndCategories);
         });
         
         factory(User::class,$cantUser)->create();

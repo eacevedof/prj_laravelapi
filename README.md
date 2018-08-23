@@ -480,6 +480,7 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
 - DatabaseSeeder esta clase sirve como empaquetador para la generacion de datos
 - Uso de **Illuminate\Support\Facades**
 - **comando:** `php artisan db:seed` 
+- **comando:** `php artisan migrate:fresh --seed` limpia la bd e inserta los datos 
 - Ejemplo **DatabaseSeeder**
 ```php
 <?php
@@ -521,8 +522,8 @@ class DatabaseSeeder extends Seeder
         factory(Product::class,$cantProducts)->create()
                 ->each(function($product) use ($categories)
         {
-            $categories->random(mt_rand(1,5))->pluck("id");
-            $product->categories()->attach($categories);
+            $rndCategories = $categories->random(mt_rand(1,5))->pluck("id");
+            $product->categories()->attach($rndCategories);
         });
         
         factory(User::class,$cantUser)->create();
