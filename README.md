@@ -282,3 +282,5 @@ class CreateUsersTable extends Migration
     - **-c:** controller, **-r:** resource controller
     `php artisan make:mode Buyer -cr`
     `php artisan make:mode Seller -cr`
+- Se aplica herencia en Buyer y Seller ya que extienden de User (ver diagrama)
+- Aplicando atributo **protected $table = "users"** en User para evitar duplicación de código
