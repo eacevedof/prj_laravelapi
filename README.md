@@ -440,9 +440,40 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
     - **$this->hasMany(Transaction::class);** 
 
 ```js
-[tabla][<entidad>_id]   ->  belongsTo   ->  metodo en singular
-[tabla][!<entidad>_id]  ->  hasMany ->  metodo en plural
+[tabla][<entidad>_id]   ->  belongsTo       ->  metodo en singular
+[tabla][!<entidad>_id]  ->  hasMany         ->  metodo en plural
 [tabla][tabla-pivote]   ->  belongsToMany   ->  metodo plural
+```
+- Ejemplo **Product**
+```php
+    //Relaciones:
+    //1 product -> 1 seller
+    //1 product -> n categories
+    //1 product -> n transactions
+    
+    //product.seller_id -> belongsTo()
+    public function seller(){return $this->belongsTo(Seller::class);}
+       
+    //product.no(transaction_id) -> hasMany()
+    public function transactions(){return $this->hasMany(Transaction::class);}   
+    
+    //product - categories (n:m) -> belongsToMany()
+    public function categories(){
+        //tabla n:m category_product
+        return $this->belongsToMany(Category::class);
+    }  
+```
+
+- Ejemplo **Transaction**
+```php
+    //Relaciones:
+    //1 transaction -> 1 product
+
+    //transaction.buyer_id -> belongsTo()
+    public function buyer(){ return $this->belongsTo(Buyer::class); }
+    
+    //transaction.product_id -> belongsTo
+    public function product(){ return $this->belongsTo(Product::class);}  
 ```
 
 15. []()
