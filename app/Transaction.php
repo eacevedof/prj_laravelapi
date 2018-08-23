@@ -3,10 +3,28 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Buyer;
+use App\Product;
 
 class Transaction extends Model
 {
     protected $fillable = [
         "quantity","buyer_id","product_id"
     ];
-}
+    
+    //Relaciones:
+    //1 transaction -> 1 product
+    
+    //transaction.buyer_id -> belongsTo()
+    public function buyer()
+    {
+        return $this->belongsTo(Buyer::class);
+    }
+    
+    //transaction.product_id -> belongsTo
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }    
+    
+}//Transaction
