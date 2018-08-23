@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\User;
 
-class Buyer extends Model
+class Buyer extends User
 {
-    //
+    //protected $table = "users";
 }
