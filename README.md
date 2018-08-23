@@ -431,6 +431,22 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
 });
 ```
 
-14. []()
+14. [Crear las relaciones entre recursos, mediante los modelos Laravel](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/crear-las-relaciones-entre-recursos-mediante-los-modelos-laravel)
+- 
 
 15. []()
+-
+16. []()
+-
+17. []()
+-
+18. []()
+-
+19. []()
+-
+20. []()
+-
+21. []()
+-
+22. []()
+-
