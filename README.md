@@ -432,7 +432,18 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
 ```
 
 14. [Crear las relaciones entre recursos, mediante los modelos Laravel](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/crear-las-relaciones-entre-recursos-mediante-los-modelos-laravel)
-- 
+- Configurando interacciones entre modelos (Relaciones)
+- **Quen pertenece a es quien tiene la clave foranea**
+- **Transaction::class** devuelve el espacio de nombre de la clase en la que se está
+- Buyer. Un buyer solo tiene transacciones
+    - Un Buyer tiene muchas Transactions (1:n): **hasMany**
+    - **$this->hasMany(Transaction::class);** 
+
+```js
+[tabla][<entidad>_id]   ->  belongsTo   ->  metodo en singular
+[tabla][!<entidad>_id]  ->  hasMany ->  metodo en plural
+[tabla][tabla-pivote]   ->  belongsToMany   ->  metodo plural
+```
 
 15. []()
 -
