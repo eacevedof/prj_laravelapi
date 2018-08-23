@@ -472,12 +472,66 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
     //transaction.buyer_id -> belongsTo()
     public function buyer(){ return $this->belongsTo(Buyer::class); }
     
-    //transaction.product_id -> belongsTo
+    //transaction.product_id -> belongsTo()
     public function product(){ return $this->belongsTo(Product::class);}  
 ```
 
 15. [Invocar las factory desde DatabaseSeeder](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/invocar-las-factory-desde-databaseseeder)
--
+- DatabaseSeeder esta clase sirve como empaquetador para la generacion de datos
+- **comando:** `php artisan db:seed` 
+- Ejemplo **DatabaseSeeder**
+```php
+<?php
+use Illuminate\Database\Seeder;
+use App\User;
+use App\Category;
+use App\Product;
+use App\Transaction;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     * @return void
+     */
+    public function run()
+    {
+        Schema::disableForeignKeyConstraints();
+        User::truncate();
+        Category::truncate();
+        Transaction::truncate();
+        Product::truncate();
+        
+        //uso de facade
+        DB::table("category_product")->truncate();
+        
+        $cantUser = 1000;
+        $cantCategories = 30;
+        $cantProducts = 2000;
+        $cantTransactions = 1000;
+        
+        factory(User::class,$cantUser)->create();
+        $categories = factory(Category::class,$cantCategories)->create();
+        
+        //relacion n:m category_product
+        //por cada producto que se crea se le agrega categorias
+        factory(Product::class,$cantProducts)->create()
+                ->each(function($product) use ($categories)
+        {
+            $categories->random(mt_rand(1,5))->pluck("id");
+            $product->categories()->attach($categories);
+        });
+        
+        factory(User::class,$cantUser)->create();
+        factory(Transaction::class,$cantTransactions)->create();
+        
+        Schema::enableForeignKeyConstraints();
+    }//run
+    
+}
+```
 
 16. []()
 -
