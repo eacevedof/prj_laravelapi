@@ -73,7 +73,7 @@ inyección de dependencia usando una interfaz, esta se lleve acabo (normalmente 
 - Diagrama 
     - <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/6a3a5051307f57b023a2cd7de15dd2ca/image.png" height="200" width="400">
 - **comando:** `php artisan make:model --help`
-    - flag **-a, --all** Genera el modelo, factory que nos permitira insertar datos falsos o de prueba y resource controller es un controlador de recursos, cada modelo es un recurso.
+    - flag **-a, --all** Genera el modelo, factory que nos permitira insertar datos falsos o de prueba y resource controller es un **controlador de recursos**, cada modelo es un recurso.
 - **comando:** `php artisan make:model Product --all`
 - Ruta de los modelos: x:\xampp\htdocs\prj_laravelapi\ **app**
 - Crear ruta de api:  x:\xampp\htdocs\prj_laravelapi\routes\ **api.php**
@@ -278,3 +278,7 @@ class CreateUsersTable extends Migration
 - Aplicar atributos a los modelos
 - Cada atributo muy probablemente estara en la bd
 - Atributos computados
+- **comandos:** 
+    - **-c:** controller, **-r:** resource controller
+    `php artisan make:mode Buyer -cr`
+    `php artisan make:mode Seller -cr`
