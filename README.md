@@ -53,18 +53,18 @@ protected $routeMiddleware = [
 inyección de dependencia usando una interfaz, esta se lleve acabo (normalmente usando **ReflectionClass**) consultando al ServiceProvider.
 - x:\xampp\htdocs\prj_laravelapi\app\Providers\ **RouteServiceProvider.php** se quita el prefijo
 - **comando:** `php artisan route:list` 
-- x:\xampp\htdocs\prj_laravelapi\config\app.php Se cargan los valores de .env en un array
-- x:\xampp\htdocs\prj_laravelapi\database\factories\UserFactory.php generador de objetos
-- x:\xampp\htdocs\prj_laravelapi\database\migrations\2014_10_12_000000_create_users_table.php
-- x:\xampp\htdocs\prj_laravelapi\database\seeds\DatabaseSeeder.php Desde este se llamara a los factories para rellenar la bd con información
+- x:\xampp\htdocs\prj_laravelapi\config\ **app.php** Se cargan los valores de .env en un array
+- x:\xampp\htdocs\prj_laravelapi\ **database\factories\UserFactory.php** generador de objetos
+- x:\xampp\htdocs\prj_laravelapi\ **database\migrations\2014_10_12_000000_create_users_table.php**
+- x:\xampp\htdocs\prj_laravelapi\ **database\seeds\DatabaseSeeder.php** Desde este se llamara a los factories para rellenar la bd con información
 - x:\xampp\htdocs\prj_laravelapi\resources\
     - **assets** Recursos de frontend compilados
     - **lang**  Mensajes de validación
     - **views**  No se usaran mucho
-- x:\xampp\htdocs\prj_laravelapi\routes\channels.php Para transmitir eventos a lo largo de toda la app. No se utilizará.
-- x:\xampp\htdocs\prj_laravelapi\routes\console.php comandos personalizados que se puede tener en php artisan
-- x:\xampp\htdocs\prj_laravelapi\storage donde se almacenan los logs
-- x:\xampp\htdocs\prj_laravelapi\vendor codigo de terceros gestionado por composer. No se debe tocar
+- x:\xampp\htdocs\prj_laravelapi\ **routes**\channels.php Para transmitir eventos a lo largo de toda la app. No se utilizará.
+- x:\xampp\htdocs\prj_laravelapi\ **routes**\console.php comandos personalizados que se puede tener en php artisan
+- x:\xampp\htdocs\prj_laravelapi\ **storage** donde se almacenan los logs
+- x:\xampp\htdocs\prj_laravelapi\ **vendor** codigo de terceros gestionado por composer. No se debe tocar
 - Hay que evitar tener rutas iguales para Api y para Web, siempre prevalecerá las de web.
 - En middlewaregroups se cargan unas librerias de web como sesiones y crf que no secargan para api lo que la hace más ligera
 - el ORM que se usará **ELOQUENT**
@@ -284,3 +284,37 @@ class CreateUsersTable extends Migration
     `php artisan make:mode Seller -cr`
 - Se aplica herencia en Buyer y Seller ya que extienden de User (ver diagrama)
 - Aplicando atributo **protected $table = "users"** en User para evitar duplicación de código
+
+11. [Propiedades para la configuración de modelos](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/propiedades-para-la-configuracion-de-modelos)
+- Todos los atributos que se pueden configurar en un modelo
+```
+x:\xampp\htdocs\prj_laravelapi\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php
++-------------------------------+-------------------------------------+---------------------------------------+
+| protected $connection;        | protected $with = [];               | protected static $resolver;           |
+| protected $table;             | protected $withCount = [];          | protected static $dispatcher;         |
+| protected $primaryKey = 'id'; | protected $perPage = 15;            | protected static $booted = [];        |
+| protected $keyType = 'int';   | public $exists = false;             | protected static $globalScopes = [];  |
+| public $incrementing = true;  | public $wasRecentlyCreated = false; | protected static $ignoreOnTouch = []; |
++-------------------------------+-------------------------------------+---------------------------------------+
+```
+- **User**
+    - **array $fillable:**
+        - Todos los atributos que no esten aqui no se tomaran en cuenta en el metodo **create()** y habria 
+que añadirlos manualmente
+        - Es una buena practica poner todos los atributos en **$fillable**
+        - Si no se desea que el atributo se establezca manualmente entonces no hay que incluirlo en **$fillable** 
+por ejemplo `person_id`
+    - **array $hidden:**
+        - Son aquellos atributos que cuando el modelo se transforme en JSON no se mostrarán
+        - Por ejemplo: la contraseña y el token
+    - "password" es fillable y hidden es decir que se debe llenar por un proceso especifico y no de manera manual
+    - Users se podria crear con roles pero aumentaria la complejidad del sistema de validación
+    - Tal como esta un Usuario es Vendedor si tiene productos y un Usuario es Comprador si tiene transacciones
+
+12. []()
+
+13. []()
+
+14. []()
+
+15. []()
