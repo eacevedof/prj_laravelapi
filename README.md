@@ -311,7 +311,54 @@ por ejemplo `person_id`
     - Users se podria crear con roles pero aumentaria la complejidad del sistema de validación
     - Tal como esta un Usuario es Vendedor si tiene productos y un Usuario es Comprador si tiene transacciones
 
-12. []()
+12. [Creación de columnas para las tablas mediante migraciones Laravel](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/creacion-de-columnas-para-las-tablas-mediante-migraciones-laravel)
+- En **migrations**, **2014_10_12_000000_create_users_table** está el atributo autonumerico `$table->increments('id');`
+    - El método **$table->increments(xxxx)** indica que `xxxx` es una clave primaria y sera automático
+    - [Tipos de columnas que se pueden crear](https://laravel.com/docs/5.6/migrations#columns)
+- La clase de migración **CreateUsersTable** trabaja con **callbacks**
+    - **Blueprint:** El plano o plantilla
+    - metodo **up**
+```php
+<?php
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+```
+- Config Products
+```php
+<?php
+    $table->integer("seller_id")->unsigned();//entero sin signo
+    //seller_id deberia apuntar a sellers pero como ya hemos dicho un seller es un user por lo
+    //tanto en on: se pasa "users"
+    $table->foreign("seller_id")->references("id")->on("users");
+```
+- Config Transactions
+```php
+<?php
+    $table->foreign("product_id")->references("id")->on("products");
+    $table->foreign("buyer_id")->references("id")->on("users");
+```
+- Config Categories No lleva claves foraneas ya que se relaciona con la **tabla pivote category_product**
+- Config Category_Product
+
+```php
+<?php
+    $table->integer("category_id")->unsigned();
+    $table->integer("product_id")->unsigned();
+
+    $table->foreign("category_id")->references("id")->on("categories");
+    $table->foreign("product_id")->references("id")->on("products");
+```
+
+
 
 13. []()
 
