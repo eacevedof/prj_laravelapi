@@ -314,6 +314,7 @@ por ejemplo `person_id`
 12. [Creación de columnas para las tablas mediante migraciones Laravel](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/creacion-de-columnas-para-las-tablas-mediante-migraciones-laravel)
 - En **migrations**, **2014_10_12_000000_create_users_table** está el atributo autonumerico `$table->increments('id');`
     - El método **$table->increments(xxxx)** indica que `xxxx` es una clave primaria y sera automático
+    - Importante el metodo `unsigned()` en las claves enteras
     - [Tipos de columnas que se pueden crear](https://laravel.com/docs/5.6/migrations#columns)
 - La clase de migración **CreateUsersTable** trabaja con **callbacks**
     - **Blueprint:** El plano o plantilla
@@ -357,7 +358,8 @@ por ejemplo `person_id`
     $table->foreign("category_id")->references("id")->on("categories");
     $table->foreign("product_id")->references("id")->on("products");
 ```
-
+- **comando:** `php artisan migrate` como ya estan creados los modelos entiende que no hay nada que migrar
+- **comando:** `php artisan migrate:fresh` borra la bd entera y crea la bd entera
 
 
 13. []()
