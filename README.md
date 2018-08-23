@@ -333,7 +333,7 @@ por ejemplo `person_id`
         });
     }
 ```
-- Config Products
+- Migration Products
 ```php
 <?php
     $table->integer("seller_id")->unsigned();//entero sin signo
@@ -341,15 +341,14 @@ por ejemplo `person_id`
     //tanto en on: se pasa "users"
     $table->foreign("seller_id")->references("id")->on("users");
 ```
-- Config Transactions
+- Migration Transactions
 ```php
 <?php
     $table->foreign("product_id")->references("id")->on("products");
     $table->foreign("buyer_id")->references("id")->on("users");
 ```
-- Config Categories No lleva claves foraneas ya que se relaciona con la **tabla pivote category_product**
-- Config Category_Product
-
+- Migration Categories No lleva claves foraneas ya que se relaciona con la **tabla pivote category_product**
+- Migration Category_Product
 ```php
 <?php
     $table->integer("category_id")->unsigned();
@@ -382,8 +381,55 @@ $factory->define(App\User::class, function (Faker $faker) {
     ];
 });
 ```
-- Se usa libreria [**faker**](https://github.com/fzaninotto/Faker)
+- Se usa libreria [**Faker**](https://github.com/fzaninotto/Faker)
+    - Faker es una libreria que sirve para generar datos aleatorios de distintos formatos
+    - Números, horas, parrafos, palabras, etc.
 - Los factories solo son para el entorno de desarrollo (pruebas)
+- `App\Category::class` Devuelve el nombre del modelo
+- `\App\Product::AVAILABLE` En php a las constantes se instancian como si fueran variables estáticas
+- Es importante el orden. Para el caso de Product["seller_id"] se necesita antes un usuario con lo cual
+se debe ejecutar primero el **UserFactory.php**
+- Ejemplo de **ProductFactory.php**
+```php
+<?php
+use Faker\Generator as Faker;
+
+$factory->define(App\Product::class, function (Faker $faker) {
+    return [
+        "name" => $faker->word,
+        "description" => $faker->paragraph(1),
+        "quantity" => $faker->numberBetween(1,10),
+        //mala práctica, mejor definirlos como constantes en el modelo
+        //"status" => $faker->randomElement(["disponible","no_disponible"]),
+        //"status" => $faker->randomElement(["si","no"]),
+        
+        "status" => $faker->randomElement([Product::AVAILABLE,Product::NOT_AVAILABLE]),
+        //de todos los usuarios obten uno y de ese id
+        "seller_id" => User::all()->random()->id,
+        //es lo mismo que el anterior
+        //"seller_id" => User::inRandomOrder()->first()->id,
+    ];
+});
+```
+- Ejemplo **TransactionFactory.php**
+```php
+<?php
+use Faker\Generator as Faker;
+
+$factory->define(App\Transaction::class, function (Faker $faker) {
+    //No uso User pq no tiene relación directa con Transactions
+    //Como laravel sabe que Seller tiene Products?. 
+    //Esto se hace despues, al configurar las fks en los modelos
+    $seller = Seller::has("products")->get()->random();
+    $buyer = User::all()->except($seller->id)->random();
+    
+    return [
+        "quantity" => $faker->numberBetween(1,3),
+        "buyer_id" => $buyer->id,
+        "product_id"=> $seller->products->random()->id,
+    ];
+});
+```
 
 14. []()
 
