@@ -543,8 +543,42 @@ class DatabaseSeeder extends Seeder
     - Como el API resuelve que version tiene el cliente.
     - Si yo se quien es mi cliente puedo saber que version está usando. Guardando en un campo extra.
 
-17. []()
--
+17. [Laravel Tinker](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/laravel-tinker)
+- **Tinker** interprete de consola para php
+- Sirve para hacer pruebas rápidas sin necesidad de crear una ruta y controlador
+- **comando:** `php artisan tinker` Habilita la consola para interpretar en tiempo real código php
+```ssh
+$ php artisan tinker
+Psy Shell v0.9.7 (PHP 7.1.15 — cli) by Justin Hileman
+>>> $x = 33;
+=> 33
+>>> echo $x;
+33⏎
+>>>
+```
+- **comando en Tinker:** `>>> App\User::all();`
+
+```ssh
+=> Illuminate\Database\Eloquent\Collection {#4890
+     all: [
+       App\User {#4891
+         id: "1",
+         name: "Paris Tillman",
+         email: "shania11@example.org",
+         created_at: "2018-08-23 22:49:40",
+         updated_at: "2018-08-23 22:49:40",
+       },
+       App\User {#4892
+         id: "2",
+         name: "Nikko Bins",
+         email: "gideon85@example.com",
+         created_at: "2018-08-23 22:49:40",
+         updated_at: "2018-08-23 22:49:40",
+       },
+       App\User {#4893
+        ...
+```
+
 18. []()
 -
 19. []()
