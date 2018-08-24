@@ -534,8 +534,15 @@ class DatabaseSeeder extends Seeder
 }//DatabaseSeeder
 ```
 
-16. []()
--
+16. [Consejos para el versionado de las API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/consejos-para-el-versionado-de-las-api)
+- Ejemplo: [stripe.com - plataforma de pagos](https://stripe.com/docs/api)
+- Maneras:
+    - En url ...api/v1/ en laravel se puede configurar con el prefijo 
+    - El problema es que si hago peticiones a la api que no es versionada habria problemas
+    - La API resuelve que api necesita el cliente. Se suele usar en empresas grandes
+    - Como el API resuelve que version tiene el cliente.
+    - Si yo se quien es mi cliente puedo saber que version está usando. Guardando en un campo extra.
+
 17. []()
 -
 18. []()
