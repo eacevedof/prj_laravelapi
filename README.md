@@ -479,6 +479,24 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
 15. [Invocar las factory desde DatabaseSeeder](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/invocar-las-factory-desde-databaseseeder)
 - DatabaseSeeder esta clase sirve como empaquetador para la generacion de datos
 - Uso de **Illuminate\Support\Facades**
+- Las clases [**Facade**](https://www.sitepoint.com/how-laravel-facades-work-and-how-to-use-them-elsewhere/) son clases estaticas que mapean un servicio y simplifican su uso
+```php
+<?php
+//acceso común
+App::make("some_service")->methodName();
+//En facade
+someService::methodName();
+
+//app.php:
+'aliases' => [
+    'App' => Illuminate\Support\Facades\App::class,
+    'Artisan' => Illuminate\Support\Facades\Artisan::class,
+    'Auth' => Illuminate\Support\Facades\Auth::class,
+    'Blade' => Illuminate\Support\Facades\Blade::class,
+    'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
+...
+```
+
 - **comando:** `php artisan db:seed` 
 - **comando:** `php artisan migrate:fresh --seed` limpia la bd e inserta los datos 
 - Ejemplo **DatabaseSeeder**
@@ -579,8 +597,10 @@ Psy Shell v0.9.7 (PHP 7.1.15 — cli) by Justin Hileman
         ...
 ```
 
-18. []()
--
+18. [Conclusión de la clase y preguntas finales](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/conclusion-de-la-clase-y-preguntas-finales)
+- [Youtube - Escuela.it: laravel 5 primeros pasos](https://www.youtube.com/watch?v=5YRyOdpM5gM)
+- []()
+
 19. []()
 -
 20. []()
