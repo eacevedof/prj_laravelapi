@@ -598,8 +598,11 @@ Psy Shell v0.9.7 (PHP 7.1.15 — cli) by Justin Hileman
 ```
 
 18. [Conclusión de la clase y preguntas finales](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/conclusion-de-la-clase-y-preguntas-finales)
+- [Blog - Laravel Service Container IoC](https://medium.com/@bvipul/facades-in-laravel-why-and-how-b5f6e036e66b)
 - [Youtube - Escuela.it: laravel 5 primeros pasos](https://www.youtube.com/watch?v=5YRyOdpM5gM)
-- []()
+- [Blog - What are facades](https://medium.com/a-young-devoloper/understanding-laravel-facades-4802025899e6)
+- [Youtube - Escuela.it: Análisis de los Patrones de diseño con Laravel #laravelIO](https://www.youtube.com/watch?v=SCpigk7UToM)
+- [Amazon - Libro recomendado de patrones de diseño](https://www.amazon.es/Laravel-Design-Patterns-Best-Practices-ebook/dp/B00M6N1A08)
 
 19. []()
 -
