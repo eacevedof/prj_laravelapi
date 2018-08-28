@@ -752,7 +752,40 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
 ```
 - <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/3ceea2ccf13b3745b0547ddc94e90bff/image.png" height="100" width="500">
 - Es interesante que el **json** devuelto este envuelto en un objeto superior. Este objeto raiz se suele llamar **data**
-
+- `response()->json(["data"=>$oCollection],200);`
+```json
+{
+    "data": [
+        {
+            "id": 55,
+            "name": "Reba Quitzon",
+            "email": "coby16@example.com",
+            "created_at": "2018-08-23 22:49:41",
+            "updated_at": "2018-08-23 22:49:41"
+        },
+        ...
+    ]
+}
+```
+- En el metodo **show(User $user)** hay que tratar la respuesta cuando el id no existe en la bd
+- Insert - **store(Request $request)** 
+    - Hay que hacer una validación de datos antes de guardar
+    - [Reglas de validación admitidas](https://laravel.com/docs/5.6/validation#available-validation-rules)
+    - `required | max | unique | confirmed`
+    - Al usar **confirmed** creara un campo extra <campo>_confirmation que llegará por POST esto lo gestiona laravel
+```php
+    public function store(Request $request)
+    {
+        //hace insert
+        $data = $request->validate([
+            "name" => "required|max:100",
+            "email" => "required|email|unique:users,email",
+            "email" => "required|min:6|confirmed",
+        ]);
+    }
+```
+    - Si alguna de las reglas de validación falla se lanza una **excepción** - **ValidationException**
+    - <img src="https://trello-attachments.s3.amazonaws.com/5b014de4bc1b8dcc70d83031/600x261/45eba66cd208d94cd874843759270707/image.png" height="100" width="500">
 
 20. []()
 -
