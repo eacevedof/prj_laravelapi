@@ -775,18 +775,18 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
     - `required | max | unique | confirmed`
     - Al usar **confirmed** creara un campo extra <campo>_confirmation que llegará por POST esto lo gestiona laravel
     ```php
-        public function store(Request $request)
-        {
-            //hace insert
-            $data = $request->validate([
-                "name" => "required|max:100",
-                "email" => "required|email|unique:users,email",
-                "email" => "required|min:6|confirmed",
-            ]);
-        }
+    public function store(Request $request)
+    {
+        //hace insert
+        $data = $request->validate([
+            "name" => "required|max:100",
+            "email" => "required|email|unique:users,email",
+            "email" => "required|min:6|confirmed",
+        ]);
+    }
     ```
     - Si alguna de las reglas de validación falla se lanza una **excepción** - **ValidationException**
-    - <img src="https://trello-attachments.s3.amazonaws.com/5b014de4bc1b8dcc70d83031/600x261/45eba66cd208d94cd874843759270707/image.png" height="100" width="500">
+    - <img src="https://trello-attachments.s3.amazonaws.com/5b014de4bc1b8dcc70d83031/600x261/45eba66cd208d94cd874843759270707/image.png" height="200" width="600">
 
 20. []()
 -
