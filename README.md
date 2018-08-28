@@ -503,7 +503,7 @@ someService::methodName();
 - **comando:** `php artisan db:seed` 
 - **comando:** `php artisan migrate:fresh --seed` limpia la bd e inserta los datos 
 - Ejemplo **DatabaseSeeder**
-    - Explicación callback para datos dependientes. Asignación de categorias a productos **video:08:24**
+    - Explicación callback para datos dependientes. Asignación de categorias a productos **video: 08:24**
     - `...->each(function($product) use ($categories) ...`
     - `->pluck("id")...` Devuelve solo un array con los valores del campo indicado. (array_colum())
     - `...$product->categories()->attach(...`
