@@ -46,7 +46,7 @@ class UserController extends Controller
         //var_dump($request);die;
         //hace insert
         $arData = $request->validate([
-            "name" => "required|max:100",
+            "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
             "password" => "required|min:6|confirmed",
         ]);
@@ -100,8 +100,26 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
-    }
+        $arData = $request->validate([
+            "name" => "max:255",
+            //con user->id se excluye de la validación el email del mismo usuario
+            "email" => "email|unique:users,email,{$user->id}",
+            "password" => "min:6|confirmed",
+        ]);
+        
+        if($request->has("name")) $user->name = $request->name;
+        if($request->has("email")) $user->email = $request->email;
+        if($request->has("password")) $user->password = bcrypt($request->password);
+            
+        //si el usuario no ha cambiado
+        if(!$user->isDirty()) 
+            return response()->json(["error"=>["code"=>400,
+                "message"=>"Please specify at least one different value"]],400);
+        
+        $user->save();
+        
+        return response()->json(["data"=>$user],200);   ;
+    }//update
 
     /**
      * Remove the specified resource from storage.
@@ -111,6 +129,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
-    }
-}
+        //delete
+        $user->delete();
+        return response()->json(["data"=>$user],200);    
+    }//destroy
+    
+}//UserController

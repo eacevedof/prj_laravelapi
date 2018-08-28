@@ -797,7 +797,8 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
     ```
     - Si alguna de las reglas de validación falla se lanza una **excepción** - **ValidationException**
     - <img src="https://trello-attachments.s3.amazonaws.com/5b014de4bc1b8dcc70d83031/600x261/45eba66cd208d94cd874843759270707/image.png" height="200" width="600">
-
+    - Si excluimos de hidden los campos: pass y token entonces podemos ver que en la respuesta JSON se incluye esta información
+- Segun como está montado el sistema un Buyer y un Seller no se crea ni se destruye por lo tanto hay que bloquear esos metodos de escritura.
 20. []()
 -
 21. []()
