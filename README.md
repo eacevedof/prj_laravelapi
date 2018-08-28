@@ -613,7 +613,146 @@ Psy Shell v0.9.7 (PHP 7.1.15 — cli) by Justin Hileman
 
 ## LECCIÓN 3
 19. [Generalizando el Código y Mejorando el Funcionamiento de la API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/generalizando-el-codigo-y-mejorando-el-funcionamiento-de-la-api)
--
+- Se agregan rutas faltantes en **routes/api.php**
+- **comando:** `php artisan route:list`
+- **UserController.php - index()** - **User::all();**
+    - [Illuminate\Database\Eloquent\Collection](https://laravel.com/api/5.7/Illuminate/Database/Eloquent/Collection.html)
+    - Ejemplo **User::all()** - Devuelve un objeto de `Illuminate\Database\Eloquent\Collection` con un array de objetos del modelo ****
+```php
+<?php
+object( Illuminate\Database\Eloquent\Collection )#207 (1)
+{
+    ["items":protected] => array(3)
+    {
+        [0] => object(App\User)#2347 (27) {
+            ["table":protected] => string(5) "users"
+            ["fillable":protected] =>
+            array(3) {
+                [0] => string(4) "name"
+                [1] => string(5) "email"
+                [2] => string(8) "password"
+            }
+            ["hidden":protected] =>
+            array(2) {
+                [0] => string(8) "password"
+                [1] => string(14) "remember_token"
+            }
+            ["connection":protected] => string(6) "sqlite"
+            ["primaryKey":protected] => string(2) "id"
+            ["keyType":protected] => string(3) "int"
+            ["incrementing"] => bool(true)
+            ["with":protected] => array(0){ }
+            ["withCount":protected] => array(0){ }
+            ["perPage":protected] => int(15)
+            ["exists"] => bool(true)
+            ["wasRecentlyCreated"] => bool(false)
+            ["attributes":protected] =>
+            array(7) {
+                ["id"] => string(3) "136"
+                ["name"] => string(17) "Brayan Hodkiewicz"
+                ["email"] => string(17) "llind@example.org"
+                ["password"] => string(60) "$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm"
+                ["remember_token"] => string(10) "6vvtrU8jiL"
+                ["created_at"] => string(19) "2018-08-23 22:49:42"
+                ["updated_at"] => string(19) "2018-08-23 22:49:42"
+            }
+            ["original":protected] =>
+            array(7) {
+                ["id"] => string(3) "136"
+                ["name"] => string(17) "Brayan Hodkiewicz"
+                ["email"] => string(17) "llind@example.org"
+                ["password"] => string(60) "$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm"
+                ["remember_token"] => string(10) "6vvtrU8jiL"
+                ["created_at"] => string(19) "2018-08-23 22:49:42"
+                ["updated_at"] => string(19) "2018-08-23 22:49:42"
+            }
+            ["changes":protected] => array(0){ }
+            ["casts":protected] => array(0){ }
+            ["dates":protected] => array(0){ }
+            ["dateFormat":protected] => NULL
+            ["appends":protected] => array(0){ }
+            ["dispatchesEvents":protected] => array(0){ }
+            ["observables":protected] => array(0){ }
+            ["relations":protected] => array(0){ }
+            ["touches":protected] => array(0){ }
+            ["timestamps"] => bool(true)
+            ["visible":protected] => array(0){ }
+            ["guarded":protected] =>
+            array(1) {
+                [0] => string(1) "*"
+            }
+            ["rememberTokenName":protected] => string(14) "remember_token"
+        }//end obj[0]
+
+        [1] => object(App\User)#2571 (27) {
+            ["table":protected] => string(5) "users"
+            ["fillable":protected] =>
+            array(3) {
+                [0] => string(4) "name"
+                [1] => string(5) "email"
+                [2] => string(8) "password"
+            }
+            ["hidden":protected] =>
+            array(2) {
+                [0] => string(8) "password"
+                [1] => string(14) "remember_token"
+            }
+            ["connection":protected] => string(6) "sqlite"
+            ["primaryKey":protected] => string(2) "id"
+            ["keyType":protected] => string(3) "int"
+            ["incrementing"] => bool(true)
+            ["with":protected] => array(0){ }
+            ["withCount":protected] => array(0){ }
+            ["perPage":protected] => int(15)
+            ["exists"] => bool(true)
+            ["wasRecentlyCreated"] => bool(false)
+            ["attributes":protected] =>
+            array(7) {
+                ["id"] => string(3) "360"
+                ["name"] => string(16) "Travis Fahey III"
+                ["email"] => string(17) "browe@example.net"
+                ["password"] => string(60) "$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm"
+                ["remember_token"] => string(10) "BBDx9sGEME"
+                ["created_at"] => string(19) "2018-08-23 22:49:44"
+                ["updated_at"] => string(19) "2018-08-23 22:49:44"
+            }
+            ["original":protected] =>
+            array(7) {
+                ["id"] => string(3) "360"
+                ["name"] => string(16) "Travis Fahey III"
+                ["email"] => string(17) "browe@example.net"
+                ["password"] => string(60) "$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm"
+                ["remember_token"] => string(10) "BBDx9sGEME"
+                ["created_at"] => string(19) "2018-08-23 22:49:44"
+                ["updated_at"] => string(19) "2018-08-23 22:49:44"
+            }
+            ["changes":protected] => array(0){ }
+            ["casts":protected] => array(0){ }
+            ["dates":protected] => array(0){ }
+            ["dateFormat":protected] => NULL
+            ["appends":protected] => array(0){ }
+            ["dispatchesEvents":protected] => array(0){ }
+            ["observables":protected] => array(0){ }
+            ["relations":protected] => array(0){ }
+            ["touches":protected] => array(0){ }
+            ["timestamps"] => bool(true)
+            ["visible":protected] => array(0){ }
+            ["guarded":protected] =>
+            array(1) {
+                [0] => string(1) "*"
+            }
+            ["rememberTokenName":protected] => string(14) "remember_token"
+        }//end obj[1]
+
+        [2] => object(App\User)#2571 (27) {
+        ...
+        }//end obj[2]
+
+    }//end array items
+  
+}//end obj Illuminate\Database\Eloquent\Collection 
+```
+
 20. []()
 -
 21. []()
