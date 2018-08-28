@@ -767,6 +767,7 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
     ]
 }
 ```
+
 - En el metodo **show(User $user)** hay que tratar la respuesta cuando el id no existe en la bd
 - Insert - **store(Request $request)** 
     - Hay que hacer una validación de datos antes de guardar
