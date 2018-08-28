@@ -615,9 +615,9 @@ Psy Shell v0.9.7 (PHP 7.1.15 — cli) by Justin Hileman
 19. [Generalizando el Código y Mejorando el Funcionamiento de la API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/generalizando-el-codigo-y-mejorando-el-funcionamiento-de-la-api)
 - Se agregan rutas faltantes en **routes/api.php**
 - **comando:** `php artisan route:list`
-- **UserController.php - index()** - **User::all();**
+- **UserController->index()** - **User::all()**
     - [Illuminate\Database\Eloquent\Collection](https://laravel.com/api/5.7/Illuminate/Database/Eloquent/Collection.html)
-    - Ejemplo **User::all()** - Devuelve un objeto de `Illuminate\Database\Eloquent\Collection` con un array de objetos del modelo ****
+    - Ejemplo **User::all()** - Devuelve un objeto de `Illuminate\Database\Eloquent\Collection` con un array de objetos del modelo **App\User**
 ```php
 <?php
 object( Illuminate\Database\Eloquent\Collection )#207 (1)
@@ -747,11 +747,11 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
         [2] => object(App\User)#2571 (27) {
         ...
         }//end obj[2]
-
     }//end array items
-  
 }//end obj Illuminate\Database\Eloquent\Collection 
 ```
+- <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/3ceea2ccf13b3745b0547ddc94e90bff/image.png" height="200" width="400">
+- 
 
 20. []()
 -
