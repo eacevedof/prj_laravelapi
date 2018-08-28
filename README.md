@@ -750,7 +750,7 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
     }//end array items
 }//end obj Illuminate\Database\Eloquent\Collection 
 ```
-- <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/3ceea2ccf13b3745b0547ddc94e90bff/image.png" height="200" width="400">
+- <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/3ceea2ccf13b3745b0547ddc94e90bff/image.png" height="100" width="500">
 - 
 
 20. []()
