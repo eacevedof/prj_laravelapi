@@ -14,7 +14,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //devuelve una lista completa de usuarios
+        //Illuminate\Database\Eloquent\Collection 
+        $oCollection = User::all()->random(100);
+        //var_dump($users);die;
+        //return $oCollection->all();
+        return $oCollection;
     }
 
     /**
