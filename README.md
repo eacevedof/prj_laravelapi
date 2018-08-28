@@ -777,12 +777,22 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
     ```php
     public function store(Request $request)
     {
-        //hace insert
-        $data = $request->validate([
+        $arData = $request->validate([
             "name" => "required|max:100",
             "email" => "required|email|unique:users,email",
-            "email" => "required|min:6|confirmed",
+            "password" => "required|min:6|confirmed",
         ]);
+        $arData["password"] = bcrypt($arData["password"]);
+        /*
+        $arData: array(3) {
+          ["name"] => string(4) "juan"
+          ["email"] => string(17) "prueba@prueba.com"
+          ["password"] => string(60) "$2y$10$koMLOC7rr3jb7nb4qwd.M.EnuIFU8kYSLARwBBzH/nCjGGdzos08W"
+        }
+        */
+        $oUser = User::create($arData);
+        //201 es parte del cod http que indica que se ha creado satisfactoriamente una instancia
+        return response()->json(["data"=>$oUser],201);   
     }
     ```
     - Si alguna de las reglas de validación falla se lanza una **excepción** - **ValidationException**
