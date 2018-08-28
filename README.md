@@ -774,6 +774,7 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
     - [Reglas de validación admitidas](https://laravel.com/docs/5.6/validation#available-validation-rules)
     - `required | max | unique | confirmed`
     - Al usar **confirmed** creara un campo extra <campo>_confirmation que llegará por POST esto lo gestiona laravel
+
 ```php
     public function store(Request $request)
     {
