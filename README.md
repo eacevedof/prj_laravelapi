@@ -358,7 +358,7 @@ por ejemplo `person_id`
     $table->foreign("product_id")->references("id")->on("products");
 ```
 - **comando:** `php artisan migrate` como ya estan creados los modelos entiende que no hay nada que migrar
-- **comando:** `php artisan migrate:fresh` borra la bd entera y crea la bd entera
+- **comando:** `php artisan migrate:fresh` borra la bd entera y crea la bd nuevamente
 - Si da algún error `artisan migrate` es mejor ejecutar un `:fresh` para crear nuevamente toda la bd (tablas y campos)
 - El comando `:fresh` solo está disponible a partir de **laravel 5.5**
 
@@ -389,6 +389,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 - `\App\Product::AVAILABLE` En php a las constantes se instancian como si fueran variables estáticas
 - Es importante el orden. Para el caso de Product["seller_id"] se necesita antes un usuario con lo cual
 se debe ejecutar primero el **UserFactory.php**
+- Explicación `"seller_id" => User::all()->random()->id,` **video: 15:28**
 - Ejemplo de **ProductFactory.php**
 ```php
 <?php
@@ -412,6 +413,8 @@ $factory->define(App\Product::class, function (Faker $faker) {
 });
 ```
 - Ejemplo **TransactionFactory.php**
+    - Explicación `"product_id" => ,` dependiendo del vendedor **video: 19:44**
+
 ```php
 <?php
 use Faker\Generator as Faker;
@@ -500,6 +503,10 @@ someService::methodName();
 - **comando:** `php artisan db:seed` 
 - **comando:** `php artisan migrate:fresh --seed` limpia la bd e inserta los datos 
 - Ejemplo **DatabaseSeeder**
+    - Explicación callback para datos dependientes. Asignación de categorias a productos **video:08:24**
+    - `...->each(function($product) use ($categories) ...`
+    - `->pluck("id")...` Devuelve solo un array con los valores del campo indicado. (array_colum())
+    - `...$product->categories()->attach(...`
 ```php
 <?php
 use Illuminate\Database\Seeder;
