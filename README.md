@@ -611,6 +611,7 @@ Psy Shell v0.9.7 (PHP 7.1.15 — cli) by Justin Hileman
 - [Youtube - Escuela.it: Análisis de los Patrones de diseño con Laravel #laravelIO](https://www.youtube.com/watch?v=SCpigk7UToM)
 - [Amazon - Libro recomendado de patrones de diseño](https://www.amazon.es/Laravel-Design-Patterns-Best-Practices-ebook/dp/B00M6N1A08)
 
+## LECCIÓN 3
 19. [Generalizando el Código y Mejorando el Funcionamiento de la API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/generalizando-el-codigo-y-mejorando-el-funcionamiento-de-la-api)
 -
 20. []()
