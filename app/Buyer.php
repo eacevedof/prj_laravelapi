@@ -13,6 +13,13 @@ class Buyer extends User
         
     //protected $table = "users";
     
+    //Este metodo es tipo Global Scope y se ejecuta siempre
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new BuyerScope);
+    }//boot
+        
     //buyer.no(transaction_id) -> hasMany()
     public function transactions()
     {
@@ -20,4 +27,5 @@ class Buyer extends User
         //es lo mismo
         //return $this->hasMany("App\Transaction");
     }
+    
 }//Buyer

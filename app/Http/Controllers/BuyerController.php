@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Buyer;
-use Illuminate\Http\Request;
 
 class BuyerController extends Controller
 {
@@ -14,19 +13,8 @@ class BuyerController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $oCollection = Buyer::all();
+        return response()->json(["data"=>$oCollection],200);
     }
 
     /**
@@ -37,30 +25,7 @@ class BuyerController extends Controller
      */
     public function show(Buyer $buyer)
     {
-        //
+        return response()->json(["data"=>$buyer],200);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Buyer  $buyer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Buyer $buyer)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Buyer  $buyer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Buyer $buyer)
-    {
-        //
-    }
-}
+}//BuyerController

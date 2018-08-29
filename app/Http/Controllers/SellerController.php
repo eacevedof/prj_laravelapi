@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Seller;
-use Illuminate\Http\Request;
 
 class SellerController extends Controller
 {
@@ -14,19 +13,9 @@ class SellerController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $oCollection = Seller::has("products")->get();
+        return response()->json(["data"=>$oCollection],200);
+    }//index
 
     /**
      * Display the specified resource.
@@ -36,29 +25,12 @@ class SellerController extends Controller
      */
     public function show(Seller $seller)
     {
-        //
-    }
+        return response()->json(["data"=>$seller],200);
+    }//show
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Seller $seller)
+    //Este metodo es tipo Global Scope
+    protected static function boot()
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Seller $seller)
-    {
-        //
-    }
-}
+        parent::boot();
+    }//boot    
+}//SellerController
