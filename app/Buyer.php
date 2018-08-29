@@ -1,9 +1,9 @@
 <?php
-
 namespace App;
 
 use App\User;
 use App\Transaction;
+use App\Scopes\BuyerScope;
 
 class Buyer extends User
 {
@@ -26,6 +26,6 @@ class Buyer extends User
         return $this->hasMany(Transaction::class);
         //es lo mismo
         //return $this->hasMany("App\Transaction");
-    }
+    }//transactions
     
 }//Buyer

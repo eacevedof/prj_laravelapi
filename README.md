@@ -798,15 +798,24 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
     - Si alguna de las reglas de validación falla se lanza una **excepción** - **ValidationException**
     - <img src="https://trello-attachments.s3.amazonaws.com/5b014de4bc1b8dcc70d83031/600x261/45eba66cd208d94cd874843759270707/image.png" height="200" width="600">
     - Si excluimos de hidden los campos: pass y token entonces podemos ver que en la respuesta JSON se incluye esta información
-- Segun como está montado el sistema un Buyer y un Seller no se crea ni se destruye por lo tanto hay que bloquear esos metodos de escritura.
+- Segun como está montado el sistema un Buyer y un Seller no se crean ni se destruyen por lo tanto hay que bloquear esos metodos de escritura.
 ```php
 //los otros metodos se quitan. Solo se deja index y show
 Route::apiResource("buyers","BuyerController",["only"=>["index","show"]]);
 Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 ```
+
+- Actualmente Buyer y Seller devuelven lo mismo en index() (los usuarios)
+- Dos endpoints no deberian devolver los mismos recursos
+- Hay que corregir los metodos index() para que no devuelvan lo mismo
+- Para evita estar modificando cada uno de los metodos con la condicionante que restringe los datos se usaria un **GlobalScope**
 - **Global Scopes** Es una rutina que se ejecutara siempre en una instancia **video: 52:10**
 - **protected static function boot** metodo de tipo global scope
 - Uso de [**static::**](http://php.net/manual/es/language.oop5.late-static-bindings.php)
+- Uso de **static::addGlobalScope(new BuyerScope);**
+- Hay que definir la Carpeta **app/Scopes** - **video: 53:43**
+- Se implementa en las clases Scope el metodo: **public function apply(Builder $builder, Model $model)** con la condición de restricción
+- 
 
 
 20. []()
