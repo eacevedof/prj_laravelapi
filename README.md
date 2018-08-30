@@ -844,11 +844,12 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - Para esto hay que sobrescribir esos metodos aplicando el Trait en Handler
     - 
     ```php
+    //app/Exepctions/Handler.php
     public function render($request, Exception $exception)
     {
         if($exception instanceof ValidationException)
             return $this->convertValidationExceptionToResponse($exception,$request);
-        
+
         return parent::render($request, $exception);
     }//render
 
@@ -875,7 +876,24 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - Lo ideal sería tener dos proyectos. Uno web y otro API
     - Si tienes dos proyectos necesitas dos instancias
     - Para Auth si se usaran rutas web
-    
+    - Tratando **ModelNotFoundException** - Ocurre cuando se envia un id que no existe
+    - <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/b13b888b08113acd05dc65e415be8b99/image.png" height="100" width="400">
+    - 
+    ```php
+    //app/Exepctions/Handler.php
+    public function render($request, Exception $exception)
+    {
+        if($exception instanceof ValidationException)
+            return $this->convertValidationExceptionToResponse($exception,$request);
+        
+        if($exception instanceof ModelNotFoundException)
+            return $this->errorResponse("Does not exists any instance with the specified id",404);
+            
+        return parent::render($request, $exception);
+    }//render     
+    ```
+    - Tratando url 404 **video: 01:44:26**
+    - 
 
 - **nota:**
     - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**
