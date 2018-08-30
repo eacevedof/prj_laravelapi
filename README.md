@@ -828,7 +828,8 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - **showMessage(..)** no se utiilizará pero se deja para que se vea la posibilidad de enviar mensajes
 - Ejemplo de `LIKE '%algo%'` **video: 01:15**
     - `User::where("name",'%like%',$request->name)->get();`
--
+- Cambios en metodos primitivos aplicando `$this` con metodos del Trait
+
 
 20. []()
 -

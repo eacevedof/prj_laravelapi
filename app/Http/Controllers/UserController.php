@@ -8,37 +8,24 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    //importamos Trait
-    use ApiResponser;
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         //devuelve una lista completa de usuarios
-        //Illuminate\Database\Eloquent\Collection 
-        $oCollection = User::all()->random(100);
+        //$oCollection: Illuminate\Database\Eloquent\Collection 
         //$oCollection = User::where("name",'%like%',$request->name)->get();
         //return response()->json(["data"=>$oCollection],200);
+        $oCollection = User::all();
         return $this->showAll($oCollection);
         //201: es instancia creada, en metodo store()
         //return response()->json(["data"=>$oCollection],201);
         //var_dump($users);die;
         //return $oCollection->all();
         //return $oCollection;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    }//index
 
     /**
      * Store a newly created resource in storage.
@@ -75,25 +62,13 @@ class UserController extends Controller
 
     /**
      * Display the specified resource.
-     *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
         //ruta users/{id}
-        return response()->json(["data"=>$user],200);        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
+        return $this->showOne($user);   
     }
 
     /**
@@ -118,12 +93,11 @@ class UserController extends Controller
             
         //si el usuario no ha cambiado
         if(!$user->isDirty()) 
-            return response()->json(["error"=>["code"=>400,
-                "message"=>"Please specify at least one different value"]],400);
+            return $this->errorResponse("Please specify at least one different value",422);
         
         $user->save();
         
-        return response()->json(["data"=>$user],200);   ;
+        return $this->showOne($user); 
     }//update
 
     /**
@@ -136,7 +110,7 @@ class UserController extends Controller
     {
         //delete
         $user->delete();
-        return response()->json(["data"=>$user],200);    
+        return $this->showOne($user); 
     }//destroy
     
 }//UserController

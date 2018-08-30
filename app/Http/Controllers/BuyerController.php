@@ -14,7 +14,7 @@ class BuyerController extends Controller
     public function index()
     {
         $oCollection = Buyer::all();
-        return response()->json(["data"=>$oCollection],200);
+        return $this->showAll($oCollection);
     }
 
     /**
@@ -25,7 +25,7 @@ class BuyerController extends Controller
      */
     public function show(Buyer $buyer)
     {
-        return response()->json(["data"=>$buyer],200);
+        return $this->showOne($buyer);
     }
 
 }//BuyerController
