@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -29,12 +27,12 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        //ruta users
         //var_dump($request);die;
         //hace insert
         $arData = $request->validate([
@@ -57,8 +55,8 @@ class UserController extends Controller
         $oUser = User::create($arData);
         
         //201 es parte del cod http que indica que se ha creado satisfactoriamente una instancia
-        return response()->json(["data"=>$oUser],201);   
-    }
+        return $this->showOne($oUser,201);  
+    }//store
 
     /**
      * Display the specified resource.
@@ -69,7 +67,7 @@ class UserController extends Controller
     {
         //ruta users/{id}
         return $this->showOne($user);   
-    }
+    }//show
 
     /**
      * Update the specified resource in storage.

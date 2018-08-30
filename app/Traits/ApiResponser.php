@@ -12,9 +12,15 @@ trait ApiResponser
         return response()->json($data, $code);
     }//successResponse
 
+    /**
+     * 
+     * @param mixed $message String|Array
+     * @param integer $code
+     * @return String 
+     */
     function errorResponse($message, $code)
     {
-        return response()->json(["error"=>["message"=>$message,"code"=>$code]]);
+        return response()->json(["error"=>["message"=>$message,"code"=>$code]],$code);
     }//errorResponse
 
     function showAll(Collection $collection,$code=200)
