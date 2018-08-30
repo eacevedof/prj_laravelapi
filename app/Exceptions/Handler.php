@@ -7,6 +7,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -52,12 +54,18 @@ class Handler extends ExceptionHandler
     {
         if($exception instanceof ValidationException)
             return $this->convertValidationExceptionToResponse($exception,$request);
-        
+
         if($exception instanceof ModelNotFoundException)
-            return $this->errorResponse($exception->getMessage(),$exception->getCode()); 
-        
+            return $this->errorResponse($exception->getMessage(),404); 
+
         if($exception instanceof NotFoundHttpException)
-            return $this->errorResponse($exception->getMessage(),$exception->getCode());        
+            return $this->errorResponse("No endpoint found",$exception->getStatusCode());  
+
+        if($exception instanceof MethodNotAllowedHttpException)
+            return $this->errorResponse("Method not allowed",$exception->getStatusCode());       
+
+        if($exception instanceof HttpException)
+            return $this->errorResponse($exception->getMessage(),$exception->getStatusCode());        
             
         return parent::render($request, $exception);
     }//render

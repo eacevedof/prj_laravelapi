@@ -830,11 +830,20 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - `User::where("name",'%like%',$request->name)->get();`
 - Cambios en metodos primitivos aplicando `$this` con metodos del Trait
 - El archivo `app/Exepctions/Handler.php`
-    - metodos: 
-    - **repport(Exception $exeption):** Escribe en el log en: **<project>/storage/logs/laravel.log**
+    - [PHP Customizando Excepciones](http://php.net/manual/es/language.exceptions.extending.php)
+    - 
+    ```php
+    use Illuminate\Validation\ValidationException;
+    use Illuminate\Database\Eloquent\ModelNotFoundException;
+    use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+    use Symfony\Component\HttpKernel\Exception\HttpException;
+    use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+    ```
+    - **Metodos importantes:** 
+    - **function repport(Exception $exeption):** Escribe en el log en: **<project>/storage/logs/laravel.log**
     - Se puede configurar el atributo array **$dontReport** para indicarle que eventos no se deben guardar
     - El atributo **$dontFlash** en errores de validación. Sirve para no reenviar algunos datos recibidos en el servidor como por ejemplo: `password y password_confirmation`
-    - **render($request, Exception $exception)** Una vez que se lanza la Excepcion es el que se ejecuta para resolver que es lo que se tiene que hacer.
+    - **function render($request, Exception $exception)** Una vez que se lanza la Excepcion es el que se ejecuta para resolver que es lo que se tiene que hacer.
     - `render` trata el tipo de `Exception` con `instanceof`. Las que nos interesan son:
         - **AuthenticationException:** `return $this->unauthenticated($request, $e)`
         - Si válido devuelve un json sino redirige a página de login
@@ -892,9 +901,12 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
         return parent::render($request, $exception);
     }//render     
     ```
-    - Tratando excepcion **NotFoundHttpException**  `Error 404` **video: 01:44:26**
+    - Tratando excepcion **NotFoundHttpException**  `Error 404` **video: 01:44:26** - Ocurre cuando el endpoint no existe
     - Parametrizando el mensaje y código con el objeto `$exception`
     - `$this->errorResponse($exception->getMessage(),$exception->getCode()); `
+    - Excepcion: **MethodNotAllowedHttpException** `Error 405` **video: 01:49:00** - Ocurre cuando se usa un metodo `POST,GET,...` no permitido
+    - Hay otras tantas excepciones que pueden ocurrir y que no estemos tratando (errores inesperados)
+     
 
 - **nota:**
     - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**
