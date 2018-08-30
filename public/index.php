@@ -1,4 +1,5 @@
 <?php
+require __DIR__.'/../dg.php';
 
 /**
  * Laravel - A PHP Framework For Web Artisans
