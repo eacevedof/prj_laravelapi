@@ -852,11 +852,11 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
         return parent::render($request, $exception);
     }//render
 
-   protected function convertValidationExceptionToResponse(ValidationException $exception, $request)
+    protected function convertValidationExceptionToResponse(ValidationException $exception, $request)
     {
+        //errors es un array
         $errors = $exception->validator->errors()->getMessages();
         return $this->errorResponse($errors,422);
-        
         /*
         return $request->expectsJson()
             ? $this->invalidJson($request, $exception)
@@ -865,6 +865,9 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
          */
     }//convertValidationExceptionToResponse        
     ```
+    - Personalizar los mensajes de error: **video: 01:35:17**
+        - Los mensajes de error salen de **<project>\resources\lang**
+        
 - **nota:**
     - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**
 
