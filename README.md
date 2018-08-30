@@ -815,9 +815,18 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 - Uso de **static::addGlobalScope(new BuyerScope);**
 - Hay que definir la Carpeta **app/Scopes** - **video: 53:43**
 - Se implementa en las clases Scope el metodo: **public function apply(Builder $builder, Model $model)** con la condición de restricción
-- 
-
-
+- La teoria es que REST solo devuelva un tipo de recurso (no consultas mixtas) a menos que con el tiempo se vea que esto es necesario
+- Retocando el **return response()->json(["data" => $entity],200)** **video: 01:05**
+- Tratando con archivo: **app/Exepctions/Handler.php** metodo: **report(Exception $exception)**
+    - Nos permite constuir respuestas de error
+- **Traits** Una serie de funciones que podemos implementar de modo que cualquier estructura u otra clase desde cualquier lado lo puede implementar
+    - Los **Traits** se usan para emular **herencia multiple** en lenguajes que no tienen esta caracteristica como PHP
+    - Crear carpeta **app/Traits**
+    - Crear archivo **ApiResponser.php - trait ApiResponser**
+    - metodo **function showAll(Collection $collection,$code=200)**
+    - importamos **use Illuminate\Support\Collection;** pq es más genérica que **Illuminate\Database\Eloquent\Collection**
+    - **showMessage(..)** no se utiilizará pero se deja para que se vea la posibilidad de enviar mensajes
+    
 20. []()
 -
 21. []()
