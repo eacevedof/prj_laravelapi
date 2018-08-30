@@ -866,8 +866,17 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     }//convertValidationExceptionToResponse        
     ```
     - Personalizar los mensajes de error: **video: 01:35:17**
-        - Los mensajes de error salen de **<project>\resources\lang**
-        
+        - Los mensajes de error salen de **<project>/resources/lang/<lang>**
+        - Son archivos php de arrays con mapeos `error => mensaje de error`
+        - Para cambio de idioma hay que hacerlo en **<project>/config/app.php** item **locale => es**
+        - Repo de traducciones de mensajes: [https://github.com/caouecs/Laravel-lang](https://github.com/caouecs/Laravel-lang)
+
+    - Al modificar el tratamiento de excepciones se esta haciendo tanto para las rutas de la API como para las rutas de la web
+    - Lo ideal sería tener dos proyectos. Uno web y otro API
+    - Si tienes dos proyectos necesitas dos instancias
+    - Para Auth si se usaran rutas web
+    
+
 - **nota:**
     - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**
 
