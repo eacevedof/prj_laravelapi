@@ -892,7 +892,7 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
         return parent::render($request, $exception);
     }//render     
     ```
-    - Tratando excepcion **NotFoundHttpException** url 404 **video: 01:44:26**
+    - Tratando excepcion **NotFoundHttpException**  `Error 404` **video: 01:44:26**
     - 
 
 - **nota:**
