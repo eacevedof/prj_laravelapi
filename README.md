@@ -842,7 +842,8 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
         - Lo mismo
     - Al ser una **API JSON** deberiamos devolver siempre JSON y no redireccionar
     - Para esto hay que sobrescribir esos metodos aplicando el Trait en Handler
-    - ```php
+    - 
+    ```php
     public function render($request, Exception $exception)
     {
         if($exception instanceof ValidationException)
