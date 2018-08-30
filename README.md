@@ -826,7 +826,10 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - metodo **function showAll(Collection $collection,$code=200)**
     - importamos **use Illuminate\Support\Collection;** pq es más genérica que **Illuminate\Database\Eloquent\Collection**
     - **showMessage(..)** no se utiilizará pero se deja para que se vea la posibilidad de enviar mensajes
-    
+- Ejemplo de `LIKE '%algo%'` **video: 01:15**
+    - `User::where("name",'%like%',$request->name)->get();`
+-
+
 20. []()
 -
 21. []()

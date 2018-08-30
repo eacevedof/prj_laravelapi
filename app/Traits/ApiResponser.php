@@ -30,8 +30,7 @@ trait ApiResponser
 
     function showMessage(String $message, $code=200)
     {
-        $arData = ["mesage"=>$message];
-        return $this->successReponse($arData,$code);
+        return $this->successReponse($message,$code);
     }//showMessage    
 
 }//trait ApiResponser

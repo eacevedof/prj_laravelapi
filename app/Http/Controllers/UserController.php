@@ -17,6 +17,7 @@ class UserController extends Controller
         //devuelve una lista completa de usuarios
         //Illuminate\Database\Eloquent\Collection 
         $oCollection = User::all()->random(100);
+        $oCollection = User::where("name",'%like%',$request->name)->get();
         return response()->json(["data"=>$oCollection],200);
         //201: es instancia creada, en metodo store()
         //return response()->json(["data"=>$oCollection],201);
