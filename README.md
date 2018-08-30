@@ -809,14 +809,14 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 - Dos endpoints no deberian devolver los mismos recursos
 - Hay que corregir los metodos index() para que no devuelvan lo mismo
 - Para evita estar modificando cada uno de los metodos con la condicionante que restringe los datos se usaria un **GlobalScope**
-- **Global Scopes** Es una rutina que se ejecutara siempre en una instancia **video: 52:10**
+- **Global Scopes** Es una rutina que se ejecutara siempre en una instancia **video: 00:52:10**
 - **protected static function boot** metodo de tipo global scope
 - Uso de [**static::**](http://php.net/manual/es/language.oop5.late-static-bindings.php)
 - Uso de **static::addGlobalScope(new BuyerScope);**
-- Hay que definir la Carpeta **app/Scopes** - **video: 53:43**
+- Hay que definir la Carpeta **app/Scopes** - **video: 00:53:43**
 - Se implementa en las clases Scope el metodo: **public function apply(Builder $builder, Model $model)** con la condición de restricción
 - La teoria es que REST solo devuelva un tipo de recurso (no consultas mixtas) a menos que con el tiempo se vea que esto es necesario
-- Retocando el **return response()->json(["data" => $entity],200)** **video: 01:05**
+- Retocando el **return response()->json(["data" => $entity],200)** **video: 01:05:00**
 - Tratando con archivo: **app/Exepctions/Handler.php** metodo: **report(Exception $exception)**
     - Nos permite constuir respuestas de error
 - **Traits** Una serie de funciones que podemos implementar de modo que cualquier estructura u otra clase desde cualquier lado lo puede implementar
@@ -826,10 +826,46 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - metodo **function showAll(Collection $collection,$code=200)**
     - importamos **use Illuminate\Support\Collection;** pq es más genérica que **Illuminate\Database\Eloquent\Collection**
     - **showMessage(..)** no se utiilizará pero se deja para que se vea la posibilidad de enviar mensajes
-- Ejemplo de `LIKE '%algo%'` **video: 01:15**
+- Ejemplo de `LIKE '%algo%'` **video: 01:15:00**
     - `User::where("name",'%like%',$request->name)->get();`
 - Cambios en metodos primitivos aplicando `$this` con metodos del Trait
+- El archivo `app/Exepctions/Handler.php`
+    - metodos: 
+    - **repport(Exception $exeption):** Escribe en el log en: **<project>/storage/logs/laravel.log**
+    - Se puede configurar el atributo array **$dontReport** para indicarle que eventos no se deben guardar
+    - El atributo **$dontFlash** en errores de validación. Sirve para no reenviar algunos datos recibidos en el servidor como por ejemplo: `password y password_confirmation`
+    - **render($request, Exception $exception)** Una vez que se lanza la Excepcion es el que se ejecuta para resolver que es lo que se tiene que hacer.
+    - `render` trata el tipo de `Exception` con `instanceof`. Las que nos interesan son:
+        - **AuthenticationException:** `return $this->unauthenticated($request, $e)`
+        - Si válido devuelve un json sino redirige a página de login
+        - **ValidationException:** `return $this->convertValidationExceptionToResponse($e, $request)`
+        - Lo mismo
+    - Al ser una **API JSON** deberiamos devolver siempre JSON y no redireccionar
+    - Para esto hay que sobrescribir esos metodos aplicando el Trait en Handler
+    - ```php
+    public function render($request, Exception $exception)
+    {
+        if($exception instanceof ValidationException)
+            return $this->convertValidationExceptionToResponse($exception,$request);
+        
+        return parent::render($request, $exception);
+    }//render
 
+   protected function convertValidationExceptionToResponse(ValidationException $exception, $request)
+    {
+        $errors = $exception->validator->errors()->getMessages();
+        return $this->errorResponse($errors,422);
+        
+        /*
+        return $request->expectsJson()
+            ? $this->invalidJson($request, $exception)
+            : $this->invalid($request, $exception);
+         * 
+         */
+    }//convertValidationExceptionToResponse        
+    ```
+- **nota:**
+    - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**
 
 20. []()
 -
