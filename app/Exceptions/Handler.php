@@ -67,7 +67,11 @@ class Handler extends ExceptionHandler
         if($exception instanceof HttpException)
             return $this->errorResponse($exception->getMessage(),$exception->getStatusCode());        
             
-        return parent::render($request, $exception);
+        //lee .env APP_DEBUG = true - se está en desarrollo
+        if(config("app.debug"))
+            return parent::render($request, $exception);
+        
+        return $this->errorResponse("Unexpected error",500);
     }//render
 
     /**

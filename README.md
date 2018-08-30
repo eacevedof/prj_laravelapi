@@ -905,8 +905,18 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - Parametrizando el mensaje y código con el objeto `$exception`
     - `$this->errorResponse($exception->getMessage(),$exception->getCode()); `
     - Excepcion: **MethodNotAllowedHttpException** `Error 405` **video: 01:49:00** - Ocurre cuando se usa un metodo `POST,GET,...` no permitido
-    - Hay otras tantas excepciones que pueden ocurrir y que no estemos tratando (errores inesperados)
-     
+    - Hay otras tantas excepciones que pueden ocurrir y que no estemos tratando (errores inesperados) para estos casos hay que crear un `return $this->errorResponse("Unexpected error",500);`
+    - Como estamos en desarrollo se puede enviar datos de error de excepciones con información que no deberia ser pública. 
+    - 
+    ```php 
+    //Handler.php
+    //lee .env APP_DEBUG = true - se está en desarrollo
+    if(config("app.debug"))
+        return parent::render($request, $exception);
+    
+    return $this->errorResponse("Unexpected error",500);    
+    ```
+
 
 - **nota:**
     - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**
