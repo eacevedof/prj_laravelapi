@@ -56,7 +56,11 @@ class Handler extends ExceptionHandler
             return $this->convertValidationExceptionToResponse($exception,$request);
 
         if($exception instanceof ModelNotFoundException)
-            return $this->errorResponse($exception->getMessage(),404); 
+        {
+            $sModelName = class_basename($exception->getModel());
+            return $this->errorResponse("No model found with name {$sModelName}",404); 
+            //return $this->errorResponse($exception->getMessage(),404);
+        }
 
         if($exception instanceof NotFoundHttpException)
             return $this->errorResponse("No endpoint found",$exception->getStatusCode());  

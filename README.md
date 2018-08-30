@@ -916,7 +916,23 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     
     return $this->errorResponse("Unexpected error",500);    
     ```
+    - Recuperando el modelo no encontrado
+    ```php    
+    if($exception instanceof ModelNotFoundException)
+    {
+        $sModelName = $exception->getModel();
+        return $this->errorResponse("No model found with name {$sModelName}",404); 
+    }
 
+    {"error":{"message":"No model found with name App\\Seller","code":404}}
+      
+    if($exception instanceof ModelNotFoundException)
+    {
+        $sModelName = class_basename($exception->getModel());
+        return $this->errorResponse("No model found with name {$sModelName}",404); 
+    }
+    {"error":{"message":"No model found with name Seller","code":404}}
+    ```
 
 - **nota:**
     - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**
