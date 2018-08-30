@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    //importamos Trait
+    use ApiResponser;
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +20,9 @@ class UserController extends Controller
         //devuelve una lista completa de usuarios
         //Illuminate\Database\Eloquent\Collection 
         $oCollection = User::all()->random(100);
-        $oCollection = User::where("name",'%like%',$request->name)->get();
-        return response()->json(["data"=>$oCollection],200);
+        //$oCollection = User::where("name",'%like%',$request->name)->get();
+        //return response()->json(["data"=>$oCollection],200);
+        return $this->showAll($oCollection);
         //201: es instancia creada, en metodo store()
         //return response()->json(["data"=>$oCollection],201);
         //var_dump($users);die;
