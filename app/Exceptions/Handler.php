@@ -3,9 +3,10 @@ namespace App\Exceptions;
 
 use Exception;
 use App\Traits\ApiResponser;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -53,7 +54,10 @@ class Handler extends ExceptionHandler
             return $this->convertValidationExceptionToResponse($exception,$request);
         
         if($exception instanceof ModelNotFoundException)
-            return $this->errorResponse("Does not exists any instance with the specified id",404);
+            return $this->errorResponse("Does not exist any instance with the specified id",404);
+        
+        if($exception instanceof NotFoundHttpException)
+            return $this->errorResponse("Does not exist any endpoint matching with that URL",404);        
             
         return parent::render($request, $exception);
     }//render

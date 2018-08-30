@@ -876,8 +876,8 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - Lo ideal sería tener dos proyectos. Uno web y otro API
     - Si tienes dos proyectos necesitas dos instancias
     - Para Auth si se usaran rutas web
-    - Tratando **ModelNotFoundException** - Ocurre cuando se envia un id que no existe
-    - <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/b13b888b08113acd05dc65e415be8b99/image.png" height="100" width="400">
+    - Tratando **ModelNotFoundException** `Error 404` - Ocurre cuando se envia un **id** que no existe
+    - <img src="https://trello-attachments.s3.amazonaws.com/5b014dcaf4507eacfc1b4540/5b014de4bc1b8dcc70d83031/b13b888b08113acd05dc65e415be8b99/image.png" height="50" width="300">
     - 
     ```php
     //app/Exepctions/Handler.php
@@ -892,7 +892,7 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
         return parent::render($request, $exception);
     }//render     
     ```
-    - Tratando url 404 **video: 01:44:26**
+    - Tratando excepcion **NotFoundHttpException** url 404 **video: 01:44:26**
     - 
 
 - **nota:**
