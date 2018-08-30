@@ -893,7 +893,8 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     }//render     
     ```
     - Tratando excepcion **NotFoundHttpException**  `Error 404` **video: 01:44:26**
-    - 
+    - Parametrizando el mensaje y código con el objeto `$exception`
+    - `$this->errorResponse($exception->getMessage(),$exception->getCode()); `
 
 - **nota:**
     - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**

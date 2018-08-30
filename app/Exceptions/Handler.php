@@ -54,10 +54,10 @@ class Handler extends ExceptionHandler
             return $this->convertValidationExceptionToResponse($exception,$request);
         
         if($exception instanceof ModelNotFoundException)
-            return $this->errorResponse("Does not exist any instance with the specified id",404);
+            return $this->errorResponse($exception->getMessage(),$exception->getCode()); 
         
         if($exception instanceof NotFoundHttpException)
-            return $this->errorResponse("Does not exist any endpoint matching with that URL",404);        
+            return $this->errorResponse($exception->getMessage(),$exception->getCode());        
             
         return parent::render($request, $exception);
     }//render
