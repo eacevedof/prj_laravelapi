@@ -947,7 +947,8 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 
 ## DESPLEGADO EN PROD
 - Incluir archivo `usererrorhandler.php` si fuera necesario
-- [Instalar composer](https://laracasts.com/discuss/channels/servers/install-laravel-in-1and1-servers)
+- [Instalar laravel en 1n1 uf4no ingles](http://www.uf4no.com/articles/guide-to-deploy-laravel-5-app-to-shared-hosting-1and1-9)
+- [Instalar laravel en 1n1 laracasts ingles](https://laracasts.com/discuss/channels/servers/install-laravel-in-1and1-servers)
     - **comando: `$mkdir -p hello/goodbye`** **-p** indica que si no existe la carpeta padre la crea
     - **comando: `ls -s`** **-s** crea un link **s**imbolico al archivo [`ls`](http://manpages.ubuntu.com/manpages/xenial/man1/ln.1.html)
     - **comando: `source ~/.profile`** Ejecuta el archivo `.profile` que es parte de un bash
@@ -975,5 +976,11 @@ The server encountered an internal error or misconfiguration and was unable to c
 Please contact the server administrator at to inform them of the time this error occurred, and the actions you performed just before this error.
 More information about this error may be available in the server error log.
 Additionally, a 500 Internal Server Error error was encountered while trying to use an ErrorDocument to handle the request.
+```
+- ### Solucion
+- Había que aplicar el cambio en .htaccess 
+```ssh
+#http://www.uf4no.com/articles/guide-to-deploy-laravel-5-app-to-shared-hosting-1and1-9
+RewriteRule ^ /index.php
 ```
 
