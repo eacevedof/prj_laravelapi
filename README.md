@@ -962,6 +962,12 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 $ php artisan key:generate
 Application key [base64:aNZ+S0Rq3xNuqHOemgYdh3jfEnXEQkox6IIID5VFbqs=] set successfully.
 ```
+```ssh
+# ejecutar 
+source ~/.profile
+php artisan tinker
+```
+
 - El home ya no da error, pero si la ruta: **error:** `http://<dominio>/users`
 ```
 Internal Server Error
