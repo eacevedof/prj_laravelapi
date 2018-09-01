@@ -943,3 +943,12 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 -
 22. []()
 -
+
+
+## DESPLEGADO EN PROD
+- [Instalar composer](https://laracasts.com/discuss/channels/servers/install-laravel-in-1and1-servers)
+    - **comando: `$mkdir -p hello/goodbye`** **-p** indica que si no existe la carpeta padre la crea
+    - **comando: `ls -s`** **-s** crea un link **s**imbolico al archivo [`ls`](http://manpages.ubuntu.com/manpages/xenial/man1/ln.1.html)
+    - **comando: `source ~/.profile`** Ejecuta el archivo `.profile` que es parte de un bash
+    - **comando: `curl -sS https://getcomposer.org/installer | php`** El comando curl hace una transferencia de archivos `-s`: silent, `S`: show error `| php`: ???ni idea
+    - **comando: `php composer.phar install`**
