@@ -946,9 +946,27 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 
 
 ## DESPLEGADO EN PROD
+- Incluir archivo `usererrorhandler.php` si fuera necesario
 - [Instalar composer](https://laracasts.com/discuss/channels/servers/install-laravel-in-1and1-servers)
     - **comando: `$mkdir -p hello/goodbye`** **-p** indica que si no existe la carpeta padre la crea
     - **comando: `ls -s`** **-s** crea un link **s**imbolico al archivo [`ls`](http://manpages.ubuntu.com/manpages/xenial/man1/ln.1.html)
     - **comando: `source ~/.profile`** Ejecuta el archivo `.profile` que es parte de un bash
     - **comando: `curl -sS https://getcomposer.org/installer | php`** El comando curl hace una transferencia de archivos `-s`: silent, `S`: show error `| php`: ???ni idea
     - **comando: `php composer.phar install`**
+- Crear archivo: **.env**
+    - Retocar el dominio
+- Al ejecutar da error: `No application encryption key has been specified`
+- Ejecutar **comando:** `php artisan key:generate`
+```ssh
+$ php artisan key:generate
+Application key [base64:aNZ+S0Rq3xNuqHOemgYdh3jfEnXEQkox6IIID5VFbqs=] set successfully.
+```
+- El home ya no da error, pero si la ruta: **error:** `http://<dominio>/users`
+```
+Internal Server Error
+The server encountered an internal error or misconfiguration and was unable to complete your request.
+Please contact the server administrator at to inform them of the time this error occurred, and the actions you performed just before this error.
+More information about this error may be available in the server error log.
+Additionally, a 500 Internal Server Error error was encountered while trying to use an ErrorDocument to handle the request.
+```
+
