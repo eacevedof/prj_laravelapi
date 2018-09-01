@@ -955,8 +955,9 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - **comando: `php composer.phar install`**
 - Crear archivo: **.env**
     - Retocar el dominio
-- Al ejecutar da error: `No application encryption key has been specified`
+- Al ejecutar da **error**: `No application encryption key has been specified`
 - Ejecutar **comando:** `php artisan key:generate`
+    - Escribe en `.env`, `APP_KEY=base64:aNZ+S0Rq3xNuqHOemgYdh3jfEnXEQkox6IIID5VFbqs=`
 ```ssh
 $ php artisan key:generate
 Application key [base64:aNZ+S0Rq3xNuqHOemgYdh3jfEnXEQkox6IIID5VFbqs=] set successfully.
