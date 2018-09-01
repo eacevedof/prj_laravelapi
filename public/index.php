@@ -1,4 +1,7 @@
 <?php
+//@eaf
+//<project>/public/index.php
+require __DIR__.'/../usererrorhandler_1and1.php';
 require __DIR__.'/../dg.php';
 
 /**
