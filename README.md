@@ -952,7 +952,7 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     Route::apiResource("transactions","TransactionController",["only"=>["index","show"]]);
     ```
 - Se eliminan los metodos que no se van a utilizar en Product y TransactionController
--
+- **Error** no me devuelve resultados la llamada a categories ni transaction
 
 21. []()
 -

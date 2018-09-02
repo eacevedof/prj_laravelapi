@@ -14,7 +14,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $oCollection = Transaction::all();
+        return $this->showAll($oCollection);
     }
 
     /**
@@ -25,6 +26,6 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return $this->showOne($transaction);
     }
 }//TransactionController

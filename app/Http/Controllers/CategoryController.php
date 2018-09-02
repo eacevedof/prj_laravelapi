@@ -1,5 +1,5 @@
 <?php
-
+//<project>/app/Http/Controllers/CategoryController.php
 namespace App\Http\Controllers;
 
 use App\Category;
@@ -9,12 +9,13 @@ class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        \dg::p("categories.index");die;
+        $oCollection = Category::all();
+        return $this->showAll($oCollection);
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -46,7 +47,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return $this->showOne($category);
     }
 
     /**
