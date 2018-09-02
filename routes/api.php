@@ -22,7 +22,7 @@ comando: php artisan route:list
 Route::apiResource("users","UserController");
 Route::apiResource("buyers","BuyerController",["only"=>["index","show"]]);
 Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
-Route::apiResource("products","ProductController");
-Route::apiResource("transactions","TransactionController");
+Route::apiResource("products","ProductController",["only"=>["index","show"]]);
+Route::apiResource("transactions","TransactionController",["only"=>["index","show"]]);
 Route::apiResource("categories","CategoryController");
 //Route::get("slug-de-ruta","ProductController@methodX");

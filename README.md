@@ -939,7 +939,21 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 
 ## LECCIÓN 4
 20. [Comenzando Operaciones Complejas de la API RESTful](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/comenzando-operaciones-complejas-de-la-api-restful)
+- Faltan configurar los controladores Product y Categories
+- **<project>/routes/api.php - ProductController**
+    - Solo va a tener publicados metodos de lectura
+    - La creación/modificación dependerá del vendedor 
+    - No se puede tratar directamente el `seller_id` en la url pq así se podría permitir que un vendedor cree productos a otro vendedor.  Es algo más complejo
+    - Lo mismo pasaria con **Transactions y Buyers**
+    - 
+    ```php
+    //<project>/routes/api.php 
+    Route::apiResource("products","ProductController",["only"=>["index","show"]]);
+    Route::apiResource("transactions","TransactionController",["only"=>["index","show"]]);
+    ```
+- Se eliminan los metodos que no se van a utilizar en Product y TransactionController
 -
+
 21. []()
 -
 22. []()
