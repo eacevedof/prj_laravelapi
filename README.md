@@ -937,7 +937,8 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 - **nota:**
     - no daba con la solución del envio post para store. No es lo mismo **laravelapi/users** que **laravelapi/users/**
 
-20. []()
+## LECCIÓN 4
+20. [Comenzando Operaciones Complejas de la API RESTful](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/comenzando-operaciones-complejas-de-la-api-restful)
 -
 21. []()
 -
