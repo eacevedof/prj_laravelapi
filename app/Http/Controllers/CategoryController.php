@@ -13,7 +13,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        \dg::p("categories.index");die;
         $oCollection = Category::all();
         return $this->showAll($oCollection);
     }
@@ -36,8 +35,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //en la migración estan las restricciones de los campos y estas hay que validarlas
+        $data = $request->validate([
+            "name" => "required|max:255",
+            "description" => "required|max:1000"
+        ]);
+        $category = Category::create($data);
+        return $this->showOne($category,201);
+    }//store
 
     /**
      * Display the specified resource.
@@ -83,4 +88,5 @@ class CategoryController extends Controller
     {
         //
     }
-}
+    
+}//CategoryController

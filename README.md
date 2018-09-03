@@ -954,6 +954,11 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 - Se eliminan los metodos que no se van a utilizar en Product y TransactionController
 - **Error** no me devuelve resultados la llamada a categories ni transaction
     - **solucion** netbeans no copiaba los cambios en www
+- **video: 00:10:08** url: `http://127.0.0.1:8000/sellers/1/products/5` con PATCH
+    - Si intento actualizar el producto mediante esa url y como products tiene una clave foranea **seller_id** necesito enviarle que vendedor está haciendo el cambio, podría enviarle en la url el `/seller/{id}/products/5` pero se tratara por separado en un controlador más complejo, donde se requerira datos del vendedor y del producto.
+- **video: 00:13:21** antes de guardar hay que validar las restricciones por campo que están en migration. 
+- Se valida por separado para evitar una Excepcion
+- 
 
 21. []()
 -
