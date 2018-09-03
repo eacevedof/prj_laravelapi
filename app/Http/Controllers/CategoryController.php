@@ -64,7 +64,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
-    }
+    }//edit
 
     /**
      * Update the specified resource in storage.
@@ -76,7 +76,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
-    }
+    }//update
 
     /**
      * Remove the specified resource from storage.
@@ -86,7 +86,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
-    }
+        $category->delete();
+        return $this->showOne($category);
+    }//destroy
     
 }//CategoryController
