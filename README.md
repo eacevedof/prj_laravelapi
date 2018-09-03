@@ -958,6 +958,7 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - Si intento actualizar el producto mediante esa url y como products tiene una clave foranea **seller_id** necesito enviarle que vendedor está haciendo el cambio, podría enviarle en la url el `/seller/{id}/products/5` pero se tratara por separado en un controlador más complejo, donde se requerira datos del vendedor y del producto.
 - **video: 00:13:21** antes de guardar hay que validar las restricciones por campo que están en migration. 
 - Se valida por separado para evitar una Excepcion
+- en `update` el metodo `$request->only(["name","description"])` indica que solo guardara lo que venga con datos
 - 
 
 21. []()

@@ -75,8 +75,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->validate([
+            "name" => "max:255",
+            "description" => "max:1000"
+        ]);
+        $category->fill($request->only(["name","description"]));
+
+        //si no hay cambios
+        if($category->isClean())
+            return $this->errorResponse("You need to specify any new value to update the category",422);
+
+        $category->save();
+        return $this->showOne($category);
     }//update
+
 
     /**
      * Remove the specified resource from storage.
