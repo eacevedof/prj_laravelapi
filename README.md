@@ -35,6 +35,7 @@
 Permiten la integración entre dos plataformas: `[Plat A] in/out <- middleware -> in/out [Plat B]`. 
 El middlware lleva acabo esta tarea usando servicios.
 ```php
+//<project>/app/Http/Kernel.php
 //estos se van a ejecutar siempre
 protected $middleware = [\App\Http\Middleware\CheckForMaintenanceMode::class, 
 //estos se ejecutaran para WEB y para APIS
