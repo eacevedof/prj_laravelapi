@@ -16,7 +16,8 @@ class TransactionCategoryController extends Controller
      */
     public function index(Transaction $transaction)
     {
-
+        $oCollection = $transaction->product->categories;
+        return $this->showAll($oCollection);
     }//index
 
 }//TransactionCategoryController

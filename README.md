@@ -1047,7 +1047,7 @@ public function destroy(Category $category)
     - Como ya se tiene un metodo **destroy** en **Categories** no hace falta configurarlo en **TransactionCategoryController**
     - Es más sencillo poner: `categories/{id}` que `transactions/{id}/categories/{id}`
     - solo necesitariamos el método **index()** que nos devolveria la lista de categorias asociadas a una transacción
-    - **video: 00:37:37** configurando rutas con recursos complejos
+    - **video: 00:37:37** configurando rutas con recursos complejos o anidados
     - `Route::apiResource(<padre-plural>.<modelo-plural>,<controlador>)`
     - `Route::apiResource("transactions.categories","TransactionCategoryController",["only"=>["index"]]);`
     -
@@ -1055,6 +1055,7 @@ public function destroy(Category $category)
      | GET|HEAD  | transactions/{transaction}/categories | transactions.categories.index | App\Http\Controllers\TransactionCategoryController@index | api        |
     ```
     - **video: 00:40:18** configurando metodo 'complejo' *index*
+- **video: 00:44:33** haciendo una pausa para organizar nuestro código
 
 21. []()
 -
