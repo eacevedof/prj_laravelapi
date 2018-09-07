@@ -23,6 +23,10 @@ Route::apiResource("users","UserController");
 Route::apiResource("buyers","BuyerController",["only"=>["index","show"]]);
 Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 Route::apiResource("products","ProductController",["only"=>["index","show"]]);
+
 Route::apiResource("transactions","TransactionController",["only"=>["index","show"]]);
+Route::apiResource("transactions.categories","TransactionCategoryController",["only"=>["index"]]);
+
+
 Route::apiResource("categories","CategoryController");
 //Route::get("slug-de-ruta","ProductController@methodX");

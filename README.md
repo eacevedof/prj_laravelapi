@@ -1031,13 +1031,30 @@ public function destroy(Category $category)
     return $this->showOne($category);
 }//destroy
 ```
-- **video 00:23:00** Cruzando todos con todos
+- **video: 00:23:00** Cruzando todos con todos
 - Según la imágen UML vamos cruzando de forma transitiva 
 - Operaciones complejas:
     - Ejemplo **TransactionCategoryController:** `<p:padre><m:modelo-a-devolver>Controller`
     - Devolverá **las categorías de una transacción**
     - **comando:** `php artisan make:controller TransactionCategoryController -m Category -p Transaction` crea controlador de recurso anidado
-
+    - metodo `public function index(Transaction $transaction)` recibe la transaccion que tiene las categorias a devolver.
+    - metodo `public function show(Transaction $transaction, Category $category)` no solo necesito la transacción sino tambien la categoria de esa transacción que se mostrara
+    - Para unas operaciones basta implementar el padre y otras ambos objetos, padre y modelo
+- Gran parte de estas operaciones no son obligatorias
+- **video: 00:34:34** Rutas y endpoints similares
+    - Que pasa si se quiere eliminar una categoria asociada a una transacción
+    - Para eliminar la categoria no es necesaria la transacción
+    - Como ya se tiene un metodo **destroy** en **Categories** no hace falta configurarlo en **TransactionCategoryController**
+    - Es más sencillo poner: `categories/{id}` que `transactions/{id}/categories/{id}`
+    - solo necesitariamos el método **index()** que nos devolveria la lista de categorias asociadas a una transacción
+    - **video: 00:37:37** configurando rutas con recursos complejos
+    - `Route::apiResource(<padre-plural>.<modelo-plural>,<controlador>)`
+    - `Route::apiResource("transactions.categories","TransactionCategoryController",["only"=>["index"]]);`
+    -
+    ```ssh
+     | GET|HEAD  | transactions/{transaction}/categories | transactions.categories.index | App\Http\Controllers\TransactionCategoryController@index | api        |
+    ```
+    - **video: 00:40:18** configurando metodo 'complejo' *index*
 
 21. []()
 -
