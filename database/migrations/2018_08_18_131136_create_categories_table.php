@@ -17,11 +17,11 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             
-            $table->string("name");
+            $table->string("name");//varchar(255)
             $table->string("description",1000);
             //no hay tablas foraneas van en la tabla pivote
         });
-    }
+    }//up
 
     /**
      * Reverse the migrations.

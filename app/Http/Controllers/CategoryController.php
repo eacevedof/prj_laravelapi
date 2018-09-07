@@ -15,27 +15,23 @@ class CategoryController extends Controller
     {
         $oCollection = Category::all();
         return $this->showAll($oCollection);
-    }
+    }//index
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-
-    }
+    public function create(){}//create
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //en la migración estan las restricciones de los campos y estas hay que validarlas
+        //<project>/database/migrations/2018_08_18_131136_create_categories_table.php
         $data = $request->validate([
             "name" => "required|max:255",
             "description" => "required|max:1000"
@@ -46,18 +42,16 @@ class CategoryController extends Controller
 
     /**
      * Display the specified resource.
-     *
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
     {
         return $this->showOne($category);
-    }
+    }//show
 
     /**
      * Show the form for editing the specified resource.
-     *
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
@@ -75,10 +69,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $data = $request->validate([
+        $request->validate([
             "name" => "max:255",
             "description" => "max:1000"
         ]);
+        
+        //fill nos asegura que solo se trate los valores que llegan por post
         $category->fill($request->only(["name","description"]));
 
         //si no hay cambios
@@ -92,7 +88,6 @@ class CategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */

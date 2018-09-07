@@ -989,10 +989,50 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
     - **solucion** netbeans no copiaba los cambios en www
 - **video: 00:10:08** url: `http://127.0.0.1:8000/sellers/1/products/5` con PATCH
     - Si intento actualizar el producto mediante esa url y como products tiene una clave foranea **seller_id** necesito enviarle que vendedor está haciendo el cambio, podría enviarle en la url el `/seller/{id}/products/5` pero se tratara por separado en un controlador más complejo, donde se requerira datos del vendedor y del producto.
+
 - **video: 00:13:21** antes de guardar hay que validar las restricciones por campo que están en migration. 
 - Se valida por separado para evitar una Excepcion
 - en `update` el metodo `$request->only(["name","description"])` indica que solo guardara lo que venga con datos
 - 
+```php
+//<project>/app/Http/Controllers/CategoryController.php
+public function store(Request $request)
+{
+    //en la migración estan las restricciones de los campos y estas hay que validarlas
+    //<project>/database/migrations/2018_08_18_131136_create_categories_table.php
+    $data = $request->validate([
+        "name" => "required|max:255",
+        "description" => "required|max:1000"
+    ]);
+    $category = Category::create($data);
+    return $this->showOne($category,201);
+}//store
+
+public function update(Request $request, Category $category)
+{
+    $request->validate([
+        "name" => "max:255",
+        "description" => "max:1000"
+    ]);
+    
+    //fill nos asegura que solo se trate los valores que llegan por post
+    $category->fill($request->only(["name","description"]));
+    //si no hay cambios
+    if($category->isClean())
+        return $this->errorResponse("You need to specify any new value to update the category",422);
+
+    $category->save();
+    return $this->showOne($category);
+}//update
+
+public function destroy(Category $category)
+{
+    $category->delete();
+    return $this->showOne($category);
+}//destroy
+```
+- 
+
 
 21. []()
 -
