@@ -1031,7 +1031,12 @@ public function destroy(Category $category)
     return $this->showOne($category);
 }//destroy
 ```
-- 
+- **video 00:23:00** Cruzando todos con todos
+- Según la imágen UML vamos cruzando de forma transitiva 
+- Operaciones complejas:
+    - Ejemplo **TransactionCategoryController:** `<p:padre><m:modelo-a-devolver>Controller`
+    - Devolverá **las categorías de una transacción**
+    - **comando:** `php artisan make:controller TransactionCategoryController -m Category -p Transaction` crea controlador de recurso anidado
 
 
 21. []()
