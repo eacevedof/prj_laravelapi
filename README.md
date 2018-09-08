@@ -1126,7 +1126,6 @@ public function destroy(Category $category)
         - habría que recorrer toda la coleccíon y obtener una a una los productos
         - **eagerloading - with()** permite obtener recursos junto con sus propiedades
         - **video: 01:11:00** resuelve el n+1 en las consultas. En lugar de tener que lanzar una consulta por separado por cada transacción
-        - 
         ```sql
         -- todas las transacciones de un comprador y todos los productos de esas transacciones
         SELECT DISTINCT t.*,p.*
@@ -1138,7 +1137,6 @@ public function destroy(Category $category)
         WHERE 1=1
         AND b.id = {buyers/id}
         ```
-        - 
         ```php
         public function index(Buyer $buyer)
         {
