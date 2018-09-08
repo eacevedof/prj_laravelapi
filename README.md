@@ -163,12 +163,16 @@ $ php artisan route:list
 
 6. [Implementar el esqueleto de los demás recursos del API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/implementar-el-esqueleto-de-los-demas-recursos-del-api)
 - Archivos que más se utilizan: **config/app.php** y **config/database.php**
-- **database/migrations** 
+- **database/migrations**
+    - **Tips restricciones ELOQUENT:**
+        - Los **nombres de las tablas** deben de ir en **plural** y **minúsculas**
+        - Los **nombres de los campos** siempre en **minúsculas** - `products.name, categories.description`
+        - Las **claves foraneas** se deben formar de la siguiente manera: `<nombre-tabla-singular>_id` ejemplo: `products.seller_id`
     - Las migraciones son clases de tipo Migration y se guardan con un timestamp tipo: **<yyyy_mm_dd_hhmmss_cadena-de-accion>.php**
     - El orden es importante ya que laravel ejecutara todo lo que hay en esta carpeta segun el nombre.
     - Fijandonos en el diagrama, **Buyer** y **Product** deben existir antes de **Transaction**
-    - Tener presente la **tabla pivote** es una representación fisica de una relación n:m. En el ejemplo **Product<->Category** con lo cual
-obtendriamos una tabla **Category_Product** (Union de nombres en singular en orden alfabético **Norma 5**)
+    - Tener presente la **tabla pivote** es una representación fisica de una relación n:m. En el ejemplo **Product<->Category** con lo cual obtendriamos una tabla **category_product** (Union de nombres en singular en orden alfabético **Norma 5**)
+
 - **comando:** `php artisan make:model Transaction --all`
 
 ```bash
