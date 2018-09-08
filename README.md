@@ -1228,11 +1228,11 @@ public function destroy(Category $category)
                                 ->with("product.categories")
                                 ->get()
                                 ->pluck("product.categories") 
-                                // hasta aqui muestra un array de arrays. Array de productos con su array de categorias
+            //hasta aqui, pluck, muestra un array de arrays. Array de productos con su array de categorias
                                 ->collapse() //quita el array superior y solo deja el de categorias
                                 ->unique("id") //elimina repetidos
                                 ->values() //reorganiza nueva collección y evita un array asociativo "id":objeto
-                    ;
+            ;
             return $this->showAll($oCollection);
         }//Index        
         ```
