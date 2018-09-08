@@ -1073,6 +1073,10 @@ public function destroy(Category $category)
     ```
     - **video: 00:40:18** configurando metodo 'complejo' *index*
 - **video: 00:44:33** haciendo una pausa para organizar nuestro código **Refactoring**
+    - Se va a categorizar todo por recursos.
+    - Crear carpetas dentro de controllers con los nombre de los grupos
+- **video: 00:44:50** Creando carpetas
+
 
 21. []()
 -
