@@ -17,7 +17,14 @@ class BuyerProductController extends Controller
      */
     public function index(Buyer $buyer)
     {
-        //
+        //se esta obteniendo una colleccion de transactions
+        //transactions():ret $this->hasMany(Transaction::class); 
+        //  with("product"): Transaction.product() 
+        //      ret $this->belongsTo(Product::class)
+        $oCollection = $buyer->transactions()
+                            ->with("product")
+                            ->get();
+        return $this->showAll($oCollection);
     }
 
     /**

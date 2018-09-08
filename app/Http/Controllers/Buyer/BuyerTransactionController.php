@@ -17,7 +17,8 @@ class BuyerTransactionController extends Controller
      */
     public function index(Buyer $buyer)
     {
-        //
+        $oCollection = $buyer->transactions;
+        return $this->showAll($oCollection);
     }
 
     /**

@@ -1120,7 +1120,37 @@ public function destroy(Category $category)
         ```
 - **video:01:01:40** Recurso padre: Buyer
     - BuyerTransactionController, BuyerProductController, BuyerSellerController y BuyerCategoryController
-    - 
+    - BuyerProductController
+        - El salto hay que hacerlo utilizando transactions. No valdria con: `$buyer->transactions->products`
+        - `$buyer->transactions` devuelve una colección por lo tanto no existe una propiedad `products`
+        - habría que recorrer toda la coleccíon y obtener una a una los productos
+        - **eagerloading** permite obtener recursos junto con sus propiedades 
+        - 
+        ```sql
+        -- todas las transacciones de un comprador y todos los productos de esas transacciones
+        SELECT DISTINCT t.*,p.*
+        FROM products p
+        INNER JOIN transactions t
+        ON p.id = t.product_id
+        INNER JOIN users b
+        ON b.id = t.buyer_id
+        WHERE 1=1
+        AND b.id = {buyers/id}
+        ```
+        - 
+        ```php
+        public function index(Buyer $buyer)
+        {
+            //transactions():ret $this->hasMany(Transaction::class); 
+            //  with("product"): Transaction.product() 
+            //      ret $this->belongsTo(Product::class)
+            $oCollection = $buyer->transactions()
+                                ->with("product")
+                                ->get();
+            return $this->showAll($oCollection);
+        }
+        ```
+        
 
 
 21. []()
