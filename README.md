@@ -1177,7 +1177,7 @@ public function destroy(Category $category)
                     ->get()
                     ->pluck("product.seller")
                     ->unique("id") //elimina repetidos
-                    ->values() //reorganiza nueva collección y evita blancos donde habia repetidos
+                    ->values() //reorganiza nueva collección y evita un array asociativo "id":objeto
 
         {"data":[{"id":114,"name":"Amalia Wunsch","email":"anika.fahey@example.org","created_at":"2018-08-23 22:49:42",
         "updated_at":"2018-08-23 22:49:42"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org",
@@ -1204,7 +1204,37 @@ public function destroy(Category $category)
         |           1000 |     1106 |       751 |
         +----------------+----------+-----------+
         ```
-
+        - Devolver las categorias de un comprador
+        - `laravelapi:8000/buyers/1106/categories`
+        ```sql
+        -- todas las categorias de un comprador
+        SELECT DISTINCT c.*
+        FROM categories c
+        INNER JOIN category_product cp
+        ON c.id = cp.category_id 
+        INNER JOIN transactions t 
+        ON t.product_id = cp.product_id
+        INNER JOIN users b
+        ON b.id = t.buyer_id
+        WHERE 1=1
+        AND b.id = 1106
+        ```        
+        ```php
+//<project>/app/Http/Controllers/Buyer/BuyerCategoryController.php
+public function index(Buyer $buyer)
+{
+    $oCollection = $buyer->transactions()
+                        ->with("product.categories")
+                        ->get()
+                        ->pluck("product.categories") 
+                        // hasta aqui muestra un array de arrays. Array de productos con su array de categorias
+                        ->collapse() //quita el array superior y solo deja el de categorias
+                        ->unique("id") //elimina repetidos
+                        ->values() //reorganiza nueva collección y evita un array asociativo "id":objeto
+            ;
+    return $this->showAll($oCollection);
+}//Index        
+        ```
 21. []()
 - 
 22. []()

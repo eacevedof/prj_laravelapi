@@ -1,5 +1,5 @@
 <?php
-
+//<project>/app/Http/Controllers/Buyer/BuyerCategoryController.php
 namespace App\Http\Controllers\Buyer;
 
 use App\Category;
@@ -17,79 +17,15 @@ class BuyerCategoryController extends Controller
      */
     public function index(Buyer $buyer)
     {
-        $oCollection = $buyer->transactions->product->categories;
+        $oCollection = $buyer->transactions()
+                            ->with("product.categories")
+                            ->get()
+                            ->pluck("product.categories")
+                            ->collapse()
+                            ->unique("id") //elimina repetidos
+                            ->values() //reorganiza nueva collección y evita blancos donde habia repetidos
+                ;
         return $this->showAll($oCollection);
-    }
+    }//Index
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param  \App\Buyer  $buyer
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Buyer $buyer)
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Buyer  $buyer
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Buyer $buyer)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Buyer  $buyer
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Buyer $buyer, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Buyer  $buyer
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Buyer $buyer, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Buyer  $buyer
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Buyer $buyer, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Buyer  $buyer
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Buyer $buyer, Category $category)
-    {
-        //
-    }
-}
+}//BuyerCategoryController
