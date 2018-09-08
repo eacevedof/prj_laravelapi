@@ -1059,7 +1059,7 @@ public function destroy(Category $category)
      | GET|HEAD  | transactions/{transaction}/categories | transactions.categories.index | App\Http\Controllers\TransactionCategoryController@index | api        |
     ```
     - **video: 00:40:18** configurando metodo 'complejo' *index*
-- **video: 00:44:33** haciendo una pausa para organizar nuestro código
+- **video: 00:44:33** haciendo una pausa para organizar nuestro código **Refactoring**
 
 21. []()
 -
