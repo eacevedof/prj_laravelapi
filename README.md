@@ -1105,6 +1105,23 @@ public function destroy(Category $category)
     }//index
 ```
     - ruta: `laravelapi:8000/transactions/1/sellers`
+- **video: 00:58:46** Explicación **Restfull Purista**
+    - Si se pide usuarios se retorna usuarios. Un tipo de recurso por petición salvo justificadas excepciones. 
+    - Para la primera versión de la API esto es ley.
+    - Consultas mixtas recurrentes.
+    - Ejemplo:
+        - cien productos y peticiones sucesivas para obtener las categorias de cada producto es mejor crear un **endpoint**
+        que **devuelva los productos con sus categorias**
+        - **laravelapi:8000/products/categories**
+        - Esta url romperia el **standard**. Las rutas de recurso no serian de mucha utilidad y habria que tratar de forma manual la ruta.
+        - En routes/api.php:
+        ```php
+        Route::get("/products/categories","ProductCategoryController@showAll");
+        ```
+- **video:01:01:40** Recurso padre: Buyer
+    - BuyerTransactionController, BuyerProductController, BuyerSellerController y BuyerCategoryController
+    - 
+
 
 21. []()
 - 
