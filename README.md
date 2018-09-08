@@ -1221,22 +1221,22 @@ public function destroy(Category $category)
         ```
 
         ```php
-//<project>/app/Http/Controllers/Buyer/BuyerCategoryController.php
-public function index(Buyer $buyer)
-{
-    $oCollection = $buyer->transactions()
-                        ->with("product.categories")
-                        ->get()
-                        ->pluck("product.categories") 
-                        // hasta aqui muestra un array de arrays. Array de productos con su array de categorias
-                        ->collapse() //quita el array superior y solo deja el de categorias
-                        ->unique("id") //elimina repetidos
-                        ->values() //reorganiza nueva collección y evita un array asociativo "id":objeto
-            ;
-    return $this->showAll($oCollection);
-}//Index        
+        //<project>/app/Http/Controllers/Buyer/BuyerCategoryController.php
+        public function index(Buyer $buyer)
+        {
+            $oCollection = $buyer->transactions()
+                                ->with("product.categories")
+                                ->get()
+                                ->pluck("product.categories") 
+                                // hasta aqui muestra un array de arrays. Array de productos con su array de categorias
+                                ->collapse() //quita el array superior y solo deja el de categorias
+                                ->unique("id") //elimina repetidos
+                                ->values() //reorganiza nueva collección y evita un array asociativo "id":objeto
+                    ;
+            return $this->showAll($oCollection);
+        }//Index        
         ```
-        
+
 21. []()
 - 
 22. []()
