@@ -1167,7 +1167,10 @@ public function destroy(Category $category)
                     ->get()
                     ->pluck("product.seller")
 
-        {"data":[{"id":114,"name":"Amalia Wunsch","email":"anika.fahey@example.org","created_at":"2018-08-23 22:49:42","updated_at":"2018-08-23 22:49:42"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org","created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org","created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"}]}
+        {"data":[{"id":114,"name":"Amalia Wunsch","email":"anika.fahey@example.org","created_at":"2018-08-23 22:49:42",
+        "updated_at":"2018-08-23 22:49:42"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org",
+        "created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"},{"id":751,"name":"Esteban Kessler",
+        "email":"skunde@example.org","created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"}]}
 
         $oCollection = $buyer->transactions()
                     ->with("product.seller")
@@ -1176,7 +1179,9 @@ public function destroy(Category $category)
                     ->unique("id") //elimina repetidos
                     ->values() //reorganiza nueva collección y evita blancos donde habia repetidos
 
-        {"data":[{"id":114,"name":"Amalia Wunsch","email":"anika.fahey@example.org","created_at":"2018-08-23 22:49:42","updated_at":"2018-08-23 22:49:42"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org","created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"}]}
+        {"data":[{"id":114,"name":"Amalia Wunsch","email":"anika.fahey@example.org","created_at":"2018-08-23 22:49:42",
+        "updated_at":"2018-08-23 22:49:42"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org",
+        "created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"}]}
         ```
 
 21. []()
