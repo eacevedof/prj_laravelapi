@@ -1118,13 +1118,14 @@ public function destroy(Category $category)
         ```php
         Route::get("/products/categories","ProductCategoryController@showAll");
         ```
-- **video:01:01:40** Recurso padre: Buyer
+- **video: 01:01:40** Recurso padre: Buyer
     - BuyerTransactionController, BuyerProductController, BuyerSellerController y BuyerCategoryController
     - BuyerProductController
         - El salto hay que hacerlo utilizando transactions. No valdria con: `$buyer->transactions->products`
         - `$buyer->transactions` devuelve una colección por lo tanto no existe una propiedad `products`
         - habría que recorrer toda la coleccíon y obtener una a una los productos
-        - **eagerloading** permite obtener recursos junto con sus propiedades 
+        - **eagerloading - with()** permite obtener recursos junto con sus propiedades
+        - **video: 01:11:00** resuelve el n+1 en las consultas. En lugar de tener que lanzar una consulta por separado por cada transacción
         - 
         ```sql
         -- todas las transacciones de un comprador y todos los productos de esas transacciones
@@ -1150,8 +1151,37 @@ public function destroy(Category $category)
             return $this->showAll($oCollection);
         }
         ```
-        
+        - Aqui devuelve las transacciones con todos sus productos, pero el objetivo es que devuelva solo los productos
+        - Para esto usamos [pluck()](https://laravel.com/docs/5.6/collections#method-pluck)
+        - 
+        ```php
+        $oCollection = $buyer->transactions()
+                                ->with("product")
+                                ->get()
+                                //recuperar solo productos
+                                ->pluck("product");
+        ```
+    - BuyerSellerController
+        - Devolver solo vendedores de un comprador 
+        ```php
 
+        //se repite 751
+        $oCollection = $buyer->transactions()
+                    ->with("product.seller")
+                    ->get()
+                    ->pluck("product.seller")
+
+        {"data":[{"id":114,"name":"Amalia Wunsch","email":"anika.fahey@example.org","created_at":"2018-08-23 22:49:42","updated_at":"2018-08-23 22:49:42"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org","created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org","created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"}]}
+
+        $oCollection = $buyer->transactions()
+                    ->with("product.seller")
+                    ->get()
+                    ->pluck("product.seller")
+                    ->unique("id") //elimina repetidos
+                    ->values() //reorganiza nueva collección y evita blancos donde habia repetidos
+
+        {"data":[{"id":114,"name":"Amalia Wunsch","email":"anika.fahey@example.org","created_at":"2018-08-23 22:49:42","updated_at":"2018-08-23 22:49:42"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org","created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"}]}
+        ```
 
 21. []()
 - 
