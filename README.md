@@ -1183,6 +1183,27 @@ public function destroy(Category $category)
         "updated_at":"2018-08-23 22:49:42"},{"id":751,"name":"Esteban Kessler","email":"skunde@example.org",
         "created_at":"2018-08-23 22:49:49","updated_at":"2018-08-23 22:49:49"}]}
         ```
+        ```sql
+        -- distintas transacciones que repiten comprador y vendedor
+        select t.id transaction_id,t.buyer_id,ps.seller_id
+        from transactions t
+        inner join 
+        (
+            SELECT DISTINCT p.id product_id,p.seller_id
+            FROM products p
+            INNER JOIN users s
+            ON p.seller_id = s.id
+        ) ps
+        ON t.product_id = ps.product_id
+        GROUP BY t.buyer_id,ps.seller_id
+        HAVING COUNT(transaction_id)>1
+        ORDER BY ps.seller_id,t.buyer_id
+        +----------------+----------+-----------+
+        | transaction_id | buyer_id | seller_id |
+        +----------------+----------+-----------+
+        |           1000 |     1106 |       751 |
+        +----------------+----------+-----------+
+        ```
 
 21. []()
 - 
