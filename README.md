@@ -1151,7 +1151,6 @@ public function destroy(Category $category)
         ```
         - Aqui devuelve las transacciones con todos sus productos, pero el objetivo es que devuelva solo los productos
         - Para esto usamos [pluck()](https://laravel.com/docs/5.6/collections#method-pluck)
-        - 
         ```php
         $oCollection = $buyer->transactions()
                                 ->with("product")
@@ -1162,7 +1161,6 @@ public function destroy(Category $category)
     - BuyerSellerController
         - Devolver solo vendedores de un comprador 
         ```php
-
         //se repite 751
         $oCollection = $buyer->transactions()
                     ->with("product.seller")
