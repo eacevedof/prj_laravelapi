@@ -2,6 +2,7 @@
 //<project>/app/Http/Controllers/Transaction/TransactionCategoryController.php
 namespace App\Http\Controllers\Transaction;
 
+use App\Http\Controllers\Controller;
 use App\Category;
 use App\Transaction;
 use Illuminate\Http\Request;

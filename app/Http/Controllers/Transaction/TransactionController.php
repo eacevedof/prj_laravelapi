@@ -2,6 +2,7 @@
 //<project>/app/Http/Controllers/Transaction/TransactionController.php
 namespace App\Http\Controllers\Transaction;
 
+use App\Http\Controllers\Controller;
 use App\Transaction;
 use Illuminate\Http\Request;
 

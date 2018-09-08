@@ -2,6 +2,7 @@
 //<project>/app/Http/Controllers/Buyer/BuyerController.php
 namespace App\Http\Controllers\Buyer;
 
+use App\Http\Controllers\Controller;
 use App\Buyer;
 
 class BuyerController extends Controller

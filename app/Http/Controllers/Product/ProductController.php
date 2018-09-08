@@ -2,6 +2,7 @@
 //<project>/app/Http/Controllers/Product/ProductController.php
 namespace App\Http\Controllers\Product;
 
+use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 
