@@ -1,6 +1,6 @@
 <?php
-//<project>/app/Http/Controllers/CategoryController.php
-namespace App\Http\Controllers;
+//<project>/app/Http/Controllers/Category/CategoryController.php
+namespace App\Http\Controllers\Category;
 
 use App\Category;
 use Illuminate\Http\Request;

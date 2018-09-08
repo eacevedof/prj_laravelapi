@@ -1,6 +1,6 @@
 <?php
-//<project>/app/Http/Controllers/TransactionCategoryController.php
-namespace App\Http\Controllers;
+//<project>/app/Http/Controllers/Transaction/TransactionCategoryController.php
+namespace App\Http\Controllers\Transaction;
 
 use App\Category;
 use App\Transaction;

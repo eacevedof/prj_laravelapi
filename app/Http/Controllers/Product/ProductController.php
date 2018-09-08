@@ -1,6 +1,6 @@
 <?php
-//<project>/app/Http/Controllers/ProductController.php
-namespace App\Http\Controllers;
+//<project>/app/Http/Controllers/Product/ProductController.php
+namespace App\Http\Controllers\Product;
 
 use App\Product;
 use Illuminate\Http\Request;
