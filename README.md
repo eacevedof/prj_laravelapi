@@ -1219,24 +1219,29 @@ public function destroy(Category $category)
         WHERE 1=1
         AND b.id = 1106
         ```
-
         ```php
         //<project>/app/Http/Controllers/Buyer/BuyerCategoryController.php
         public function index(Buyer $buyer)
         {
             $oCollection = $buyer->transactions()
-                                ->with("product.categories")
-                                ->get()
-                                ->pluck("product.categories") 
+                        //recuperación usando tabla pivote (category_product). Se utiliza .
+                        ->with("product.categories")
+                        ->get()
+                        ->pluck("product.categories") 
             //hasta aqui, pluck, muestra un array de arrays. Array de productos con su array de categorias
-                                ->collapse() 
+                        ->collapse() 
             //quita el array superior y solo deja el de categorias. video: 01:27:42 metodo collapse()
-                                ->unique("id") //elimina repetidos
-                                ->values() //reorganiza nueva collección y evita un array asociativo "id":objeto
+                        ->unique("id") //elimina repetidos
+                        ->values() //reorganiza nueva collección y evita un array asociativo "id":objeto
             ;
             return $this->showAll($oCollection);
         }//Index        
         ```
+- Traducción de los mensajes en las excepciones
+    - Las validaciones se traducen en **<project>/resources/lang/en/validation.php**
+    - Las excepciones (mensajes en **<project>/app/Exceptions/Handler.php**) se harian con helpers y las funcionalidades de [**localize**](https://laravel.com/docs/5.6/localization)
+    - Podriamos crear nuesto archivo en: **<project>/resources/lang/<idioma>/errors.php**
+    - función `__(archivo.indice)`
 
 21. []()
 - 

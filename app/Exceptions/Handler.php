@@ -1,4 +1,5 @@
 <?php
+//<project>/app/Exceptions/Handler.php
 namespace App\Exceptions;
 
 use Exception;
