@@ -1010,7 +1010,6 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 - **video: 00:13:21** antes de guardar hay que validar las restricciones por campo que están en migration. 
 - Se valida por separado para evitar una Excepcion
 - en `update` el metodo `$request->only(["name","description"])` indica que solo guardara lo que venga con datos
-- 
 ```php
 //<project>/app/Http/Controllers/CategoryController.php
 public function store(Request $request)
