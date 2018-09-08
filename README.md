@@ -1069,7 +1069,7 @@ public function destroy(Category $category)
     - `Route::apiResource("transactions.categories","TransactionCategoryController",["only"=>["index"]]);`
     -
     ```ssh
-     | GET|HEAD  | transactions/{transaction}/categories | transactions.categories.index | App\Http\Controllers\TransactionCategoryController@index | api        |
+     | GET|HEAD  | transactions/{transaction}/categories | transactions.categories.index App\Http\Controllers\TransactionCategoryController@index | api        |
     ```
     - **video: 00:40:18** configurando metodo 'complejo' *index*
 - **video: 00:44:33** haciendo una pausa para organizar nuestro código **Refactoring**
@@ -1087,7 +1087,25 @@ public function destroy(Category $category)
     Route::apiResource("transactions.categories","Transaction\TransactionCategoryController",["only"=>["index"]]);
     Route::apiResource("categories","Category\CategoryController");    
     ```
-    
+- Creo **<project>/app/Http/Controllers/Transaction/TransactionSellerController.php**
+    - **comando:** `php artisan make:controller Transaction/TransactionSellerController -m Category -p Transaction`
+    - Va a obtener los vendedores asociados a una transacción. Quién fue el que vendió.
+    - Solo vamos a implementar el metodo **index()** y no **show()**. Index devolverá solo uno ya que el sistema está configurado así. Pero en otros casos podria devolver más de 1
+    -
+```php
+//<project>/app/Http/Controllers/Transaction/TransactionSellerController.php
+    public function index(Transaction $transaction)
+    {
+        $oCollection = $transaction->product->seller;
+        //showOne pq de antemano sabemos que es solo un elemento de seller por transacción
+        //return $this->showOne($oCollection);
+        return $this->showAll($oCollection->get()); 
+        //da error: Argument 1 passed to App\Http\Controllers\Controller::showAll() must be an instance of Illuminate\Support\Collection, instance of App\Seller given
+        //return $this->showAll($oCollection->get());  va bien
+    }//index
+```
+    - ruta: `laravelapi:8000/transactions/1/sellers`
+
 21. []()
 - 
 22. []()

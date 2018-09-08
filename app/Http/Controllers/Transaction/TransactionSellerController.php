@@ -17,78 +17,12 @@ class TransactionSellerController extends Controller
      */
     public function index(Transaction $transaction)
     {
-        //
-    }
+        $oCollection = $transaction->product->seller;
+        //showOne pq de antemano sabemos que es solo un elemento de seller por transacción
+        return $this->showOne($oCollection);
+        //return $this->showAll($oCollection); 
+        //da error: Argument 1 passed to App\Http\Controllers\Controller::showAll() must be an instance of Illuminate\Support\Collection, instance of App\Seller given
+        //return $this->showAll($oCollection->get());  va bien
+    }//index
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param  \App\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Transaction  $transaction
-     * @param  \App\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaction $transaction, Seller $seller)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Transaction  $transaction
-     * @param  \App\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaction $transaction, Seller $seller)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Transaction  $transaction
-     * @param  \App\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Transaction $transaction, Seller $seller)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Transaction  $transaction
-     * @param  \App\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Transaction $transaction, Seller $seller)
-    {
-        //
-    }
 }//TransactionSellerController

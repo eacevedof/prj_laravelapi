@@ -26,7 +26,7 @@ Route::apiResource("products","Product\ProductController",["only"=>["index","sho
 
 Route::apiResource("transactions","Transaction\TransactionController",["only"=>["index","show"]]);
 Route::apiResource("transactions.categories","Transaction\TransactionCategoryController",["only"=>["index"]]);
-
+Route::apiResource("transactions.sellers","Transaction\TransactionSellerController",["only"=>["index"]]);
 
 Route::apiResource("categories","Category\CategoryController");
 //Route::get("slug-de-ruta","Product\ProductController@methodX");
