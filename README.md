@@ -1076,10 +1076,20 @@ public function destroy(Category $category)
     - Se va a categorizar todo por recursos.
     - Crear carpetas dentro de controllers con los nombre de los grupos
 - **video: 00:44:50** Creando carpetas. En singular y CamelCase.
-
-
+    - Se cambian los controladores a las carpetas
+    - Se retoca el espacio de nombre de cada controlador movido
+    - En cada controlador que extiende de Controller se importa con: `use App\Http\Controllers\Controller;` el controlador. Antes no era necesario pq estaban en el mismo espacio: `use App\Http\Controllers`
+    - Se actualizan los controladores con sus espacios de nombre (las carpetas) en `<project>/routes/api.php`
+    - 
+    ```php
+    Route::apiResource("products","Product\ProductController",["only"=>["index","show"]]);
+    Route::apiResource("transactions","Transaction\TransactionController",["only"=>["index","show"]]);
+    Route::apiResource("transactions.categories","Transaction\TransactionCategoryController",["only"=>["index"]]);
+    Route::apiResource("categories","Category\CategoryController");    
+    ```
+    
 21. []()
--
+- 
 22. []()
 -
 
