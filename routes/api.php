@@ -19,14 +19,14 @@ comando: php artisan route:list
 });
  * 
  */
-Route::apiResource("users","UserController");
-Route::apiResource("buyers","BuyerController",["only"=>["index","show"]]);
-Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
-Route::apiResource("products","ProductController",["only"=>["index","show"]]);
+Route::apiResource("users","User\UserController");
+Route::apiResource("buyers","Buyer\BuyerController",["only"=>["index","show"]]);
+Route::apiResource("sellers","Seller\SellerController",["only"=>["index","show"]]);
+Route::apiResource("products","Product\ProductController",["only"=>["index","show"]]);
 
-Route::apiResource("transactions","TransactionController",["only"=>["index","show"]]);
-Route::apiResource("transactions.categories","TransactionCategoryController",["only"=>["index"]]);
+Route::apiResource("transactions","Transaction\TransactionController",["only"=>["index","show"]]);
+Route::apiResource("transactions.categories","Transaction\TransactionCategoryController",["only"=>["index"]]);
 
 
-Route::apiResource("categories","CategoryController");
-//Route::get("slug-de-ruta","ProductController@methodX");
+Route::apiResource("categories","Category\CategoryController");
+//Route::get("slug-de-ruta","Product\ProductController@methodX");
