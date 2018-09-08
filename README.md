@@ -1075,7 +1075,7 @@ public function destroy(Category $category)
 - **video: 00:44:33** haciendo una pausa para organizar nuestro código **Refactoring**
     - Se va a categorizar todo por recursos.
     - Crear carpetas dentro de controllers con los nombre de los grupos
-- **video: 00:44:50** Creando carpetas
+- **video: 00:44:50** Creando carpetas. En singular y CamelCase.
 
 
 21. []()
