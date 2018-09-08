@@ -1229,7 +1229,8 @@ public function destroy(Category $category)
                                 ->get()
                                 ->pluck("product.categories") 
             //hasta aqui, pluck, muestra un array de arrays. Array de productos con su array de categorias
-                                ->collapse() //quita el array superior y solo deja el de categorias
+                                ->collapse() 
+            //quita el array superior y solo deja el de categorias. video: 01:27:42 metodo collapse()
                                 ->unique("id") //elimina repetidos
                                 ->values() //reorganiza nueva collección y evita un array asociativo "id":objeto
             ;
