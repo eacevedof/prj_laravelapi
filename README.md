@@ -1218,7 +1218,8 @@ public function destroy(Category $category)
         ON b.id = t.buyer_id
         WHERE 1=1
         AND b.id = 1106
-        ```        
+        ```
+
         ```php
 //<project>/app/Http/Controllers/Buyer/BuyerCategoryController.php
 public function index(Buyer $buyer)
@@ -1235,6 +1236,7 @@ public function index(Buyer $buyer)
     return $this->showAll($oCollection);
 }//Index        
         ```
+        
 21. []()
 - 
 22. []()
