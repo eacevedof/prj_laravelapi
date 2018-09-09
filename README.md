@@ -1248,8 +1248,10 @@ WHERE 1=1
 AND c.id = 10
 ```
 
-23. []()
--
+23. [Controlador complejo Category-Buyer](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/controlador-complejo-category-buyer)
+- **comando:** `$ php artisan make:controller Category/CategoryBuyerController -p Category -m Buyer`
+- 
+
 24. []()
 -
 25. []()
