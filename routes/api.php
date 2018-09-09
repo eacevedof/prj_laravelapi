@@ -28,6 +28,8 @@ Route::apiResource("buyers.products","Buyer\BuyerProductController",["only"=>["i
 Route::apiResource("buyers.sellers","Buyer\BuyerSellerController",["only"=>["index"]]);
 
 Route::apiResource("sellers","Seller\SellerController",["only"=>["index","show"]]);
+Route::apiResource("sellers.transactions","Seller\SellerTransactionController",["only"=>["index","show"]]);
+
 Route::apiResource("products","Product\ProductController",["only"=>["index","show"]]);
 
 Route::apiResource("transactions","Transaction\TransactionController",["only"=>["index","show"]]);
