@@ -1330,7 +1330,7 @@ protected $hidden = ["pivot"];
     ```
 - Traer los datos ordenados desde la bd (con el querybuilder). Esto es usar el método `->orderBy()` antes del método `->get()`
 
-26. []()
+26. [Controladores complejos que dependen de Seller](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/controladores-complejos-que-dependen-de-seller)
 -
 27. []()
 -
