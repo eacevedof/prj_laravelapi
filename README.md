@@ -1213,9 +1213,49 @@ public function destroy(Category $category)
     - Podriamos crear nuesto archivo en: **<project>/resources/lang/<idioma>/errors.php**
     - función `__(archivo.indice)`
 
-21. []()
-- 
-22. []()
+### LECCION 5
+21. [Objetivos en la clase 5](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/objetivos-en-la-clase-5)
+- Objetivos de la lección 5
+
+22. [Controlador complejo Category-Transaction](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/controlador-complejo-category-transaction)
+- uso de **->whereHas()**
+- **comando:** `$ php artisan make:controller Category/CategoryTransactionController -p Category -m Transaction`
+```php
+//<project>/app/Http/Controllers/Category/CategoryTransactionController.php
+public function index(Category $category)
+{
+    $oCollection = $category->products()
+                    //whereHas: solo producto que tengan transacciones
+                    ->whereHas("transactions")
+                    //solo las transacciones
+                    ->with("transactions")
+                    ->get() //ejecuta la consulta
+                    ->pluck("transactions")
+                    ->collapse()
+            ;
+    return $this->showAll($oCollection);
+}//index
+```
+
+23. []()
+-
+24. []()
+-
+25. []()
+-
+26. []()
+-
+27. []()
+-
+28. []()
+-
+29. []()
+-
+30. []()
+-
+31. []()
+-
+32. []()
 -
 
 
