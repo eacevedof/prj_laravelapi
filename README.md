@@ -1236,6 +1236,17 @@ public function index(Category $category)
     return $this->showAll($oCollection);
 }//index
 ```
+```sql
+-- las transacciones de una categoria
+SELECT DISTINCT t.*
+FROM categories c
+INNER JOIN category_product cp
+ON c.id = cp.category_id 
+INNER JOIN transactions t -- whereHas
+ON t.product_id = cp.product_id
+WHERE 1=1
+AND c.id = 10
+```
 
 23. []()
 -
