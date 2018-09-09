@@ -1281,8 +1281,9 @@ WHERE 1=1
 AND cp.category_id = 8
 ```
 
-24. []()
--
+24. [Otros de controladores complejos asociados a categorías](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/otros-de-controladores-complejos-asociados-a-categorias)
+- 
+
 25. []()
 -
 26. []()
