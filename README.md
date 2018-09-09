@@ -669,7 +669,6 @@ Psy Shell v0.9.7 (PHP 7.1.15 — cli) by Justin Hileman
     - [Illuminate\Database\Eloquent\Collection](https://laravel.com/api/5.7/Illuminate/Database/Eloquent/Collection.html)
     - Ejemplo **User::all()** - Devuelve un objeto de `Illuminate\Database\Eloquent\Collection` con un array de objetos del modelo **App\User**
 ```php
-<?php
 object( Illuminate\Database\Eloquent\Collection )#207 (1)
 {
     ["items":protected] => array(3)
@@ -747,51 +746,7 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
                 [0] => string(8) "password"
                 [1] => string(14) "remember_token"
             }
-            ["connection":protected] => string(6) "sqlite"
-            ["primaryKey":protected] => string(2) "id"
-            ["keyType":protected] => string(3) "int"
-            ["incrementing"] => bool(true)
-            ["with":protected] => array(0){ }
-            ["withCount":protected] => array(0){ }
-            ["perPage":protected] => int(15)
-            ["exists"] => bool(true)
-            ["wasRecentlyCreated"] => bool(false)
-            ["attributes":protected] =>
-            array(7) {
-                ["id"] => string(3) "360"
-                ["name"] => string(16) "Travis Fahey III"
-                ["email"] => string(17) "browe@example.net"
-                ["password"] => string(60) "$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm"
-                ["remember_token"] => string(10) "BBDx9sGEME"
-                ["created_at"] => string(19) "2018-08-23 22:49:44"
-                ["updated_at"] => string(19) "2018-08-23 22:49:44"
-            }
-            ["original":protected] =>
-            array(7) {
-                ["id"] => string(3) "360"
-                ["name"] => string(16) "Travis Fahey III"
-                ["email"] => string(17) "browe@example.net"
-                ["password"] => string(60) "$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm"
-                ["remember_token"] => string(10) "BBDx9sGEME"
-                ["created_at"] => string(19) "2018-08-23 22:49:44"
-                ["updated_at"] => string(19) "2018-08-23 22:49:44"
-            }
-            ["changes":protected] => array(0){ }
-            ["casts":protected] => array(0){ }
-            ["dates":protected] => array(0){ }
-            ["dateFormat":protected] => NULL
-            ["appends":protected] => array(0){ }
-            ["dispatchesEvents":protected] => array(0){ }
-            ["observables":protected] => array(0){ }
-            ["relations":protected] => array(0){ }
-            ["touches":protected] => array(0){ }
-            ["timestamps"] => bool(true)
-            ["visible":protected] => array(0){ }
-            ["guarded":protected] =>
-            array(1) {
-                [0] => string(1) "*"
-            }
-            ["rememberTokenName":protected] => string(14) "remember_token"
+            ...
         }//end obj[1]
 
         [2] => object(App\User)#2571 (27) {
@@ -817,7 +772,6 @@ object( Illuminate\Database\Eloquent\Collection )#207 (1)
     ]
 }
 ```
-
 - En el metodo **show(User $user)** hay que tratar la respuesta cuando el id no existe en la bd
 - Insert - **store(Request $request)** 
     - Hay que hacer una validación de datos antes de guardar
@@ -858,6 +812,23 @@ Route::apiResource("sellers","SellerController",["only"=>["index","show"]]);
 - Actualmente Buyer y Seller devuelven lo mismo en index() (los usuarios)
 - Dos endpoints no deberian devolver los mismos recursos
 - Hay que corregir los metodos index() para que no devuelvan lo mismo
+- Ejemplo para sellers: `Seller::has('products').get();response()->json(["data"=>$sellers],200);`
+    - Tener que hacer esto cada vez que se instancia **Seller** es repetir código lo cual es sintoma de una mala práctica
+    - Para centralizar la caracteristica `has('products')` se usa el `GlobalScope`
+    ```php
+    //<project>/app/Scopes/SellerScope.php
+    namespace App\Scopes;
+
+    use Illuminate\Database\Eloquent\Scope;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Model;
+
+    class SellerScope implements Scope
+    {
+        public function apply(Builder $builder, Model $model) {$builder->has("products");}//apply
+    }//SellerScope
+    ```
+
 - Para evita estar modificando cada uno de los metodos con la condicionante que restringe los datos se usaria un **GlobalScope**
 - **Global Scopes** Es una rutina que se ejecutara siempre en una instancia **video: 00:52:10**
 - **protected static function boot** metodo de tipo global scope
