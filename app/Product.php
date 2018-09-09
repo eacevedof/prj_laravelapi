@@ -16,6 +16,10 @@ class Product extends Model
         ,"seller_id"
     ];
     
+    protected $hidden = [
+      "pivot"  
+    ];    
+    
     //Relaciones:
     //1 product -> 1 seller
     //1 product -> n categories

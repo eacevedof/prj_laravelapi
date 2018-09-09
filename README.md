@@ -1312,7 +1312,24 @@ public function index(Category $category)
 ```
 
 25. [Cómo eliminar los datos pertenecientes a una tabla pivote](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/como-eliminar-los-datos-pertenecientes-a-una-tabla-pivote)
-- 
+- Laravel por defecto muestra los datos de la tabla pivote en `"pivot" : ...`
+- No queremos que sea **visible**
+```php
+//hay que aplicarlo en los modelos Category y Product
+protected $hidden = ["pivot"];
+```
+- De momento la **API** es solo **API** y no es **RESTful**
+- Pasar parametros a index(param)
+- Se pasa como simple querystring `...&orderby=name`
+- `$collection->sortBy("price")`
+- Como verifico que ese parámetro existe en la petición?: **video: 00:04:45**
+    ```php
+    request()->has("sortby");
+    request->sortby;//name
+    $collection->ordeBy(request->sortby);
+    ```
+- Traer los datos ordenados desde la bd (con el querybuilder). Esto es usar el método `->orderBy()` antes del método `->get()`
+
 26. []()
 -
 27. []()
