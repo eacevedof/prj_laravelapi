@@ -1250,7 +1250,25 @@ AND c.id = 10
 
 23. [Controlador complejo Category-Buyer](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/controlador-complejo-category-buyer)
 - **comando:** `$ php artisan make:controller Category/CategoryBuyerController -p Category -m Buyer`
-- 
+```php
+//<project>/app/Http/Controllers/Category/CategoryBuyerController.php
+public function index(Category $category)
+{
+    $oCollection = $category->products()
+                //whereHas: solo producto que tengan transacciones
+                ->whereHas("transactions") //inner join prod on trans
+                //solo las transacciones
+                ->with("transactions.buyer") //inner join trans on user
+                ->get() //ejecuta la consulta
+                ->pluck("transactions") //distinct transactions
+                ->collapse()
+                ->pluck("buyer") //buyer.*
+                ->unique("id") //distinct
+                ->values()//solo devuelve valores de un array [clave=>valor]
+            ;
+    return $this->showAll($oCollection);
+}//index
+```
 
 24. []()
 -

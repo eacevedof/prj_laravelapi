@@ -36,4 +36,5 @@ Route::apiResource("transactions.sellers","Transaction\TransactionSellerControll
 
 Route::apiResource("categories","Category\CategoryController");
 Route::apiResource("categories.transactions","Category\CategoryTransactionController");
+Route::apiResource("categories.buyers","Category\CategoryBuyerController");
 //Route::get("slug-de-ruta","Product\ProductController@methodX");
