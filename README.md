@@ -1269,6 +1269,17 @@ public function index(Category $category)
     return $this->showAll($oCollection);
 }//index
 ```
+```sql
+-- los comparadores de una categoria
+SELECT DISTINCT b.*
+FROM users b
+INNER JOIN transactions t
+ON t.buyer_id = b.id
+INNER JOIN category_product cp
+ON cp.product_id = t.product_id
+WHERE 1=1
+AND cp.category_id = 8
+```
 
 24. []()
 -
