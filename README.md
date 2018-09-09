@@ -1282,7 +1282,34 @@ AND cp.category_id = 8
 ```
 
 24. [Otros de controladores complejos asociados a categorías](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/otros-de-controladores-complejos-asociados-a-categorias)
-- 
+- **comando:** `$ php artisan make:controller Category/CategoryProductController -p Category -m Product`
+- **comando:** `$ php artisan make:controller Category/CategorySellerController -p Category -m Seller`
+- En este caso accedemos a products de forma directa: 
+```php
+//<project>/app/Http/Controllers/Category/CategoryProductController.php
+public function index(Category $category)
+{
+    //no se usa parentesis, pq el paretensis ayuda a acceder al querybuilder 
+    //que a su vez sirve para añadir más restricciones
+    $oCollection = $category->products;
+    return $this->showAll($oCollection);
+}//index
+
+//esto hay que quitarlo
+"pivot": {"category_id": "10","product_id": "28"}
+
+//<project>/app/Http/Controllers/Category/CategorySellerController.php
+public function index(Category $category)
+{
+    $oCollection = $category->products()
+            ->with("seller")->get()
+            ->pluck("seller")
+            ->unique("id")
+            ->values()
+        ;
+    return $this->showAll($oCollection);
+}//index
+```
 
 25. []()
 -
