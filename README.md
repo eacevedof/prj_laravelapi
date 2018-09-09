@@ -1311,8 +1311,8 @@ public function index(Category $category)
 }//index
 ```
 
-25. []()
--
+25. [Cómo eliminar los datos pertenecientes a una tabla pivote](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/como-eliminar-los-datos-pertenecientes-a-una-tabla-pivote)
+- 
 26. []()
 -
 27. []()
