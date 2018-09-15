@@ -17,12 +17,12 @@ class SellerTransactionController extends Controller
     public function index(Seller $seller)
     {
         //dd($seller);die;
-        $oCollection = $seller->products()
-                ->whereHas("transactions")
-                ->with("transactions")
+        $oCollection = $seller->products()  //products.seller_id = s.id
+                ->whereHas("transactions")  //products.id = transactions.product_id
+                ->with("transactions")      //transactions.*
                 ->get()
-                ->pluck("transactions")
-                ->collapse()
+                ->pluck("transactions")     //
+                ->collapse()                
         ;
         //dd($oCollection);
         return $this->showAll($oCollection);

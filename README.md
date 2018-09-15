@@ -1333,6 +1333,18 @@ protected $hidden = ["pivot"];
 26. [Controladores complejos que dependen de Seller](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/controladores-complejos-que-dependen-de-seller)
 - **comando:** `$ php artisan make:controller Seller/SellerTransactionController -p Seller -m Transaction`
 - **postman:** `http://laravelapi:8000/sellers/15/transactions`
+```php
+//<project>/app/Http/Controllers/Seller/SellerTransactionController.php
+    $oCollection = $seller->products()  //products.seller_id = s.id
+            ->whereHas("transactions")  //products.id = transactions.product_id
+            ->with("transactions")      //transactions.*
+            ->get()
+            ->pluck("transactions")     //quita el indice asociativo
+            ->collapse()                //distinct transactions.*
+    ;
+    //dd($oCollection);
+    return $this->showAll($oCollection);
+```
 ```sql
 -- las transacciones de un vendedor
 SELECT DISTINCT t.*
