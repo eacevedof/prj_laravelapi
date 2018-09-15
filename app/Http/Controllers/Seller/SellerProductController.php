@@ -73,16 +73,13 @@ class SellerProductController extends Controller
         $this->checkSeller($seller,$product);
         
         //no tratamos el estado aqui pq más adelaten se tratará 
-        $product->fill($request->only(["name","description","quantity"]));
+        //$product->fill($request->only(["name","description","quantity"]));
+        $product->fill($data); //versión mejorada
         
         //si el estado va a cambiar a disponible tenemos que verificar que el producto tenga una categoria
-        if($request->has("status")) 
-        {
-            $product->status = $request->status;
-            //se ha pasado a disponible pero no tiene categorias
-            if($product->status = Product::AVAILABLE && $product->categories()->count()===0)
-                return $this->errorResponse ("An active product must have at least one category",409);
-        }
+        //se ha pasado a disponible pero no tiene categorias
+        if($product->status = Product::AVAILABLE && $product->categories()->count()===0)
+            return $this->errorResponse ("An active product must have at least one category",409);
         
         //el producto no ha cambiado
         if($product->isClean())
@@ -110,6 +107,10 @@ class SellerProductController extends Controller
      */
     public function destroy(Seller $seller, Product $product)
     {
-        //
-    }
+        //tenemos que elimnar el producto asociado a un vendedor
+        $this->checkSeller($seller, $product);
+        $product->delete();
+        return $this->showOne($product);
+    }//destroy
+    
 }//SellerProductController

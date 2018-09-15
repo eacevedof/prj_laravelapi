@@ -1444,8 +1444,62 @@ public function store(Request $request, Seller $seller)
 }//store
 ```
 30. [Actualizaciones y borrados sobre productos de un vendedor](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/actualizaciones-y-borrados-sobre-productos-de-un-vendedor)
-- Implementación método **update**
-- 
+- Implementación métodos **update y destroy**
+- Petición de tipo **PUT o PATCH**
+- El formulario hay que enviarlo en **form-urlencoded**
+- **postman:** `PUT http://laravelapi:8000/sellers/15/products/190`
+    - <img src="https://trello-attachments.s3.amazonaws.com/5b014de4bc1b8dcc70d83031/600x438/9e13a1558e41b18ce652cc1aa2eff32f/image.png" height="400" width="200">
+```php
+//<project>/app/Http/Controllers/Seller/SellerProductController.php
+public function update(Request $request, Seller $seller, Product $product)
+{
+	$data = $request->validate([
+		"name" => "max:255",
+		"description" => "max:1000",
+		"quantity" => "integer|min:1",
+		//esto obliga a que status tenga solo estos valores
+		"status" => "in:" . Product::AVAILABLE . "," . Product::NOT_AVAILABLE
+	]);    
+	
+	//tenemos que verificar si la persona que hace la actualizacion es la propietaria del producto
+	//se puede hacer por "policies"
+	//Este método disparará una excepción y como aqui no estoy tratandola se ejecutará el Handler (//<project>/app/Exceptions/Handler.php)
+	$this->checkSeller($seller,$product);
+	
+	//no tratamos el estado aqui pq más adelaten se tratará 
+	//$product->fill($request->only(["name","description","quantity"]));
+	$product->fill($data); //versión mejorada
+	
+	//si el estado va a cambiar a disponible tenemos que verificar que el producto tenga una categoria
+	//se ha pasado a disponible pero no tiene categorias
+	if($product->status = Product::AVAILABLE && $product->categories()->count()===0)
+		return $this->errorResponse ("An active product must have at least one category",409);
+	
+	//el producto no ha cambiado
+	if($product->isClean())
+		return $this->errorResponse ("Please specify at least one new value to update",422);
+	
+	$product->save();
+	
+	return $this->showOne($product);
+}//update
+
+private function checkSeller(Seller $seller, Product $product)
+{
+	if($seller->id != $product->seller_id) 
+		//throw new HttpException(422, "The specified seller is not the actual seller of this product");
+		//mejor 403 operación no permitida
+		throw new HttpException(403,"The specified seller is not the actual seller of this product");
+}//checkSeller
+
+public function destroy(Seller $seller, Product $product)
+{
+	//tenemos que elimnar el producto asociado a un vendedor
+	$this->checkSeller($seller, $product);
+	$product->delete();
+	return $this->showOne($product);
+}//destroy
+```
 
 31. []()
 -
