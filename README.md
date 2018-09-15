@@ -1382,7 +1382,7 @@ $oCollection = $seller->products()  //products.seller_id = s.id
         ->pluck("categories")     //extrae los arrays de categories del array de arrays
         ->collapse()              //quita los indices
         ->unique("id")            //distinct
-        ->values()                //solo valores
+        ->values()                //solo valores. Siempre que se llama a unique hay que llamar a values
 ;
 ```
 ```sql
