@@ -31,8 +31,15 @@ class SellerProductController extends Controller
      */
     public function store(Request $request, Seller $seller)
     {
-
-    }
+        $data = $request->validate([
+            "name" => "required|max:255",
+            "description" => "required|max:1000",
+            "quantity" => "required|integer|min:1",
+        ]);
+        
+        
+        
+    }//store
 
     /**
      * Update the specified resource in storage.
