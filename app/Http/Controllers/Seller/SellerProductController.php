@@ -17,19 +17,10 @@ class SellerProductController extends Controller
      */
     public function index(Seller $seller)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param  \App\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Seller $seller)
-    {
-        //
-    }
+        $oCollection = $seller->products;  //products.seller_id = s.id
+        //dd($oCollection);
+        return $this->showAll($oCollection);
+    }//index
 
     /**
      * Store a newly created resource in storage.
@@ -40,31 +31,7 @@ class SellerProductController extends Controller
      */
     public function store(Request $request, Seller $seller)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Seller  $seller
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Seller $seller, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Seller  $seller
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Seller $seller, Product $product)
-    {
-        //
     }
 
     /**
@@ -91,4 +58,4 @@ class SellerProductController extends Controller
     {
         //
     }
-}
+}//SellerProductController
