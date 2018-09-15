@@ -6,6 +6,7 @@ use App\Product;
 use App\Seller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SellerProductController extends Controller
 {
@@ -58,9 +59,48 @@ class SellerProductController extends Controller
      */
     public function update(Request $request, Seller $seller, Product $product)
     {
-        //
-    }
+        $data = $request->validate([
+            "name" => "max:255",
+            "description" => "max:1000",
+            "quantity" => "integer|min:1",
+            //esto obliga a que status tenga solo estos valores
+            "status" => "in:" . Product::AVAILABLE . "," . Product::NOT_AVAILABLE
+        ]);    
+        
+        //tenemos que verificar si la persona que hace la actualizacion es la propietaria del producto
+        //se puede hacer por "policies"
+        //Este método disparará una excepción y como aqui no estoy tratandola se ejecutará el Handler (//<project>/app/Exceptions/Handler.php)
+        $this->checkSeller($seller,$product);
+        
+        //no tratamos el estado aqui pq más adelaten se tratará 
+        $product->fill($request->only(["name","description","quantity"]));
+        
+        //si el estado va a cambiar a disponible tenemos que verificar que el producto tenga una categoria
+        if($request->has("status")) 
+        {
+            $product->status = $request->status;
+            //se ha pasado a disponible pero no tiene categorias
+            if($product->status = Product::AVAILABLE && $product->categories()->count()===0)
+                return $this->errorResponse ("An active product must have at least one category",409);
+        }
+        
+        //el producto no ha cambiado
+        if($product->isClean())
+            return $this->errorResponse ("Please specify at least one new value to update",422);
+        
+        $product->save();
+        
+        return $this->showOne($product);
+    }//update
 
+    private function checkSeller(Seller $seller, Product $product)
+    {
+        if($seller->id != $product->seller_id) 
+            //throw new HttpException(422, "The specified seller is not the actual seller of this product");
+            //mejor 403 operación no permitida
+            throw new HttpException(403,"The specified seller is not the actual seller of this product");
+    }//checkSeller
+    
     /**
      * Remove the specified resource from storage.
      *
