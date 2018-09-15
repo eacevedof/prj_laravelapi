@@ -1412,8 +1412,9 @@ $oCollection = $seller->products()  //products.seller_id = s.id
         ->values()                //solo valores
 ;
 ```
-28. []()
+28. [Operaciones con productos asociados a vendedor](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/operaciones-con-productos-asociados-a-vendedor)
 -
+
 29. []()
 -
 30. []()
