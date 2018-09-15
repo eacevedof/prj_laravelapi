@@ -1421,8 +1421,10 @@ $oCollection = $seller->products()  //products.seller_id = s.id
 - El método **show** ya está definido en **ProductController**
 - **postman:** `http://laravelapi:8000/sellers/23/products`
 
-29. []()
--
+29. [Almacenar nuevos productos asociados a un vendedor](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/almacenar-nuevos-productos-asociados-a-un-vendedor)
+- 
+- 
+
 30. []()
 -
 31. []()
