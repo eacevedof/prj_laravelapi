@@ -1332,7 +1332,32 @@ protected $hidden = ["pivot"];
 
 26. [Controladores complejos que dependen de Seller](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/controladores-complejos-que-dependen-de-seller)
 - **comando:** `$ php artisan make:controller Seller/SellerTransactionController -p Seller -m Transaction`
-- 
+```sql
+-- las transacciones de un vendedor
+SELECT DISTINCT t.*
+,p.seller_id
+FROM transactions t
+INNER JOIN products p
+ON t.product_id = p.id
+WHERE 1=1
+ AND p.seller_id = 15
+-- ORDER BY 7
+
++-----+---------------------+---------------------+----------+------------+----------+-----------+
+| id  |     created_at      |     updated_at      | quantity | product_id | buyer_id | seller_id |
++-----+---------------------+---------------------+----------+------------+----------+-----------+
+| 370 | 2018-08-23 22:52:01 | 2018-08-23 22:52:01 |        2 |        190 |      241 |        15 |
+| 806 | 2018-08-23 22:52:06 | 2018-08-23 22:52:06 |        1 |        190 |     1222 |        15 |
+| 853 | 2018-08-23 22:52:06 | 2018-08-23 22:52:06 |        1 |        190 |      894 |        15 |
++-----+---------------------+---------------------+----------+------------+----------+-----------+
+
+{"data":[
+    {"id":370,"created_at":"2018-08-23 22:52:01","updated_at":"2018-08-23 22:52:01","quantity":"2"
+    ,"product_id":"190","buyer_id":"241"},{"id":806,"created_at":"2018-08-23 22:52:06"
+    ,"updated_at":"2018-08-23 22:52:06","quantity":"1","product_id":"190","buyer_id":"1222"}
+    ,{"id":853,"created_at":"2018-08-23 22:52:06","updated_at":"2018-08-23 22:52:06","quantity":"1"
+    ,"product_id":"190","buyer_id":"894"}]}
+```
 
 27. []()
 -

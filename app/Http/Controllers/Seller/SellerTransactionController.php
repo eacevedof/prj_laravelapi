@@ -16,9 +16,15 @@ class SellerTransactionController extends Controller
      */
     public function index(Seller $seller)
     {
-        $oCollection = $seller->products()->get()
+        //dd($seller);die;
+        $oCollection = $seller->products()
+                ->whereHas("transactions")
                 ->with("transactions")
+                ->get()
+                ->pluck("transactions")
+                ->collapse()
         ;
-        $this->showAll($oCollection);
+        //dd($oCollection);
+        return $this->showAll($oCollection);
     }
 }//SellerTransactionController
