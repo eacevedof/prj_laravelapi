@@ -1398,7 +1398,7 @@ AND p.seller_id = 15
 ```
 
 
-27. []()
+27. [](Controlador complejo Seller-Buyer)
 -
 28. []()
 -
