@@ -37,7 +37,14 @@ class SellerProductController extends Controller
             "quantity" => "required|integer|min:1",
         ]);
         
+        //El producto tiene un estado: Disponible o No disponible. 
+        //Para que esté disponible debe tener al menos una categoria
+        $data["status"] = Product::NOT_AVAILABLE;
+        $data["seller_id"] = $seller->id; //el seller_id no se recupera de la url
         
+        $product = Product::create($data);
+        
+        return $this->showOne($product,201);
         
     }//store
 

@@ -11,7 +11,8 @@
 - version instalada: `php artisan --version` `Laravel Framework 5.6.33`
 - con `php artisan serve` despliega laravel en su servidor integrado: 127.0.0.1:8000
 2. [Configurar la base de datos](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/configurar-la-base-de-datos)
-- `php artisan migrate` intenta migrar una bd
+- **comando:** `php artisan migrate` intenta migrar una bd
+    - Si la bd está vacía crea las tablas: **users, migrations y password_resets**
 - Archivo `.env` archivo de configuracion
 - Creo un archivo en `<project>/database/database.sqlite`
 - **error** al ejecutar `php artisan migrate`: 
@@ -1422,9 +1423,26 @@ $oCollection = $seller->products()  //products.seller_id = s.id
 - **postman:** `http://laravelapi:8000/sellers/23/products`
 
 29. [Almacenar nuevos productos asociados a un vendedor](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/almacenar-nuevos-productos-asociados-a-un-vendedor)
-- Método **SellerProductController.store**
-- 
-
+- Implementación de método **SellerProductController.store**
+- **postman:** `POST => http://laravelapi:8000/sellers/23/products`
+```php
+//<project>/app/Http/Controllers/Seller/SellerProductController.php
+public function store(Request $request, Seller $seller)
+{
+    $data = $request->validate([
+        "name" => "required|max:255",
+        "description" => "required|max:1000",
+        "quantity" => "required|integer|min:1",
+    ]);
+    //El producto tiene un estado: Disponible o No disponible. 
+    //Para que esté disponible debe tener al menos una categoria
+    //por defecto se crea NOT_AVAILABLE
+    $data["status"] = Product::NOT_AVAILABLE;
+    $data["seller_id"] = $seller->id; //el seller_id no se recupera de la url
+    $product = Product::create($data);
+    return $this->showOne($product,201);
+}//store
+```
 30. []()
 -
 31. []()
