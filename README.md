@@ -1413,7 +1413,13 @@ $oCollection = $seller->products()  //products.seller_id = s.id
 ;
 ```
 28. [Operaciones con productos asociados a vendedor](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/operaciones-con-productos-asociados-a-vendedor)
--
+- **comando:** `php artisan make:controller Seller/SellerProductController -p Seller -m Product`
+- **except => ["show"]** y posiblemente **create y destroy** si hay rutas de recursos (web) **video: 00:02:34**
+- Es el controlador central junto al de las transacciones
+- Tendra métodos: **index, store, update y destroy**
+- Estaremos mostrando un producto perteneciente a un vendedor
+- El método **show** ya está definido en **ProductController**
+- 
 
 29. []()
 -
