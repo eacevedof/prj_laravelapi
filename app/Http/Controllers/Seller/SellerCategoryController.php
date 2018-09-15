@@ -17,7 +17,17 @@ class SellerCategoryController extends Controller
      */
     public function index(Seller $seller)
     {
-
+        $oCollection = $seller->products()  //products.seller_id = s.id
+                ->whereHas("categories")  //products.id = cateogory_product.product_id
+                ->with("categories")      //categories.*
+                ->get()
+                ->pluck("categories")     //extrae los arrays de categories del array de arrays
+                ->collapse()              //quita los indices
+                ->unique("id")            //distinct
+                ->values()                //solo valores
+        ;
+        //dd($oCollection);
+        return $this->showAll($oCollection);
     }
 
 }//SellerCategoryController

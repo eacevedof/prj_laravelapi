@@ -1353,7 +1353,7 @@ FROM transactions t
 INNER JOIN products p
 ON t.product_id = p.id
 WHERE 1=1
- AND p.seller_id = 15
+AND p.seller_id = 15
 -- ORDER BY 7
 
 +-----+---------------------+---------------------+----------+------------+----------+-----------+
@@ -1371,6 +1371,32 @@ WHERE 1=1
     ,{"id":853,"created_at":"2018-08-23 22:52:06","updated_at":"2018-08-23 22:52:06","quantity":"1"
     ,"product_id":"190","buyer_id":"894"}]}
 ```
+- `Route::apiResource("sellers.categories","Seller\SellerCategoryController",["only"=>["index"]]);`
+- **postman** `http://laravelapi:8000/sellers/15/categories`
+```php
+//<project>/app/Http/Controllers/Seller/SellerCategoryController.php
+$oCollection = $seller->products()  //products.seller_id = s.id
+        ->whereHas("categories")  //products.id = cateogory_product.product_id
+        ->with("categories")      //categories.*
+        ->get()
+        ->pluck("categories")     //extrae los arrays de categories del array de arrays
+        ->collapse()              //quita los indices
+        ->unique("id")            //distinct
+        ->values()                //solo valores
+;
+```
+```sql
+-- las categorias de un vendedor
+SELECT DISTINCT c.*
+FROM categories c
+INNER JOIN category_product cp
+ON cp.category_id = c.id
+INNER JOIN products p
+ON cp.product_id = p.id
+WHERE 1=1
+AND p.seller_id = 15
+```
+
 
 27. []()
 -
