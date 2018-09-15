@@ -1443,8 +1443,10 @@ public function store(Request $request, Seller $seller)
     return $this->showOne($product,201);
 }//store
 ```
-30. []()
--
+30. [Actualizaciones y borrados sobre productos de un vendedor](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/actualizaciones-y-borrados-sobre-productos-de-un-vendedor)
+- Implementación método **update**
+- 
+
 31. []()
 -
 32. []()
