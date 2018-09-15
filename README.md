@@ -1397,9 +1397,21 @@ WHERE 1=1
 AND p.seller_id = 15
 ```
 
-
-27. [](Controlador complejo Seller-Buyer)
--
+27. [Controlador complejo Seller-Buyer](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/controlador-complejo-seller-buyer)
+- **comando:** `$ php artisan make:controller Seller/SellerBuyerController -p Seller -m Buyer`
+```php
+//<project>/app/Http/Controllers/Seller/SellerCategoryController.php
+$oCollection = $seller->products()  //products.seller_id = s.id
+        ->whereHas("transactions")  //products.id = transactions.product_id
+        //->with("transactions.buyer") //transactions.buyer_id = users.id esta se podría omitir
+        ->get()                      //devuelve el array de transacciones
+        ->pluck("transactions")     //extrae los arrays de transactions del array de arrays
+        ->collapse()              //quita los indices
+        ->pluck("buyer")            //buyers.*
+        ->unique("id")            //distinct
+        ->values()                //solo valores
+;
+```
 28. []()
 -
 29. []()
