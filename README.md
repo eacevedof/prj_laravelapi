@@ -1448,6 +1448,7 @@ public function store(Request $request, Seller $seller)
 - Petición de tipo **PUT o PATCH**
 - El formulario hay que enviarlo en **form-urlencoded**
 - **postman:** `PUT http://laravelapi:8000/sellers/15/products/190`
+- **postman:** `DELETE => http://laravelapi:8000/sellers/15/products/190`
     - <img src="https://trello-attachments.s3.amazonaws.com/5b014de4bc1b8dcc70d83031/600x438/9e13a1558e41b18ce652cc1aa2eff32f/image.png" height="200" width="400">
 ```php
 //<project>/app/Http/Controllers/Seller/SellerProductController.php
