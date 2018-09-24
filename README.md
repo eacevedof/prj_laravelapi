@@ -1502,8 +1502,9 @@ public function destroy(Seller $seller, Product $product)
 }//destroy
 ```
 
-31. []()
+31. [Resto de operaciones del API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/resto-de-operaciones-del-api)
 -
+
 32. []()
 -
 
