@@ -1511,12 +1511,12 @@ public function destroy(Seller $seller, Product $product)
         - **update** y **destroy**
 - **update**
     - En laravel para realizar esta acción tenemos 3 posibles metodos:
-    **attach, sync, syncWithoutDetaching**
-    **attach** permite crear de forma repetida la misma categoria. Un producto podría tener la misma categoría dos veces. *no nos vale!*
-    **sync** recibe un **id** borra todas las categorias asociadas y agrega la nueva *tampoco nos vale!*
-    **syncWithoutDetaching** Si tenemos dos repetidas nos deja solo una. *Se aplica esta*
-    **video: 00:08:41**
-    `PUT laravelapi:8000/products/8/categories/4`
+    - **attach, sync, syncWithoutDetaching**
+    - **attach** permite crear de forma repetida la misma categoria. Un producto podría tener la misma categoría dos veces. *no nos vale!*
+    - **sync** recibe un **id** borra todas las categorias asociadas y agrega la nueva *tampoco nos vale!*
+    - **syncWithoutDetaching** Si tenemos dos repetidas nos deja solo una. *Se aplica esta*
+    - **video: 00:08:41**
+    - `PUT laravelapi:8000/products/8/categories/4`
     ```php
     public function update(Request $request, Product $product, Category $category)
     {
@@ -1524,11 +1524,11 @@ public function destroy(Seller $seller, Product $product)
         return $this->showAll($product->categories);
     }    
     ```
-    Hay una restricción, y es que si el "seller" (usuario) no es dueño de ese producto no debería poder agregar la categoría. **video 00:11:39**
-    Se puede hacer la validación llamando al método: **`SellerPorductController::checkSeller(seller,product)`**
-    Para evitar copiar este método en el controlador: `ProductCategoryController`se pasa a `SellerProductController`
-    Despues de hacer el cambio, se comprueba que no se recibe desde ningún lado el **Seller** con lo cual no es posible ejecutar el método **checkSeller**. El **endpoint** no suministra esta información
-    Usando **policies y gates** se podría tratar esta casuistica
+    - Hay una restricción, y es que si el "seller" (usuario) no es dueño de ese producto no debería poder agregar la categoría. **video 00:11:39**
+    - Se puede hacer la validación llamando al método: **`SellerPorductController::checkSeller(seller,product)`**
+    - Para evitar copiar este método en el controlador: `ProductCategoryController`se pasa a `SellerProductController`
+    - Despues de hacer el cambio, se comprueba que no se recibe desde ningún lado el **Seller** con lo cual no es posible ejecutar el método **checkSeller**. El **endpoint** no suministra esta información
+    - Usando **policies y gates** se podría tratar esta casuistica
 
 
 
