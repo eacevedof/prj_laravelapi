@@ -1510,7 +1510,7 @@ public function destroy(Seller $seller, Product $product)
         - Aqui hay dos operaciones interesantes **video: 00:04:40**
         - **update** y **destroy**
 - **update**
-    En laravel para realizar esta acción tenemos 3 posibles metodos:
+    - En laravel para realizar esta acción tenemos 3 posibles metodos:
     **attach, sync, syncWithoutDetaching**
     **attach** permite crear de forma repetida la misma categoria. Un producto podría tener la misma categoría dos veces. *no nos vale!*
     **sync** recibe un **id** borra todas las categorias asociadas y agrega la nueva *tampoco nos vale!*
