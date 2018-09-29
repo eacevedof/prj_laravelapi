@@ -31,7 +31,7 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, Product $product, Category $category)
     {
-        //
+        
     }
 
     /**
