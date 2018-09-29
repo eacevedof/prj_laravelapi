@@ -1503,7 +1503,19 @@ public function destroy(Seller $seller, Product $product)
 ```
 
 31. [Resto de operaciones del API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/resto-de-operaciones-del-api)
--
+- **comandos:** 
+    `php artisan make:controller Product/ProductTransactionController -p Product -m Transaction`
+    `php artisan make:controller Product/ProductBuyerController -p Product -m Buyer`
+    `php artisan make:controller Product/ProductCategoryController -p Product -m Category`
+        - Aqui hay dos operaciones interesantes **video: 00:04:40**
+        - **update** y **destroy**
+- **update**
+    En laravel para realizar esta acción tenemos 3 posibles metodos:
+    **attach, sync, syncWithoutDetach**
+    **attach** permite crear de forma repetida la misma categoria. Un producto podría tener la misma categoría dos veces. *no nos vale!*
+    **sync** recibe un **id** borra todas las categorias asociadas y agrega la nueva *tampoco nos vale!*
+    **syncWithoutDetach** Si tenemos dos repetidas nos deja solo una. *Se aplica esta*
+    
 
 32. []()
 -
