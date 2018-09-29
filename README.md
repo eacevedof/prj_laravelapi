@@ -1511,10 +1511,19 @@ public function destroy(Seller $seller, Product $product)
         - **update** y **destroy**
 - **update**
     En laravel para realizar esta acción tenemos 3 posibles metodos:
-    **attach, sync, syncWithoutDetach**
+    **attach, sync, syncWithoutDetaching**
     **attach** permite crear de forma repetida la misma categoria. Un producto podría tener la misma categoría dos veces. *no nos vale!*
     **sync** recibe un **id** borra todas las categorias asociadas y agrega la nueva *tampoco nos vale!*
-    **syncWithoutDetach** Si tenemos dos repetidas nos deja solo una. *Se aplica esta*
+    **syncWithoutDetaching** Si tenemos dos repetidas nos deja solo una. *Se aplica esta*
+    **video: 00:08:41**
+    `PUT laravelapi:8000/products/8/categories/4`
+    ```php
+    public function update(Request $request, Product $product, Category $category)
+    {
+        $product->categories()->syncWithoutDetaching([$category->id]);
+        return $this->showAll($product->categories);
+    }    
+    ```
     
 
 32. []()

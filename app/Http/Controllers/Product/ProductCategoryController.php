@@ -31,7 +31,8 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, Product $product, Category $category)
     {
-        
+        $product->categories()->syncWithoutDetaching([$category->id]);
+        return $this->showAll($product->categories);
     }
 
     /**
