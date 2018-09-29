@@ -1530,8 +1530,22 @@ public function destroy(Seller $seller, Product $product)
     - Despues de hacer el cambio, se comprueba que no se recibe desde ningún lado el **Seller** con lo cual no es posible ejecutar el método **checkSeller**. El **endpoint** no suministra esta información
     - Usando **policies y gates** se podría tratar esta casuistica
 
+- **destroy**
+    - Se elimina el registro en la tabla pivote
+    - `DELETE laravelapi:8000/products/8/categories/8`
+    ```php
+    public function destroy(Product $product, Category $category)
+    {
+        //se elimina la relación en la tabla pivote
+        if(!$product->categories()->find($category->id))
+        {
+            return $this->errorResponse("The specified category is not a category of this product",404);
+        }
 
-
+        $product->categories()->detach($category->id);
+        return $this->showAll($product->categories);
+    }//destroy    
+    ```
 
 32. []()
 -
