@@ -1547,7 +1547,7 @@ public function destroy(Seller $seller, Product $product)
     }//destroy    
     ```
 
-32. []()
+32. [Operación de creación de transacciones](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/operacion-de-creacion-de-transacciones)
 -
 
 
