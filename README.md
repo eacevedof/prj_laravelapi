@@ -1524,7 +1524,14 @@ public function destroy(Seller $seller, Product $product)
         return $this->showAll($product->categories);
     }    
     ```
-    
+    Hay una restricción, y es que si el "seller" (usuario) no es dueño de ese producto no debería poder agregar la categoría. **video 00:11:39**
+    Se puede hacer la validación llamando al método: **`SellerPorductController::checkSeller(seller,product)`**
+    Para evitar copiar este método en el controlador: `ProductCategoryController`se pasa a `SellerProductController`
+    Despues de hacer el cambio, se comprueba que no se recibe desde ningún lado el **Seller** con lo cual no es posible ejecutar el método **checkSeller**. El **endpoint** no suministra esta información
+    Usando **policies y gates** se podría tratar esta casuistica
+
+
+
 
 32. []()
 -

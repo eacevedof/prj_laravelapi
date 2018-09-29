@@ -89,14 +89,6 @@ class SellerProductController extends Controller
         
         return $this->showOne($product);
     }//update
-
-    private function checkSeller(Seller $seller, Product $product)
-    {
-        if($seller->id != $product->seller_id) 
-            //throw new HttpException(422, "The specified seller is not the actual seller of this product");
-            //mejor 403 operación no permitida
-            throw new HttpException(403,"The specified seller is not the actual seller of this product");
-    }//checkSeller
     
     /**
      * Remove the specified resource from storage.
