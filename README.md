@@ -1595,6 +1595,11 @@ class ProductBuyerTransactionController extends Controller
 }//ProductBuyerTransactionController
 ```
 
+33. [Agregando Nuevas Características a la API y Transformando las Respuestas para Aumentar la Compatibilidad](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/agregando-nuevas-caracteristicas-a-la-api-y-transformando-las-respuestas-para-aumentar-la-compatibilidad)
+- Capa extra de mapeo entre los modelos y el json
+
+
+
 ## DESPLEGADO EN PROD
 - Incluir archivo `usererrorhandler.php` si fuera necesario
 - [Instalar laravel en 1n1 uf4no ingles](http://www.uf4no.com/articles/guide-to-deploy-laravel-5-app-to-shared-hosting-1and1-9)
