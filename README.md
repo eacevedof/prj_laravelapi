@@ -1597,8 +1597,26 @@ class ProductBuyerTransactionController extends Controller
 
 33. [Agregando Nuevas Características a la API y Transformando las Respuestas para Aumentar la Compatibilidad](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/agregando-nuevas-caracteristicas-a-la-api-y-transformando-las-respuestas-para-aumentar-la-compatibilidad)
 - Capa extra de mapeo entre los modelos y el json
-
-
+- [Laravel Eloquent Resources](https://laravel.com/docs/5.7/eloquent-resources) (sustituye a Fractal)
+- API Resources
+- **comando:** `php artisan make:resource User`
+- Laravel antes de montar una respuesta en JSON llama al método **`toArray($oRequest)`**
+- En este método se configura `["alias" => this->atributo,...]`
+```php
+//App\Http\Resources
+class UserResource extends Resource
+{
+    ...
+    public function toArray($oRequest)
+    {
+        return [
+            "id" => $this->id,
+            "name" => $this->name
+            ...
+        ];
+    }//toArray
+```
+- **comando:** `php artisan make:resource UserResource`
 
 ## DESPLEGADO EN PROD
 - Incluir archivo `usererrorhandler.php` si fuera necesario
