@@ -1617,6 +1617,29 @@ class UserResource extends Resource
     }//toArray
 ```
 - **comando:** `php artisan make:resource UserResource`
+```php
+//<project>/app/Http/Resources/UserResource.php
+namespace App\Http\Resources;
+use Illuminate\Http\Resources\Json\JsonResource;
+class UserResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return parent::toArray($request);
+    }//toArray
+}//UserResource
+```
+- **comando:** `php artisan make:resource BuyerResource`
+- **comando:** `php artisan make:resource TransactionResource`
+- **comando:** `php artisan make:resource ProductResource`
+- **comando:** `php artisan make:resource CategoryResource`
+- **comando:** `php artisan make:resource SellerResource`
+
 
 ## DESPLEGADO EN PROD
 - Incluir archivo `usererrorhandler.php` si fuera necesario
