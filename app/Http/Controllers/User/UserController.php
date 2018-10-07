@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -19,7 +20,9 @@ class UserController extends Controller
         //$oCollection = User::where("name",'%like%',$request->name)->get();
         //return response()->json(["data"=>$oCollection],200);
         $oCollection = User::all();
-        return $this->showAll($oCollection);
+        $oCollection = UserResource::collection($oCollection);
+        return $oCollection;
+        //return $this->showAll($oCollection);
         //201: es instancia creada, en metodo store()
         //return response()->json(["data"=>$oCollection],201);
         //var_dump($users);die;
