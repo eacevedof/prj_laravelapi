@@ -1,5 +1,4 @@
 <?php
-
 //<project>/app/Http/Controllers/User/UserController.php
 namespace App\Http\Controllers\User;
 
@@ -29,6 +28,7 @@ class UserController extends Controller
         //var_dump($users);die;
         //return $oCollection->all();
         //return $oCollection;
+    
     }//index
 
     /**

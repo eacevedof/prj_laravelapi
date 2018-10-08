@@ -1641,6 +1641,7 @@ class UserResource extends JsonResource
 - **comando:** `php artisan make:resource SellerResource`
 - Relación **UserController::index() / UserResource::** - **video: 00:08:18**
 - `return UserResource::collection($oCollection);`
+- En `toArray()` se puede usar `this->atributo` ya que laravel por defecto agrega esos atributos al recurso usando el objeto `resource`
 - 
 
 
