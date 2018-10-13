@@ -1632,6 +1632,21 @@ class UserResource extends JsonResource
     {
         return parent::toArray($request);
     }//toArray
+
+    //como quedaría
+    public function toArray($request)
+    {
+        //return parent::toArray($request);
+        return [
+            "identifier" => $this->id,
+            "full_name" => $this->name,
+            "email_address" => $this->email,
+            "last_modified" => (string)$this->updated_at,
+            "creation_date" => (string)$this->created_at
+                
+        ];
+    }//toArray
+
 }//UserResource
 ```
 - **comando:** `php artisan make:resource BuyerResource`
@@ -1642,9 +1657,24 @@ class UserResource extends JsonResource
 - Relación **UserController::index() / UserResource::** - **video: 00:08:18**
 - `return UserResource::collection($oCollection);`
 - En `toArray()` se puede usar `this->atributo` ya que laravel por defecto agrega esos atributos al recurso usando el objeto `resource`
+```php
+//
+namespace App\Http\Controllers\User;
+...
+class UserController extends Controller
+{
+    ...
+    public function index()
+    {
+        $oCollection = User::all();
+        $oCollection = UserResource::collection($oCollection);
+        return $oCollection;
+...
+```
+- Para las peticiones **GET** va bien la transformación en resources pero que pasa para las peticiones **POST** **video: 00:19:40**
 - 
 
-
+<hr/>
 ## DESPLEGADO EN PROD
 - Incluir archivo `usererrorhandler.php` si fuera necesario
 - [Instalar laravel en 1n1 uf4no ingles](http://www.uf4no.com/articles/guide-to-deploy-laravel-5-app-to-shared-hosting-1and1-9)
