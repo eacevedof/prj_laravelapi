@@ -5,9 +5,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Seller;
 use App\Category;
 use App\Transaction;
+use App\Http\Resources\ProductResource;
 
 class Product extends Model
 {
+    public $resource = ProductResource::class;
+        
     const AVAILABLE = "available";
     const NOT_AVAILABLE = "not available";
     

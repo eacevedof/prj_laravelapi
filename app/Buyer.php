@@ -4,9 +4,11 @@ namespace App;
 use App\User;
 use App\Transaction;
 use App\Scopes\BuyerScope;
+use App\Http\Resources\BuyerResource;
 
 class Buyer extends User
 {
+    public $resource = BuyerResource::class;    
     //Relaciones:
     //1 buyer -> 1 user
     //1 buyer -> n transactions

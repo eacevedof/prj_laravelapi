@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Product;
+use App\Http\Resources\CategoryResource;
 
 class Category extends Model
 {
+    public $resource = CategoryResource::class;
+    
     protected $fillable = [
         "name","description"
     ];

@@ -1672,6 +1672,7 @@ class UserController extends Controller
 ...
 ```
 - Para las peticiones **GET** va bien la transformación en resources pero que pasa para las peticiones **POST** **video: 00:19:40**
+- Le decimos al controlador que el recurso se encargará de las validaciones y la escritura en la BD
 - 
 
 <hr/>

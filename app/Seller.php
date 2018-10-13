@@ -2,12 +2,14 @@
 
 namespace App;
 
-use App\Scopes\SellerScope;
-use App\Product;
 use App\User;
+use App\Product;
+use App\Scopes\SellerScope;
+use App\Http\Resources\SellerResource;
 
 class Seller extends User
 {
+    public $resource = SellerResource::class;    
     //protected $table = "users";
     //$fillable es el mismo que user luego no se configura
     //Relaciones:
