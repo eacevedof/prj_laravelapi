@@ -2,18 +2,15 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\BaseResource;
 
-class CategoryResource extends JsonResource
+class CategoryResource extends BaseResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function toArray($request)
-    {
-        return parent::toArray($request);
-    }
-}
+    public static $map = [
+        "id" => "identifier",            
+        "name" => "title",           
+        "description" => "details",
+        "updated_at" => "last_modified",
+        "created_at" => "creation_date" 
+    ];
+}//CategoryResource

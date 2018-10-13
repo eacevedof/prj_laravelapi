@@ -1706,7 +1706,32 @@ Symfony\Component\Debug\Exception\FatalThrowableError: Too few arguments to func
 
 ```
 
+```php
+//BaseResource.php
+public static function mapAttribute($attribute,$invert=FALSE)
+{
+    if($invert)
+        return array_flip(static::map)[$attribute];
+    return static::$map[$attribute];
+}
+
+public function toArray($request)
+{
+    //return parent::toArray($request);
+    //attributesToArray es un metodo de laravel del modelo los que estan visibles
+    $visibleAttributes = $this->resource->attributesToArray();
+    $arAttrMapped = [];
+    
+    foreach($visibleAttributes as $attribute => $value)
+        $arAttrMapped[static::mapAttribute($attribute)] = $value;
+    
+    return $arAttrMapped;
+}//toArray
+```
+- **video 01:06:40** En este punto se acaba de configurar con herencia de **BaseResource** los recursos y están funcionando.
+
 <hr/>
+
 ## DESPLEGADO EN PROD
 - Incluir archivo `usererrorhandler.php` si fuera necesario
 - [Instalar laravel en 1n1 uf4no ingles](http://www.uf4no.com/articles/guide-to-deploy-laravel-5-app-to-shared-hosting-1and1-9)

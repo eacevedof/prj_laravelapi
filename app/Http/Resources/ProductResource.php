@@ -2,18 +2,18 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\BaseResource;
 
-class ProductResource extends JsonResource
+class ProductResource extends BaseResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function toArray($request)
-    {
-        return parent::toArray($request);
-    }
-}
+    public static $map = [
+        "id" => "identifier",            
+        "name" => "title",           
+        "description" => "details",
+        "quantity" => "stock",
+        "status" => "situation",
+        "seller_id" => "seller",
+        "updated_at" => "last_modified",
+        "created_at" => "creation_date" 
+    ];
+}//ProductResource
