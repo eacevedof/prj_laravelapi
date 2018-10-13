@@ -20,8 +20,8 @@ class UserResource extends JsonResource
             "full_name" => $this->name,
             "email_address" => $this->email,
             "last_modified" => (string)$this->updated_at,
-            "creation_date" => (string)$this->created_at
-                
+            "creation_date" => (string)$this->created_at,
+            "is_active" => TRUE,
         ];
     }//toArray
 

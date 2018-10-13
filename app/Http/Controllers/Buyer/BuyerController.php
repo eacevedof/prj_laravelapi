@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Buyer;
 
 use App\Http\Controllers\Controller;
 use App\Buyer;
+use App\Http\Resources\BuyerResource;
 
 class BuyerController extends Controller
 {
@@ -15,7 +16,8 @@ class BuyerController extends Controller
     public function index()
     {
         $oCollection = Buyer::all();
-        return $this->showAll($oCollection);
+        $oCollection = BuyerResource::collection($oCollection);
+        return $oCollection;
     }
 
     /**

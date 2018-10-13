@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Seller;
+use App\Http\Resources\SellerResource;
 
 class SellerController extends Controller
 {
@@ -13,8 +14,9 @@ class SellerController extends Controller
      */
     public function index()
     {
-        $oCollection = Seller::has("products")->get();
-        return $this->showAll($oCollection);
+        $oCollection = Seller::all();
+        $oCollection = SellerResource::collection($oCollection);
+        return $oCollection;
     }//index
 
     /**
@@ -24,7 +26,7 @@ class SellerController extends Controller
      */
     public function show(Seller $seller)
     {
-        return $this->showOne($buyer);
+        return $this->showOne($seller);
     }//show
 
     //duda... va?

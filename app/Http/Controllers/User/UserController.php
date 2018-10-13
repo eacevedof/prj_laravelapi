@@ -72,6 +72,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //ruta users/{id}
+        //el modelo $user ya tiene inyectado el recurso por composición
         return $this->showOne($user);   
     }//show
 
