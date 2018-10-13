@@ -10,8 +10,9 @@ class UserResource extends BaseResource
         "id" => "identifier",            
         "name" => "full_name",           
         "email" => "email_address",
+        "password" => "password",
         "updated_at" => "last_modified",
-        "created_at" => "creation_date" 
+        "created_at" => "creation_date"
     ];
 
 }//UserResource

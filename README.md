@@ -1729,6 +1729,9 @@ public function toArray($request)
 }//toArray
 ```
 - **video 01:06:40** En este punto se acaba de configurar con herencia de **BaseResource** los recursos y están funcionando.
+- Configurando los controladores para que acepten llamadas con los **aliases** del array de mapeo en los recursos.
+- En el controlador se crean dos metodos de transformación del objeto **$request** de modo que se pueda validar según los atributos originales y las reglas ya definidas en los metodos.
+- **error: No me funciona el metodo POST de sellers/3/products (store)**
 
 <hr/>
 

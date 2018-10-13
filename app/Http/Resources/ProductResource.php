@@ -6,6 +6,10 @@ use App\Http\Resources\BaseResource;
 
 class ProductResource extends BaseResource
 {
+    /*
+    "name","description","quantity","status"
+    ,"seller_id"
+    */
     public static $map = [
         "id" => "identifier",            
         "name" => "title",           

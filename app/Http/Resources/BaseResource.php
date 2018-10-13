@@ -11,7 +11,7 @@ abstract class BaseResource extends Resource
     public static function mapAttribute($attribute,$invert=FALSE)
     {
         if($invert)
-            return array_flip(static::map)[$attribute];
+            return (array_flip(static::$map)[$attribute]);
         return static::$map[$attribute];
     }
     

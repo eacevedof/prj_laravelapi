@@ -7,6 +7,7 @@ use App\Seller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Http\Resources\ProductResource;
 
 class SellerProductController extends Controller
 {
@@ -32,12 +33,13 @@ class SellerProductController extends Controller
      */
     public function store(Request $request, Seller $seller)
     {
-        $data = $request->validate([
+        $rules = $request->validate([
             "name" => "required|max:255",
             "description" => "required|max:1000",
             "quantity" => "required|integer|min:1",
         ]);
         
+        $data = $this->transformAndValidateRequest(ProductResource::class, $request, $rules);
         //El producto tiene un estado: Disponible o No disponible. 
         //Para que esté disponible debe tener al menos una categoria
         $data["status"] = Product::NOT_AVAILABLE;
@@ -59,7 +61,7 @@ class SellerProductController extends Controller
      */
     public function update(Request $request, Seller $seller, Product $product)
     {
-        $data = $request->validate([
+        $rules = $request->validate([
             "name" => "max:255",
             "description" => "max:1000",
             "quantity" => "integer|min:1",
@@ -67,6 +69,7 @@ class SellerProductController extends Controller
             "status" => "in:" . Product::AVAILABLE . "," . Product::NOT_AVAILABLE
         ]);    
         
+        $data = $this->transformAndValidateRequest(ProductResource::class, $request, $rules);
         //tenemos que verificar si la persona que hace la actualizacion es la propietaria del producto
         //se puede hacer por "policies"
         //Este método disparará una excepción y como aqui no estoy tratandola se ejecutará el Handler (//<project>/app/Exceptions/Handler.php)

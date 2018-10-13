@@ -41,14 +41,16 @@ class UserController extends Controller
         //ruta users
         //var_dump($request);die;
         //hace insert
-        $arData = $request->validate([
+        $arRules = [
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
             "password" => "required|min:6|confirmed",
-        ]);
-        
-        $arData["password"] = bcrypt($arData["password"]);
-        
+        ];
+
+        $data = $this->transformAndValidateRequest(UserResource::class,$request,$arRules);
+        //print_r($data);die;
+        $data["password"] = bcrypt($data["password"]);
+                
         /*
         $arData: array(3) {
           ["name"] => string(4) "juan"
@@ -57,8 +59,7 @@ class UserController extends Controller
         }
         */
         
-        //var_dump($arData);die;
-        $oUser = User::create($arData);
+        $oUser = User::create($data);
         
         //201 es parte del cod http que indica que se ha creado satisfactoriamente una instancia
         return $this->showOne($oUser,201);  
@@ -85,17 +86,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $arData = $request->validate([
+        $arRules = [
             "name" => "max:255",
             //con user->id se excluye de la validación el email del mismo usuario
             "email" => "email|unique:users,email,{$user->id}",
             "password" => "min:6|confirmed",
-        ]);
+        ];
+           
+        $arData = $this->transformAndValidateRequest(UserResource::class, $request, $arRules);
         
-        if($request->has("name")) $user->name = $request->name;
-        if($request->has("email")) $user->email = $request->email;
-        if($request->has("password")) $user->password = bcrypt($request->password);
-            
+        if(isset($arData["password"]))
+            $arData["password"] = bcrypt($arData["password"]);
+                
+        $user->fill($arData);
+        
         //si el usuario no ha cambiado
         if(!$user->isDirty()) 
             return $this->errorResponse("Please specify at least one different value",422);
