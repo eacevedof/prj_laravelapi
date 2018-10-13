@@ -1673,7 +1673,38 @@ class UserController extends Controller
 ```
 - Para las peticiones **GET** va bien la transformación en resources pero que pasa para las peticiones **POST** **video: 00:19:40**
 - Le decimos al controlador que el recurso se encargará de las validaciones y la escritura en la BD
-- 
+- Se retoca el Trait: `ApiResponser.php`
+```php
+function showAll(Collection $collection,$code=200)
+{
+    if($collection->isEmpty())
+    {
+        $arData = ["data"=>$collection];
+        return $this->successReponse($arData,$code);
+    }
+    
+    //resource apunta a //<project>/app/Http/Resources/<Model>Resource.php
+    $resource = $collection->first()->resource;
+    $transformedCollection = $resource::collection($collection);
+    $arData = ["data"=>$transformedCollection];
+    
+    return $this->successReponse($arData,$code);
+}//showAll
+
+function showOne(Model $oModel, $code=200)
+{
+    //Http/Resources/<Model>Resource.php
+    $oModelResource = $oModel->resource;
+    $oResource = new $oModelResource($oModel);
+    /*
+si no paso el modelo como argumento:
+    - public function __construct($resource) constructor de JsonResource
+Symfony\Component\Debug\Exception\FatalThrowableError: Too few arguments to function Illuminate\Http\Resources\Json\JsonResource::__construct(), 0 passed in <project>\app\Traits\ApiResponser.php on line 44 and exactly 1 expected in file <project>\vendor\laravel\framework\src\Illuminate\Http\Resources\Json\JsonResource.php on line 55        */
+    $arData = ["data"=>$oResource];
+    return $this->successReponse($arData,$code);
+}//showOne
+
+```
 
 <hr/>
 ## DESPLEGADO EN PROD

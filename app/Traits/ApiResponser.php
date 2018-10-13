@@ -25,13 +25,24 @@ trait ApiResponser
 
     function showAll(Collection $collection,$code=200)
     {
-        $arData = ["data"=>$collection];
+        if($collection->isEmpty())
+        {
+            $arData = ["data"=>$collection];
+            return $this->successReponse($arData,$code);
+        }
+        
+        $resource = $collection->first()->resource;
+        $transformedCollection = $resource::collection($collection);
+        $arData = ["data"=>$transformedCollection];
+        
         return $this->successReponse($arData,$code);
     }//showAll
 
     function showOne(Model $instance, $code=200)
     {
-        $arData = ["data"=>$instance];
+        $resource = $instance->resource;
+        $transformedInstance = new $resource($instance);
+        $arData = ["data"=>$transformedInstance];
         return $this->successReponse($arData,$code);
     }//showOne
 
