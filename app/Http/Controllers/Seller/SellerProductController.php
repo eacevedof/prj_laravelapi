@@ -33,11 +33,11 @@ class SellerProductController extends Controller
      */
     public function store(Request $request, Seller $seller)
     {
-        $rules = $request->validate([
+        $rules = [
             "name" => "required|max:255",
             "description" => "required|max:1000",
             "quantity" => "required|integer|min:1",
-        ]);
+        ];
         
         $data = $this->transformAndValidateRequest(ProductResource::class, $request, $rules);
         //El producto tiene un estado: Disponible o No disponible. 
@@ -61,13 +61,13 @@ class SellerProductController extends Controller
      */
     public function update(Request $request, Seller $seller, Product $product)
     {
-        $rules = $request->validate([
+        $rules = [
             "name" => "max:255",
             "description" => "max:1000",
             "quantity" => "integer|min:1",
             //esto obliga a que status tenga solo estos valores
             "status" => "in:" . Product::AVAILABLE . "," . Product::NOT_AVAILABLE
-        ]);    
+        ];    
         
         $data = $this->transformAndValidateRequest(ProductResource::class, $request, $rules);
         //tenemos que verificar si la persona que hace la actualizacion es la propietaria del producto
@@ -81,7 +81,7 @@ class SellerProductController extends Controller
         
         //si el estado va a cambiar a disponible tenemos que verificar que el producto tenga una categoria
         //se ha pasado a disponible pero no tiene categorias
-        if($product->status = Product::AVAILABLE && $product->categories()->count()===0)
+        if($product->status == Product::AVAILABLE && $product->categories()->count()===0)
             return $this->errorResponse ("An active product must have at least one category",409);
         
         //el producto no ha cambiado

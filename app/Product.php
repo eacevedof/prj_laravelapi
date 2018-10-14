@@ -20,7 +20,7 @@ class Product extends Model
     ];
     
     protected $hidden = [
-      "pivot"  
+        "pivot"  
     ];    
     
     //Relaciones:

@@ -1732,6 +1732,8 @@ public function toArray($request)
 - Configurando los controladores para que acepten llamadas con los **aliases** del array de mapeo en los recursos.
 - En el controlador se crean dos metodos de transformación del objeto **$request** de modo que se pueda validar según los atributos originales y las reglas ya definidas en los metodos.
 - **error: No me funciona el metodo POST de sellers/3/products (store)**
+    - Era: `$rules = $this->validate([]) y debía ser $rules = []`
+
 
 <hr/>
 
