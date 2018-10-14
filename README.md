@@ -1734,7 +1734,45 @@ public function toArray($request)
 - **error: No me funciona el metodo POST de sellers/3/products (store)**
     - Era: `$rules = $this->validate([]) y debía ser $rules = []`
 - Prueba de compra: `laravelapi:8000/products/500/buyers/1/transactions`
-- Configurando GTO **video: 01:45:10**
+- Configurando HATEOAS **video: 01:45:10**
+    - [Youtube - RESTful con Laravel: ¿Qué es HATEOAS y Por Qué Usarlo?](https://www.youtube.com/watch?v=hvbDNsmL0lE)
+    - HATEOAS agrega enlaces entre recursos
+    - Hace referencia a un elemento particular que se denomina **negociación de contenido**.
+    - La negociación de contenido se aplica para casos en los que la API devuelve distintos formatos de respuesta de modo que el cliente pueda escoger alguno de preferencia.
+    - Se agrega un nuevo recurso llamado **links**
+```php
+//<project>/app/Http/Resources/SellerResource.php
+public function toArray($request)
+{
+    $transform = parent::toArray($request);
+    
+    $hateoas = [
+        "links" => [
+            "rel" => "self",
+            "href" => route("sellers.show",$this->id),
+        ]
+    ];
+    
+    $transform = array_merge($transform,$hateoas);
+    return $transform;
+} 
+```
+- Resultado:
+```json
+{
+    "data": [
+        {
+            "identifier": 3,
+            "full_name": "Cassandra McClure DVM",
+            "email_address": "madisyn.gleason@example.net",
+            "creation_date": "2018-08-23 22:49:40",
+            "last_modified": "2018-08-23 22:49:40",
+            "links": {
+                "rel": "self",
+                "href": "http://laravelapi:8000/sellers/3"
+            }
+        },
+```
 
 <hr/>
 

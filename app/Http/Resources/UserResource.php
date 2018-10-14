@@ -15,4 +15,16 @@ class UserResource extends BaseResource
         "created_at" => "creation_date"
     ];
 
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        $transform = parent::toArray($request);
+        return $transform;
+    }    
+    
 }//UserResource
