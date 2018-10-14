@@ -7,6 +7,7 @@ use App\Product;
 use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use \App\Http\Resources\TransactionResource;
 
 class ProductBuyerTransactionController extends Controller
 {
@@ -18,10 +19,12 @@ class ProductBuyerTransactionController extends Controller
      */
     public function store(Request $request, Product $product, User $buyer)
     {
-        $request->validate([
+        $rules = [
             "quantity" => "required|integer|min:1"
-        ]);
+        ];
 
+        $data = $this->transformAndValidateRequest(TransactionResource::class, $request, $rules);
+        
         //para comprar no se puede ser el mismo vendedor
         if($buyer->id == $product->seller_id)
         {
@@ -33,16 +36,16 @@ class ProductBuyerTransactionController extends Controller
             return $this->errorResponse("The product is not available yet. Try later",409);
         }
 
-        if($product->quantity < $request->quantity)
+        if($product->quantity < $data["quantity"])
         {
             return $this->errorResponse("The product does not have enough unit for this transaction",409);
         }
 
-        $product->quantity -= $request->quantity;
+        $product->quantity -= $data["quantity"];
         $product->save();
 
         $transaction = Transaction::create([
-            "quantity" => $request->quantity,
+            "quantity" => $data["quantity"],
             "buyer_id" => $buyer->id,
             "product_id" => $product->id,
         ]);

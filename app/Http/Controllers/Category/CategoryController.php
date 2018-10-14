@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Category;
 use App\Http\Controllers\Controller;
 use App\Category;
 use Illuminate\Http\Request;
+use \App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
@@ -31,12 +32,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //en la migración estan las restricciones de los campos y estas hay que validarlas
-        //<project>/database/migrations/2018_08_18_131136_create_categories_table.php
-        $data = $request->validate([
+        $rules = [
             "name" => "required|max:255",
             "description" => "required|max:1000"
-        ]);
+        ];
+        //en la migración estan las restricciones de los campos y estas hay que validarlas
+        //<project>/database/migrations/2018_08_18_131136_create_categories_table.php
+        $data = $this->transformAndValidateRequest(CategoryResource::class, $request, $rules);
         $category = Category::create($data);
         return $this->showOne($category,201);
     }//store
@@ -70,14 +72,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $request->validate([
+        $rules = [
             "name" => "max:255",
             "description" => "max:1000"
-        ]);
         
+            ];
+        $data = $this->transformAndValidateRequest(CategoryResource::class, $request, $rules);
         //fill nos asegura que solo se trate los valores que llegan por post
-        $category->fill($request->only(["name","description"]));
-
+        $category->fill($data);
+ 
         //si no hay cambios
         if($category->isClean())
             return $this->errorResponse("You need to specify any new value to update the category",422);

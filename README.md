@@ -1733,11 +1733,12 @@ public function toArray($request)
 - En el controlador se crean dos metodos de transformación del objeto **$request** de modo que se pueda validar según los atributos originales y las reglas ya definidas en los metodos.
 - **error: No me funciona el metodo POST de sellers/3/products (store)**
     - Era: `$rules = $this->validate([]) y debía ser $rules = []`
-
+- Prueba de compra: `laravelapi:8000/products/500/buyers/1/transactions`
+- Configurando GTO **video: 01:45:10**
 
 <hr/>
 
-## DESPLEGADO EN PROD
+## DESPLIEGUE EN PRODUCCIÓN
 - Incluir archivo `usererrorhandler.php` si fuera necesario
 - [Instalar laravel en 1n1 uf4no ingles](http://www.uf4no.com/articles/guide-to-deploy-laravel-5-app-to-shared-hosting-1and1-9)
 - [Instalar laravel en 1n1 laracasts ingles](https://laracasts.com/discuss/channels/servers/install-laravel-in-1and1-servers)
