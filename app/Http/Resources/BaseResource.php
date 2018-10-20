@@ -31,6 +31,16 @@ abstract class BaseResource extends Resource
         foreach($visibleAttributes as $attribute => $value)
             $arAttrMapped[static::mapAttribute($attribute)] = $value;
         
+        if(method_exists($this,"generateLinks"))
+        {
+            $arHateoas = [
+                //por definición los enlaces a HATEOAS es links
+                "links" => $this->generateLinks($request)
+            ];
+            
+            return array_merge($arAttrMapped,$arHateoas);
+        }
+        
         return $arAttrMapped;
     }//toArray
 

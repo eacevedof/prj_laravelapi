@@ -1775,7 +1775,94 @@ public function toArray($request)
 ```
 34. [Implementando HATEOAS en la API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/implementando-hateoas-en-la-api)
 
-- 
+- HATEOAS son links de ayuda a recursos que tienen relación con el recurso que se esta sirviendo
+- Se lee la petición y según esta y route:list(name) se obtiene la ruta del recurso.
+```ssh
+METHOD   |  URI                       |         NAME              |                      ACTION                                 |
+---------------------------------------------------------------------------------------------------------------------------------
+GET|HEAD | buyers                     | buyers.index  			  | App\Http\Controllers\Buyer\BuyerController@index			|
+GET|HEAD | buyers/{buyer}             | buyers.show   			  | App\Http\Controllers\Buyer\BuyerController@show 			|
+GET|HEAD | buyers/{buyer}/categories  | buyers.categories.index   | App\Http\Controllers\Buyer\BuyerCategoryController@index    |
+GET|HEAD | buyers/{buyer}/products    | buyers.products.index     | App\Http\Controllers\Buyer\BuyerProductController@index     |
+GET|HEAD | buyers/{buyer}/sellers     | buyers.sellers.index      | App\Http\Controllers\Buyer\BuyerSellerController@index      |
+GET|HEAD | buyers/{buyer}/transactions| buyers.transactions.index | App\Http\Controllers\Buyer\BuyerTransactionController@index |
+```
+
+```php
+//<project>/app/Http/Resources/BaseResource.php
+public function toArray($request)
+{
+    //return parent::toArray($request);
+    //attributesToArray es un metodo de laravel del modelo los que estan visibles
+    $visibleAttributes = $this->resource->attributesToArray();
+    $arAttrMapped = [];
+    
+    foreach($visibleAttributes as $attribute => $value)
+        $arAttrMapped[static::mapAttribute($attribute)] = $value;
+    
+    if(method_exists($this,"generateLinks"))
+    {
+        $arHateoas = [
+            //por definición los enlaces a HATEOAS es links
+            "links" => $this->generateLinks($request)
+        ];
+        
+        return array_merge($arAttrMapped,$arHateoas);
+    }
+    
+    return $arAttrMapped;
+}//toArray
+
+//<project>\app\Http\Resources\BuyerResource.php
+//se usa en BaseResource.toArray(request)
+public function generateLinks($request)
+{
+    return [
+        [
+            "rel" => "self",
+            "href"=> route("buyers.show",$this->id),
+        ],
+        [
+            "rel" => "buyers.categories",
+            "href"=> route("buyers.categories.index",$this->id),
+        ],
+        [
+            "rel" => "buyers.products",
+            "href"=> route("buyers.products.index",$this->id),
+        ],
+        [
+            "rel" => "buyers.sellers",
+            "href"=> route("buyers.sellers.index",$this->id),
+        ],
+        [
+            "rel" => "buyers.transactions",
+            "href"=> route("buyers.transactions.index",$this->id),
+        ],
+        [
+            "rel" => "users",
+            "href"=> route("users.show",$this->id),
+        ]
+    ];
+}//generateLinks
+
+...
+"identifier": 1,
+"full_name": "Paris Tillman",
+"email_address": "shania11@example.org",
+"creation_date": "2018-08-23 22:49:40",
+"last_modified": "2018-08-23 22:49:40",
+"links": [
+    {
+        "rel": "self",
+        "href": "http://laravelapi:8000/buyers/1"
+    },
+    {
+        "rel": "buyers.categories",
+        "href": "http://laravelapi:8000/buyers/1/categories"
+    },
+...
+
+```
 
 <hr/>
 
