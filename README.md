@@ -1874,6 +1874,40 @@ public function generateLinks($request)
     - Falta el número de la página actual
     - El total de páginas
     - El total de items
+```php
+//<project>\app\Http\Controllers\Controller.php
+class Controller extends BaseController
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, ApiResponser;
+...
+
+//<project>/app/Traits/ApiResponser.php
+function paginateCollection(Collection $collection)
+{
+    $perPage = $this->determinePageSize();
+    $page = LengthAwarePaginator::resolveCurrentPage();
+    $results = $collection->slice(($page-1)*$perPage,$perPage)->values();
+    $paginated = new LengthAwarePaginator(
+            $results,$collection->count()
+            ,$perPage
+            ,$page
+            ,["path"=> LengthAwarePaginator::resolveCurrentPath()]
+    );
+    $paginated->appends(request()->query());
+    return $paginated;
+}//paginateCollection
+
+function determinePageSize()
+{
+    $rules = [
+        "per_page" => "integer|min:2|max:50",
+    ];
+    //aqui se puede dar la excepción
+    $perpage = request()->validate($rules);
+    return isset($perpage["per_page"]) ? (int)$perpage["per_page"] : 5;
+}//determinePageSize
+
+```
 
 <hr/>
 
