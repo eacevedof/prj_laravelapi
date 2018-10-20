@@ -1870,6 +1870,10 @@ public function generateLinks($request)
     - Paginación para consultas anidadas tipo **with()->get()->pluck()** etc 
         - Estas no se pueden paginar en BD pero si una vez devueltos los datos anidados.
 - Empieza el refactor de la paginación **video: 00:48:40**
+- **video: 01:12:35** ya devuelve el número de datos paginados pero no devuelve todo el resto de metadatos
+    - Falta el número de la página actual
+    - El total de páginas
+    - El total de items
 
 <hr/>
 
