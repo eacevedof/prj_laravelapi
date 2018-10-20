@@ -1906,8 +1906,8 @@ function determinePageSize()
     $perpage = request()->validate($rules);
     return isset($perpage["per_page"]) ? (int)$perpage["per_page"] : 5;
 }//determinePageSize
-
 ```
+
 
 <hr/>
 
