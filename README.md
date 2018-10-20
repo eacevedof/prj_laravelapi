@@ -1861,8 +1861,15 @@ public function generateLinks($request)
         "href": "http://laravelapi:8000/buyers/1/categories"
     },
 ...
-
 ```
+- Queda pendiente corregir error: **if(!isset($this->resource)) return;**
+- Paginación: **video: 00:37:11**
+    - Hay dos formas:
+    - Paginación para consultas simples tipo **showAll()** o **modelo->otro-modelo-como-atributo**
+        - Estas se paginarán en BD
+    - Paginación para consultas anidadas tipo **with()->get()->pluck()** etc 
+        - Estas no se pueden paginar en BD pero si una vez devueltos los datos anidados.
+- Empieza el refactor de la paginación **video: 00:48:40**
 
 <hr/>
 

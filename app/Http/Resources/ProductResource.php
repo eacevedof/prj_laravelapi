@@ -20,4 +20,32 @@ class ProductResource extends BaseResource
         "updated_at" => "last_modified",
         "created_at" => "creation_date" 
     ];
+    
+        //se usa en BaseResource.toArray(request)
+    public function generateLinks($request)
+    {
+        return [
+            [
+                "rel" => "self",
+                "href"=> route("products.show",$this->id),
+            ],
+            [
+                "rel" => "products.buyers",
+                "href"=> route("products.buyers.index",$this->id),
+            ],            
+            [
+                "rel" => "products.categories",
+                "href"=> route("products.categories.index",$this->id),
+            ],
+            [
+                "rel" => "products.transactions",
+                "href"=> route("products.transactions.index",$this->id),
+            ],
+            [
+                "rel" => "seller",
+                "href"=> route("sellers.show",$this->seller_id),
+            ]
+        ];
+    }//generateLinks   
+    
 }//ProductResource

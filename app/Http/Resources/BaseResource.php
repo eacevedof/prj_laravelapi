@@ -23,6 +23,9 @@ abstract class BaseResource extends Resource
      */
     public function toArray($request)
     {
+        //TODO
+        //if(!isset($this->resource)) return;
+
         //return parent::toArray($request);
         //attributesToArray es un metodo de laravel del modelo los que estan visibles
         $visibleAttributes = $this->resource->attributesToArray();
