@@ -1773,6 +1773,9 @@ public function toArray($request)
             }
         },
 ```
+34. [Implementando HATEOAS en la API](https://escuela.it/cursos/curso-de-desarrollo-de-api-restful-con-laravel/clase/implementando-hateoas-en-la-api)
+
+- 
 
 <hr/>
 
